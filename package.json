@@ -1,0 +1,30 @@
+{
+  "name": "react-hogwarts-tdd-kata",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "start": "watchify -o js/bundle.js -v -d .",
+    "build": "NODE_ENV=production browserify . | uglifyjs -cm > js/bundle.min.js",
+    "test": "jest"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "repository": "",
+  "main": "js/app.js",
+  "dependencies": {
+    "alt": "^0.16.5",
+    "lodash": "^3.8.0",
+    "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "babel": "^5.4.3",
+    "babel-core": "^5.4.3",
+    "babel-eslint": "^3.1.5",
+    "babel-loader": "^5.1.2",
+    "eslint": "^0.21.1",
+    "node-libs-browser": "^0.5.0",
+    "webpack": "^1.9.7"
+  },
+  "author": ""
+}
