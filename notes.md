@@ -2,7 +2,6 @@
 Server
 ------
 JSON-server
-express
 
 Client
 ------
@@ -17,3 +16,9 @@ Moca/Should
 Sinon
 
 JSDom vs Karma (Dom testing)
+
+
+Places to have bad code
+-----------------------
+Story 2
+
