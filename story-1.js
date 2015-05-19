@@ -1,6 +1,28 @@
-import React from 'react'
+import React from 'react';
+import _ from 'lodash';
 
-class Catalog {
+class Course extends React.Component {
+
+  render() {
+    var course = this.props.course;
+    return (
+      <tr>
+        <td>{course.name}</td>
+        <td>{course.startTime /*| date: 'h:mm a'*/}</td>
+        <td>{course.professor}</td>
+        <td>{course.credits}</td>
+      </tr>
+    )
+  }
+}
+
+class Catalog extends React.Component {
+
+  constructor () {
+    super();
+    this.state = { catalog: [{ name: "course name",  }]};
+  }
+
   render() {
     return (
       <div>
@@ -22,6 +44,7 @@ class Catalog {
               </thead>
 
               <tbody>
+                { _.map(this.state.catalog, item => <Course course={item} /> ) }
               </tbody>
 
             </table>
