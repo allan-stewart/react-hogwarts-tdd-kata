@@ -1,5 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
+import moment from 'moment';
+
 
 class Course extends React.Component {
 
@@ -8,7 +10,7 @@ class Course extends React.Component {
     return (
       <tr>
         <td>{course.name}</td>
-        <td>{course.startTime /*| date: 'h:mm a'*/}</td>
+        <td>{moment(course.startTime).format('h:mm a')}</td>
         <td>{course.professor}</td>
         <td>{course.credits}</td>
       </tr>
@@ -20,7 +22,9 @@ class Catalog extends React.Component {
 
   constructor () {
     super();
-    this.state = { catalog: [{ name: "course name",  }]};
+    this.state = { catalog: [
+      {id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 }
+    ]};
   }
 
   render() {

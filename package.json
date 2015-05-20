@@ -25,6 +25,7 @@
     "eslint": "^0.21.1",
     "html-webpack-plugin": "^1.4.0",
     "html-webpack-template": "^2.0.0",
+    "moment": "^2.10.3",
     "webpack": "^1.9.7",
     "webpack-dev-server": "^1.8.2"
   },
