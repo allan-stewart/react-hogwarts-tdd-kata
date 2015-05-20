@@ -2,6 +2,24 @@ import React from 'react';
 import _ from 'lodash';
 import moment from 'moment';
 
+class RegistrationResponse extends React.Component {
+
+  render() {
+    var response = this.props.response;
+    var message;
+    if (response) {
+      var classString = 'alert ';
+      if (response.success) {
+        classString += 'alert-success';
+        message = <div className={classString}>Successfully registered</div>
+      } else {
+        classString += 'alert-danger';
+        message = <div className={classString}>{response.message}</div>
+      }
+    }
+    return {message}
+  }
+}
 
 class Course extends React.Component {
 
@@ -58,7 +76,5 @@ class Catalog extends React.Component {
     )
   }
 }
-            //<div ng-show="response && response.success" className="alert alert-success">Successfully registered</div>
-            //<div ng-show="response && !response.success" className="alert alert-danger">{{response.message}}</div>
 
 React.render(<Catalog />, document.getElementById('app'))
