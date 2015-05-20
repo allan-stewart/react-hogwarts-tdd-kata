@@ -2,6 +2,39 @@ import React from 'react';
 import _ from 'lodash';
 import moment from 'moment';
 
+import Alt from 'alt';
+
+//////////////////////////
+// Actions
+//////////////////////////
+
+class CatalogActions {
+  updateCatalog(catalog) {
+    this.dispatch(catalog);
+  }
+}
+
+//////////////////////////
+// Stores
+//////////////////////////
+
+class CatalogStore {
+  constructor() {
+    this.catalog = [];
+    this.bindListeners({
+      handleUpdateCatalog: CatalogActions.UPDATE_CATALOG
+    });
+  }
+
+  handleUpdateCatalog(catalog) {
+    this.catalog = catalog;
+  }
+}
+
+//////////////////////////
+// Components
+//////////////////////////
+
 class RegistrationResponse extends React.Component {
 
   render() {
@@ -38,11 +71,21 @@ class Course extends React.Component {
 
 class Catalog extends React.Component {
 
-  constructor () {
-    super();
-    this.state = { catalog: [
-      {id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 }
-    ]};
+  constructor(props) {
+    super(props);
+    this.state = { catalog: CatalogStore.getState() }
+  }
+
+  componentDidMount() {
+    CatalogStore.listen(this.onChange);
+  }
+
+  componentWillUnmount() {
+    CatalogStore.unlisten(this.onChange);
+  }
+
+  onChange(state) {
+    this.setState(state);
   }
 
   render() {
