@@ -1,6 +1,6 @@
-import React from 'react';
-import Router from 'react-router'
-import Catalog from './components/catalog.jsx'
+import React from "react";
+import Router from "react-router";
+import Catalog from "./components/catalog.jsx";
 
 //var routes = (
   //<Route handler={App}>
@@ -11,9 +11,10 @@ import Catalog from './components/catalog.jsx'
 //);
 
 //Router.run(routes, function (Handler) {
-  //React.render(<Handler/>, document.getElementById('app'));
+  //React.render(<Handler/>, document.getElementById("app"));
 //});
 
 
 
-import Example from '../story-1'
+import Example from "../story-1";
+//React.render(<Example />, document.getElementById("app"));

@@ -1,8 +1,8 @@
-import React from 'react';
-import _ from 'lodash';
-import moment from 'moment';
+import React from "react";
+import _ from "lodash";
+import moment from "moment";
 
-import Alt from 'alt';
+import Alt from "alt";
 
 var alt = new Alt();
 
@@ -10,7 +10,7 @@ var alt = new Alt();
 // Actions
 //////////////////////////
 
-class CatalogActions {
+export class CatalogActions {
 
   updateCatalog(catalog) {
     this.dispatch(catalog);
@@ -45,7 +45,7 @@ var catalogActions = alt.createActions(CatalogActions);
 
 var catalogData = [
   {id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 },
-  {id: "AR205", name: "Arithmancy", startTime:  new Date(0,0,0,9), professor: "Septima Vector", credits: 3 },
+  {id: "AR205", name: "Arithmancy", startTime: new Date(0,0,0,9), professor: "Septima Vector", credits: 3 },
   {id: "AST101", name: "Astronomy", startTime: new Date(0,0,0, 11), professor: "Aurora Sinistra", credits: 3 },
   {id: "MC101", name: "Care of Magical Creatures", startTime: new Date(0,0,0,14), professor: "Rubeus Hagrid", credits: 2 },
   {id: "CH105", name: "Charms", startTime: new Date(0,0,0,11), professor: "Filius Flitwick", credits: 3 },
@@ -61,9 +61,9 @@ var catalogData = [
   {id: "TRN205", name: "Transfiguration", startTime: new Date(0,0,0,13), professor: "Minerva McGonagall", credits: 4 }
 ];
 
-class CatalogRepository {
+export class CatalogRepository {
 
-  static save(item) { }
+  static save() { }
 
   static getAll() {
     // returning a Promise because that is what fetch does.
@@ -86,7 +86,7 @@ class CatalogRepository {
 // Stores
 //////////////////////////
 
-class CatalogStore {
+export class CatalogStore {
 
   constructor() {
     this.catalog = [];
@@ -104,22 +104,22 @@ var catalogStore = alt.createStore(CatalogStore);
 // Components
 //////////////////////////
 
-class RegistrationResponse extends React.Component {
+export class RegistrationResponse extends React.Component {
 
   render() {
     var response = this.props.response;
     var message;
     if (response) {
-      var classString = 'alert ';
+      var classString = "alert ";
       if (response.success) {
-        classString += 'alert-success';
-        message = <div className={classString}>Successfully registered</div>
+        classString += "alert-success";
+        message = <div className={classString}>Successfully registered</div>;
       } else {
-        classString += 'alert-danger';
-        message = <div className={classString}>{response.message}</div>
+        classString += "alert-danger";
+        message = <div className={classString}>{response.message}</div>;
       }
     }
-    return {message}
+    return {message};
   }
 }
 
@@ -130,15 +130,15 @@ class Course extends React.Component {
     return (
       <tr>
         <td>{course.name}</td>
-        <td>{moment(course.startTime).format('h:mm a')}</td>
+        <td>{moment(course.startTime).format("h:mm a")}</td>
         <td>{course.professor}</td>
         <td>{course.credits}</td>
       </tr>
-    )
+    );
   }
 }
 
-class Catalog extends React.Component {
+export class Catalog extends React.Component {
 
   constructor(props) {
     super(props);
@@ -186,8 +186,8 @@ class Catalog extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-React.render(<Catalog />, document.getElementById('app'))
+React.render(<Catalog />, document.getElementById('app'));
