@@ -14,11 +14,33 @@ class CatalogActions {
   }
 }
 
+
+//////////////////////////
+// Repository
+//////////////////////////
+
+class CatalogRepository {
+
+  save(item) {
+
+  }
+
+  getAll() {
+
+  }
+
+  findById(itemId) {
+
+  }
+
+}
+
 //////////////////////////
 // Stores
 //////////////////////////
 
 class CatalogStore {
+
   constructor() {
     this.catalog = [];
     this.bindListeners({
@@ -73,8 +95,10 @@ class Catalog extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { catalog: CatalogStore.getState() }
-  }
+    this.state =  {  catalog: [
+      {id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 }
+    ]
+  }}
 
   componentDidMount() {
     CatalogStore.listen(this.onChange);
