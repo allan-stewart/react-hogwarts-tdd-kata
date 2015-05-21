@@ -4,6 +4,8 @@ import moment from 'moment';
 
 import Alt from 'alt';
 
+var alt = new Alt();
+
 //////////////////////////
 // Actions
 //////////////////////////
@@ -13,6 +15,8 @@ class CatalogActions {
     this.dispatch(catalog);
   }
 }
+
+var catalogActions = alt.createActions(CatalogActions);
 
 
 //////////////////////////
@@ -43,15 +47,15 @@ class CatalogStore {
 
   constructor() {
     this.catalog = [];
-    this.bindListeners({
-      handleUpdateCatalog: CatalogActions.UPDATE_CATALOG
-    });
+    this.bindAction(catalogActions.updateCatalog, this.handleUpdateCatalog);
   }
 
   handleUpdateCatalog(catalog) {
     this.catalog = catalog;
   }
 }
+
+var catalogStore = alt.createStore(CatalogStore);
 
 //////////////////////////
 // Components
@@ -95,10 +99,8 @@ class Catalog extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state =  {  catalog: [
-      {id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 }
-    ]
-  }}
+    this.state =  catalogStore.getState();
+  }
 
   componentDidMount() {
     CatalogStore.listen(this.onChange);
