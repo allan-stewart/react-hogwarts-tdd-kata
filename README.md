@@ -19,6 +19,18 @@ Because you are a highly disciplined Wizard, you will be writing your code test 
 Setup
 -----
 
+You have [git](http://git-scm.com/downloads) installed.
+
+``git clone https://github.com/zhon/react-hogwarts-tdd-kata.git``
+
+``cd react-hogwarts-tdd-kata``
+``npm install``
+``npm start``
+
+Visit ``localhost:3000`` to see the code running.
+
+TODO run tests?
+
 
 
 ## 1. Story: Show Course Catalog
@@ -27,7 +39,7 @@ Acceptance: Students will be able to see a catalog of courses.
 
 ---
 
-It is time to start coding. Where will you start? **Making changes to catalog UI inside file ``app/catalog/catalog.html``.**
+It is time to start coding. Where will you start? **Making changes to catalog UI inside file ``src/components/catalog.jsx``.**
 
 I seem to have forgotten how to view the catalog.
 **Oh, Professor, you just refresh ``app/index.html`` and click on the Catalog menu.**
