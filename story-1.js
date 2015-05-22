@@ -1,6 +1,6 @@
 import React from "react";
 
-import Catalog from "./src/components/catalog.jsx";
+import Catalog from "./src/components/catalog";
 
 
 //////////////////////////

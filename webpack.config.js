@@ -8,8 +8,8 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.jsx?$/, loader: "babel-loader?stage=0" },
-      {test: /\.jsx?$/, loader: "eslint-loader", exclude: /node_modules/},
+      { test: /\.js$/, loader: "babel-loader?stage=0" },
+      {test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/},
     ]
   },
   plugins: [

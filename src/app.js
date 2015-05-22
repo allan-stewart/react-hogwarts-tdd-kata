@@ -1,6 +1,9 @@
 import React from "react";
 import Router from "react-router";
-import Catalog from "./components/catalog.jsx";
+
+import alt from "./alt";
+
+import Catalog from "./components/catalog";
 
 //var routes = (
   //<Route handler={App}>
