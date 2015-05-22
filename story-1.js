@@ -1,10 +1,9 @@
 import React from "react";
 import _ from "lodash";
-import moment from "moment";
 
-import alt from "./src/alt"
+import alt from "./src/alt";
 
-import Course from "./src/components/course"
+import Course from "./src/components/course";
 
 //////////////////////////
 // Actions
@@ -175,4 +174,4 @@ export class Catalog extends React.Component {
   }
 }
 
-React.render(<Catalog />, document.getElementById('app'));
+React.render(<Catalog />, document.getElementById("app"));

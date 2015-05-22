@@ -16,3 +16,4 @@ export default class Course extends React.Component {
   }
 
 }
+
