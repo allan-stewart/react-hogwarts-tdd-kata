@@ -108,7 +108,7 @@ export class Schedule extends React.Component {
               </thead>
 
               <tbody>
-                { _.map(this.state.registeredCourses, item => <Course course={item} /> ) }
+                { _.map(this.state.registeredCourses, item => <Course key={item.id} course={item} /> ) }
               </tbody>
 
             </table>
