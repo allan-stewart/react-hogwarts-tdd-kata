@@ -11,5 +11,8 @@
   "rules": {
     "no-underscore-dangle": 0,
     "comma-spacing": 0
-  }
+  },
+  "plugins": [
+    "react"
+  ]
 }

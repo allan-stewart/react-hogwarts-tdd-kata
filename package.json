@@ -26,6 +26,7 @@
     "babel-eslint": "^3.1.5",
     "babel-loader": "^5.1.2",
     "eslint": "^0.21.1",
+    "eslint-plugin-react": "^2.3.0",
     "html-webpack-plugin": "^1.4.0",
     "html-webpack-template": "^2.0.0",
     "jsdom": "^3.1.2",
