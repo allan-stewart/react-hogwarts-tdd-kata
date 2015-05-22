@@ -1,11 +1,5 @@
+
 import React from "react";
-
-import Catalog from "./src/components/catalog";
-
-
-//////////////////////////
-// Components
-//////////////////////////
 
 export class RegistrationResponse extends React.Component {
 
@@ -26,4 +20,3 @@ export class RegistrationResponse extends React.Component {
   }
 }
 
-React.render(<Catalog />, document.getElementById("app"));

@@ -19,5 +19,4 @@ import Catalog from "./components/catalog";
 
 
 
-import Example from "../story-1";
-//React.render(<Example />, document.getElementById("app"));
+React.render(<Catalog />, document.getElementById("app"));
