@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --port 3000",
     "build": "",
-    "test": "mocha 'test/unit/**/*.spec.js'",
+    "test": "jest",
+    "test-mocha": "mocha 'test/unit/**/*.spec.js'",
     "test-watch": "mocha 'test/unit/**/*.spec.js' --watch"
   },
   "engines": {
@@ -15,7 +16,6 @@
   "repository": "",
   "dependencies": {
     "alt": "^0.16.5",
-    "eslint-loader": "^0.11.2",
     "lodash": "^3.8.0",
     "react": "^0.13.3",
     "react-router": "^0.13.3"
@@ -26,6 +26,7 @@
     "babel-eslint": "^3.1.5",
     "babel-loader": "^5.1.2",
     "eslint": "^0.21.1",
+    "eslint-loader": "^0.11.2",
     "eslint-plugin-react": "^2.3.0",
     "html-webpack-plugin": "^1.4.0",
     "html-webpack-template": "^2.0.0",
@@ -36,5 +37,12 @@
     "webpack": "^1.9.7",
     "webpack-dev-server": "^1.8.2"
   },
-  "author": ""
+  "author": "",
+  "jest": {
+    "scriptPreprocessor": "./tools/preprocessor.js",
+    "unmockedModulePathPatterns": ["<rootDir>/node_modules/react"],
+    "testPathDirs": [
+      "./src"
+    ]
+  }
 }
