@@ -2,9 +2,9 @@ import React from "react";
 import _ from "lodash";
 import moment from "moment";
 
-import Alt from "alt";
+import alt from "./src/alt"
 
-var alt = new Alt();
+import Course from "./src/components/course"
 
 //////////////////////////
 // Actions
@@ -120,21 +120,6 @@ export class RegistrationResponse extends React.Component {
       }
     }
     return {message};
-  }
-}
-
-class Course extends React.Component {
-
-  render() {
-    var course = this.props.course;
-    return (
-      <tr>
-        <td>{course.name}</td>
-        <td>{moment(course.startTime).format("h:mm a")}</td>
-        <td>{course.professor}</td>
-        <td>{course.credits}</td>
-      </tr>
-    );
   }
 }
 
