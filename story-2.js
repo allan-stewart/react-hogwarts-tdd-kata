@@ -1,12 +1,11 @@
 import React from "react";
 import _ from "lodash";
-import moment from "moment";
 
 import Alt from "alt";
 
 var alt = new Alt();
 
-//import Course from './story-1'
+import Course from "./src/components/course";
 
 //////////////////////////
 // Actions
@@ -41,7 +40,7 @@ export class WizardStore {
   }
 
   handleRegisteredCourse(courseId) {
-    var course = {}; // TODO: lookup the course from the CatalogRepository?
+    var course = {id: courseId}; // TODO: lookup the course from the CatalogRepository?
     this.registeredCourses.push(course);
   }
 }
@@ -51,22 +50,6 @@ var wizardStore = alt.createStore(WizardStore);
 //////////////////////////
 // Components
 //////////////////////////
-
-// TODO: Remove story-1 duplication
-export class Course extends React.Component {
-
-  render() {
-    var course = this.props.course;
-    return (
-      <tr>
-        <td>{course.name}</td>
-        <td>{moment(course.startTime).format("h:mm a")}</td>
-        <td>{course.professor}</td>
-        <td>{course.credits}</td>
-      </tr>
-    );
-  }
-}
 
 export class Schedule extends React.Component {
 
@@ -119,4 +102,4 @@ export class Schedule extends React.Component {
   }
 }
 
-React.render(<Schedule />, document.getElementById('app'));
+React.render(<Schedule />, document.getElementById("app"));
