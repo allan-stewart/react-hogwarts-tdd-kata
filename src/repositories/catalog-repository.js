@@ -19,11 +19,11 @@ var catalogData = [
 
 export default class CatalogRepository {
 
-  static save() { }
+  //static save() { }
 
   static getAll() {
     // returning a Promise because that is what fetch does.
-    return new Promise(function (resolve, reject) {
+    return new Promise(function (resolve /*, reject*/) {
       // simulate an asynchronous action where data is fetched on
       // a remote server somewhere.
       setTimeout(function () {
@@ -34,7 +34,7 @@ export default class CatalogRepository {
     });
   }
 
-  static findById(itemId) { }
+  //static findById(itemId) { }
 
 }
 
