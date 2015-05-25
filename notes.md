@@ -1,3 +1,10 @@
+Intorduction to class
+---------------------
+State the object of the class
+- Explain a Kata
+- Why do Katas?
+- This Kata is more complex than most TDD or Refactoring Kata because we want to pratice on a full stack.
+- Somethings you might see as you pratice include the TDD rythymm and how to refactor smelly code.
 
 Server
 ------
