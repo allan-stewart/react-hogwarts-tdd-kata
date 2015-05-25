@@ -7,8 +7,8 @@
     "start": "webpack-dev-server --port 3000",
     "build": "",
     "test": "jest",
-    "test-mocha": "mocha 'test/unit/**/*.spec.js'",
-    "test-watch": "mocha 'test/unit/**/*.spec.js' --watch"
+    "test-mocha": "mocha \"test/unit/**/*.spec.js\"",
+    "test-watch": "mocha \"test/unit/**/*.spec.js\" --watch"
   },
   "engines": {
     "node": ">= 0.10.0"
