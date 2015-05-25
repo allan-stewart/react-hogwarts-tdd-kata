@@ -30,6 +30,8 @@
     "eslint-plugin-react": "^2.3.0",
     "html-webpack-plugin": "^1.4.0",
     "html-webpack-template": "^2.0.0",
+    "jest": "^0.1.40",
+    "jest-cli": "^0.4.5",
     "jsdom": "^3.1.2",
     "mocha": "^2.2.5",
     "moment": "^2.10.3",
@@ -40,7 +42,9 @@
   "author": "",
   "jest": {
     "scriptPreprocessor": "./tools/preprocessor.js",
-    "unmockedModulePathPatterns": ["<rootDir>/node_modules/react"],
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react"
+    ],
     "testPathDirs": [
       "./src"
     ]

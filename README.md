@@ -47,8 +47,8 @@ I seem to have forgotten how to view the catalog.
 
 ### 1.0. UI For Course Catalog
 
-``app/catalog/catalog.html``
-```html
+``src/components/catalog.js``
+```js
 ...
             <tbody>
 
