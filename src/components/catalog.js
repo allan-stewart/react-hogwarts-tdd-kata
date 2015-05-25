@@ -46,7 +46,10 @@ export default class Catalog extends React.Component {
               </thead>
 
               <tbody>
-                { _.map(this.state.catalog, item => <Course course={item} /> ) }
+                {
+                  _.map(this.state.catalog,
+                        item => <Course course={item} key={item.id} /> )
+                }
               </tbody>
 
             </table>
