@@ -9,7 +9,7 @@ export default class Catalog extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = catalogStore.getState();
+    this.state = {};
   }
 
   componentDidMount() {
