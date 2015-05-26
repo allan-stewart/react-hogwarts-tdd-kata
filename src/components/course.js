@@ -5,6 +5,9 @@ export default class Course extends React.Component {
 
   render() {
     var course = this.props.course;
+    if (!course) {
+      return null;
+    }
     return (
       <tr>
         <td>{course.name}</td>
