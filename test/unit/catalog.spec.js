@@ -20,13 +20,13 @@ describe('catalog component', function() {
     should(titles[3].getDOMNode().textContent).be.equal('Credits');
   });
 
-  it('renders data', () => {
+  it('renders course data', () => {
     //<Catalog state={state} />
     var catalog = TestUtils.renderIntoDocument(
       <Catalog />
     );
-    var body = TestUtils.findRenderedDOMComponentWithTag(catalog, 'tbody');
-    console.log(body.getDOMNode().textContent)
+    //var tag = TestUtils.findRenderedDOMComponentWithTag(catalog, Course);
+    //should(tag.getDOMNode().textContent).be.equal('balh');
     //should(titles[0].getDOMNode().textContent).be.equal('Class');
     //should(titles[1].getDOMNode().textContent).be.equal('Time');
     //should(titles[2].getDOMNode().textContent).be.equal('Professor');
