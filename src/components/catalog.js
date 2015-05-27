@@ -39,9 +39,9 @@ export default class Catalog extends React.Component {
               <thead>
                 <tr>
                   <th>Class</th>
-                  <th>Time</th>
                   <th>Professor</th>
                   <th>Credits</th>
+                  <th>Time</th>
                 </tr>
               </thead>
 

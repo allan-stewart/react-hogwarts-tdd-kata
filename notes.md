@@ -6,6 +6,14 @@ State the object of the class
 - This Kata is more complex than most TDD or Refactoring Kata because we want to pratice on a full stack.
 - Somethings you might see as you pratice include the TDD rythymm and how to refactor smelly code.
 
+Willem Thoughts
+---------------
+Add social experience
+overhead projector
+thoughts from students
+
+hogwarts computer lab
+
 Server
 ------
 JSON-server
