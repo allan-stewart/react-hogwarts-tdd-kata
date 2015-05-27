@@ -3,6 +3,7 @@ import React from 'react/addons';
 import rewire from 'rewire';
 
 import Catalog from '../../src/components/catalog'
+import Course from '../../src/components/course'
 
 import mockComponent from "../utils/mock-component";
 
@@ -12,7 +13,6 @@ var TestUtils = React.addons.TestUtils;
 describe('catalog component', function() {
 
   it('renders html headers', () => {
-    //<Catalog state={state} />
     var catalog = TestUtils.renderIntoDocument(
       <Catalog />
     );
@@ -23,22 +23,36 @@ describe('catalog component', function() {
     should(titles[3].getDOMNode().textContent).be.equal('Time');
   });
 
-  it('renders course', () => {
-    // use rewire and mockcomponent
-    //<Catalog state={state} />
-    var catalog = TestUtils.renderIntoDocument(
-      <Catalog />
-    );
-    // assert catalog was called
-  });
+  describe('with mocked course', () => {
+    var TestableCatalog = rewire('../../src/components/catalog');
 
-  it('renders all courses', () => {
+    var mockCourse = mockComponent(Course);
+    before( () => {
+      TestableCatalog.__set__('Course', mockCourse);
+    });
 
-  });
+    after(() => {
+    });
 
-  it('renders course with key assigned to course.id', () => {
+    it('renders course', () => {
+      var catalog = TestUtils.renderIntoDocument(
+        <Catalog />
+      );
+      sinon.assert.calledOnce(mockCourse.render);
+    });
 
-  });
+    it('renders all courses', () => {
+      //var catalog = TestUtils.renderIntoDocument(
+        //<Catalog />
+      //);
+      //should(titles[3].getDOMNode().textContent).be.equal('Time');
+
+    });
+
+    it('renders course with key assigned to course.id', () => {
+
+    });
+  })
 
 });
 
