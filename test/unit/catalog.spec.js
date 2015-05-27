@@ -3,7 +3,7 @@ import React from 'react/addons';
 
 import Catalog from '../../src/components/catalog'
 
-import mockComponent from "utils/mock-components";
+import mockComponent from "../utils/mock-component";
 
 
 var TestUtils = React.addons.TestUtils;
@@ -28,11 +28,16 @@ describe('catalog component', function() {
     var catalog = TestUtils.renderIntoDocument(
       <Catalog />
     );
+    // assert catalog was called
   });
 
-  it('renders all courses with key assigned to course.id') {
+  it('renders all courses', () => {
 
-  }
+  });
+
+  it('renders course with key assigned to course.id', () => {
+
+  });
 
 });
 

@@ -14,6 +14,19 @@ thoughts from students
 
 hogwarts computer lab
 
+tell them how to accordian works
+ copycat
+
+ Users can 
+  -Copycat along with me
+  -Read text headings first, guess tests and code, and then aftewards check in to see what the correct answers were
+  -A mix of both
+
+Bight sized pieces
+
+
+Help people figure out what level
+
 Server
 ------
 JSON-server

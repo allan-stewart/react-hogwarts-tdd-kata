@@ -10,9 +10,9 @@ describe('course component', function() {
 
   let course = {
     name: "DADA",
-    startTime: new Date(1992, 6, 4, 11, 30),
     professor: "Quirinus Quirrell",
     credits: "3"
+    startTime: new Date(1992, 6, 4, 11, 30),
   };
 
   it('renders', () => {
