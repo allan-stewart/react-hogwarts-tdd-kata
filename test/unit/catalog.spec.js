@@ -1,6 +1,7 @@
 import should from 'should';
 import React from 'react/addons';
 import rewire from 'rewire';
+import sinon from 'sinon';
 
 import Catalog from '../../src/components/catalog'
 import Course from '../../src/components/course'
