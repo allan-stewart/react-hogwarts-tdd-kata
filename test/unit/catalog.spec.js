@@ -1,5 +1,6 @@
 import should from 'should';
 import React from 'react/addons';
+import rewire from 'rewire';
 
 import Catalog from '../../src/components/catalog'
 

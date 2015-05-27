@@ -74,3 +74,8 @@ but then you must change the import to be
     `class { Course } extends React.Component`
 
 This website was helpful: http://www.2ality.com/2014/09/es6-modules-final.html
+
+References
+----------
+http://substantial.com/blog/2014/11/11/test-driven-react-how-to-manually-mock-components/
+
