@@ -1,56 +1,36 @@
 import should from 'should';
 import React from 'react/addons';
 
-import Course from '../../src/components/course'
+import Catalog from '../../src/components/catalog'
 
 
 var TestUtils = React.addons.TestUtils;
 
-describe('course component', function() {
+describe('catalog component', function() {
 
-  let course = {
-    name: "course name",
-    startTime: new Date(),
-    professor: "the professor",
-    credits: "3"
-  };
-
-  it('renders', () => {
+  it('renders headers', () => {
+    //<Catalog state={state} />
     var catalog = TestUtils.renderIntoDocument(
-      <table>
-        <tbody>
-          <Course course={course}/>
-        </tbody>
-      </table>
+      <Catalog />
     );
-    var data = TestUtils.scryRenderedDOMComponentsWithTag(catalog, "td");
-    should(data[0].getDOMNode().textContent).be.equal("course name");
-    should(data[2].getDOMNode().textContent).be.equal("the professor");
-    should(data[3].getDOMNode().textContent).be.equal("3");
+    var titles = TestUtils.scryRenderedDOMComponentsWithTag(catalog, 'th');
+    should(titles[0].getDOMNode().textContent).be.equal('Class');
+    should(titles[1].getDOMNode().textContent).be.equal('Time');
+    should(titles[2].getDOMNode().textContent).be.equal('Professor');
+    should(titles[3].getDOMNode().textContent).be.equal('Credits');
   });
 
-  it('TODO renders time correctly', () => {
+  it('renders course data', () => {
+    //<Catalog state={state} />
     var catalog = TestUtils.renderIntoDocument(
-      <table>
-        <tbody>
-          <Course course/>
-        </tbody>
-      </table>
+      <Catalog />
     );
-    var data = TestUtils.scryRenderedDOMComponentsWithTag(catalog, 'td');
-    //should(data[1].getDOMNode().textContent).be.equal('Time');
-  });
-
-  it('renders nothing if no course is supplied', () => {
-    var catalog = TestUtils.renderIntoDocument(
-      <table>
-        <tbody>
-          <Course />
-        </tbody>
-      </table>
-    );
-    var data = TestUtils.scryRenderedDOMComponentsWithTag(catalog, 'td');
-    should(data.length).be.equal(0);
+    //var tag = TestUtils.findRenderedDOMComponentWithTag(catalog, Course);
+    //should(tag.getDOMNode().textContent).be.equal('balh');
+    //should(titles[0].getDOMNode().textContent).be.equal('Class');
+    //should(titles[1].getDOMNode().textContent).be.equal('Time');
+    //should(titles[2].getDOMNode().textContent).be.equal('Professor');
+    //should(titles[3].getDOMNode().textContent).be.equal('Credits');
   });
 
 });
