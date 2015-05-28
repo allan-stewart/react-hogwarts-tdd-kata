@@ -23,7 +23,7 @@ class App extends React.Component {
       <div>
         Hogwarts<br />
         <Nav>
-          <NavItemLink to="catalog" >
+          <NavItemLink to="sorting" >
             sorting
           </NavItemLink>
           <NavItemLink to="catalog" >
