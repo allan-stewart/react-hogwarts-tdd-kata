@@ -9,10 +9,9 @@ import Schedule from "./components/schedule";
 
 var Nav = ReactBootstrap.Nav
   , NavItemLink = ReactRouterBootstrap.NavItemLink
-  , ButtonLink = ReactRouterBootstrap.ButtonLink
 ;
 
-var { Route, RouteHandler, Link } = Router;
+var { Route, RouteHandler } = Router;
 
 //import alt from "./alt";
 
