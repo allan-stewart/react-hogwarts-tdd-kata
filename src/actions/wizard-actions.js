@@ -3,24 +3,22 @@ import WizardRepository from "../repositories/wizard-repository";
 
 class WizardActions {
 
-  getRegisteredCourses() {
-    this.dispatch();
-
-    WizardRepository.getRegisteredCourses()
-      .then((registeredCourses) => {
-        this.actions.updateRegisteredCourses(registeredCourses);
+  getWizard() {
+    WizardRepository.get()
+      .then((wizard) => {
+        this.actions.updateWizard(wizard);
       })
       .catch((errorMessage) => {
-        this.actions.updateRegisteredCoursesFailed(errorMessage);
+        this.actions.updateWizardFailed(errorMessage);
       });
   }
 
-  updateRegisteredCourses(registeredCourses) {
-    this.dispatch(registeredCourses);
+  updateWizard(wizard) {
+    this.dispatch(wizard);
   }
 
-  updateRegisteredCoursesFailed(message) {
-    console.log("Failed to update registered courses: " + message);
+  updateWizardFailed(message) {
+    console.log("Failed to update wizard: " + message);
     throw message;
   }
 }
