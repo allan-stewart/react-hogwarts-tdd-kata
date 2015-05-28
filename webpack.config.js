@@ -8,6 +8,11 @@ module.exports = {
   },
   module: {
     loaders: [
+      // Extract css files
+      //{
+        //test: /\.css$/,
+        //loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+      //},
       { test: /\.js$/, loader: "babel-loader?stage=0" },
       {test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/},
     ]
