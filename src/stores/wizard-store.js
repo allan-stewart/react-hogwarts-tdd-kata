@@ -5,12 +5,12 @@ import wizardActions from "../actions/wizard-actions";
 class WizardStore {
 
   constructor() {
-    this.registeredCourses = [];
-    this.bindAction(wizardActions.updateRegisteredCourses, this.handleUpdatedCourses);
+    this.wizard = {};
+    this.bindAction(wizardActions.updateWizard, this.handleUpdatedWizard);
   }
 
-  handleUpdatedCourses(registeredCourses) {
-    this.registeredCourses = registeredCourses;
+  handleUpdatedWizard(wizard) {
+    this.wizard = wizard;
   }
 }
 

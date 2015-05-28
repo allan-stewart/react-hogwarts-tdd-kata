@@ -13,16 +13,16 @@ export default class Schedule extends React.Component {
   }
 
   componentDidMount() {
-    wizardStore.listen(this.onChange.bind(this));
-    wizardActions.getRegisteredCourses();
+    wizardStore.listen(this.onWizardChange.bind(this));
+    wizardActions.getWizard();
   }
 
   componentWillUnmount() {
-    wizardStore.unlisten(this.onChange);
+    wizardStore.unlisten(this.onWizardChange);
   }
 
-  onChange(state) {
-    this.setState(state);
+  onWizardChange(store) {
+    this.setState(store.wizard);
   }
 
   render() {
@@ -45,7 +45,7 @@ export default class Schedule extends React.Component {
               </thead>
 
               <tbody>
-                { _.map(this.state.registeredCourses, item => <Course key={item.id} course={item} /> ) }
+                { _.map(this.state.courses, item => <Course key={item.id} course={item} /> ) }
               </tbody>
 
             </table>
