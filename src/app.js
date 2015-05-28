@@ -1,23 +1,39 @@
 import React from "react";
 import Router from "react-router";
-
-var { Route, RouteHandler, Link } = Router;
-
-//import alt from "./alt";
+import ReactBootstrap from "react-bootstrap";
+import ReactRouterBootstrap from "react-router-bootstrap";
 
 import Catalog from "./components/catalog";
 import Schedule from "./components/schedule";
 
 
+var Nav = ReactBootstrap.Nav
+  , NavItemLink = ReactRouterBootstrap.NavItemLink
+  , ButtonLink = ReactRouterBootstrap.ButtonLink
+;
+
+var { Route, RouteHandler, Link } = Router;
+
+//import alt from "./alt";
+
+
 class App extends React.Component {
+
   render () {
     return (
       <div>
-        <ul>
-          <li><Link to="sorting" >sorting</Link></li>
-          <li><Link to="catalog" >catalog</Link></li>
-          <li><Link to="schedule" >schedule</Link></li>
-        </ul>
+        Hogwarts<br />
+        <Nav>
+          <NavItemLink to="catalog" >
+            sorting
+          </NavItemLink>
+          <NavItemLink to="catalog" >
+            catalog
+          </NavItemLink>
+          <NavItemLink to="schedule" >
+            schedule
+          </NavItemLink>
+        </Nav>
         <RouteHandler />
       </div>
     );
