@@ -21,6 +21,28 @@ class WizardActions {
     console.log("Failed to update wizard: " + message);
     throw message;
   }
+
+  registerForCourse(course) {
+    WizardRepository.get()
+      .then((wizard) => {
+        wizard.courses.push(course);
+        WizardRepository.save(wizard)
+          .then(() => {
+            this.actions.updateWizard(wizard);
+          })
+          .catch((errorMessage) => {
+            this.actions.registerForCourseFailed(errorMessage);
+          });
+      })
+      .catch((errorMessage) => {
+        this.actions.registerForCourseFailed(errorMessage);
+      });
+  }
+
+  registerForCourseFailed(message) {
+    console.log("Failed to register for course: " + message);
+    throw message;
+  }
 }
 
 export default alt.createActions(WizardActions);
