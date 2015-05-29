@@ -3,6 +3,7 @@ import _ from "lodash";
 
 import catalogStore from "../stores/catalog-store";
 import catalogActions from "../actions/catalog-actions";
+import wizardActions from "../actions/wizard-actions";
 import Course from "./course";
 
 export default class Catalog extends React.Component {
@@ -23,6 +24,10 @@ export default class Catalog extends React.Component {
 
   onChange(state) {
     this.setState(state);
+  }
+
+  onRegister(course) {
+    wizardActions.registerForCourse(course);
   }
 
   render() {
@@ -48,7 +53,7 @@ export default class Catalog extends React.Component {
               <tbody>
                 {
                   _.map(this.state.catalog,
-                        item => <Course course={item} key={item.id} /> )
+                        item => <Course course={item} key={item.id} onRegister={this.onRegister}/> )
                 }
               </tbody>
 
@@ -59,4 +64,3 @@ export default class Catalog extends React.Component {
     );
   }
 }
-

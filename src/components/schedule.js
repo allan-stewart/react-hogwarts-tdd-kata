@@ -29,7 +29,7 @@ export default class Schedule extends React.Component {
     return (
       <div>
         <div className="jumbotron">
-          <h1>Your Hogwards schedule</h1>
+          <h1>Your Hogwarts schedule</h1>
         </div>
         <div>
           <div className="panel panel-default" >
