@@ -1,6 +1,5 @@
 import should from 'should';
 import React from 'react/addons';
-import rewire from 'rewire';
 import sinon from 'sinon';
 
 import Catalog from '../../src/components/catalog'
@@ -25,11 +24,10 @@ describe('catalog component', function() {
   });
 
   describe('with mocked course', () => {
-    var TestableCatalog = rewire('../../src/components/catalog');
 
     var mockCourse = mockComponent(Course);
     before( () => {
-      TestableCatalog.__set__('Course', mockCourse);
+
     });
 
     after(() => {

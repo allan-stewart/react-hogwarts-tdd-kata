@@ -34,7 +34,6 @@
     "jsdom": "^3.1.2",
     "mocha": "^2.2.5",
     "moment": "^2.10.3",
-    "rewire": "^2.3.3",
     "should": "^6.0.3",
     "sinon": "git://github.com/cjohansen/Sinon.JS#sinon-2.0",
     "webpack": "^1.9.7",
