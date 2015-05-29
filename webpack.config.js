@@ -13,9 +13,12 @@ module.exports = {
         //test: /\.css$/,
         //loader: ExtractTextPlugin.extract("style-loader", "css-loader")
       //},
-      { test: /\.js$/, loader: "babel-loader?stage=0" },
+      {test: /\.js$/, loader: "babel-loader?stage=0" },
       {test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/},
-    ]
+    ],
+    noParse: [
+      /karma-chrome-launcher/
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -23,9 +26,12 @@ module.exports = {
       title: "React!",
       devServer: "http://localhost:3000",
       appMountId: "app"
-    })
+    }),
   ],
   eslint: {
     configFile: '.eslintrc'
+  },
+  node: {
+    fs: "empty"
   }
 }
