@@ -36,7 +36,7 @@
     "moment": "^2.10.3",
     "rewire": "^2.3.3",
     "should": "^6.0.3",
-    "sinon": "^1.14.1",
+    "sinon": "git://github.com/cjohansen/Sinon.JS#sinon-2.0",
     "webpack": "^1.9.7",
     "webpack-dev-server": "^1.8.2"
   },
