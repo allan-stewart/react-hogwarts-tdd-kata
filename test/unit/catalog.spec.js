@@ -23,60 +23,54 @@ describe('catalog component', function() {
     should(titles[3].getDOMNode().textContent).be.equal('Time');
   });
 
+  it('renders course', () => {
+    var catalog = TestUtils.renderIntoDocument(
+      <Catalog />
+    );
+    catalog.setState({catalog: [
+      {id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 }
+    ]});
+    var courseData = TestUtils.scryRenderedComponentsWithType(catalog, Course);
+    courseData[0].props.course.id.should.equal("RUN105");
+  });
+
+  it('renders all courses', () => {
+    var catalog = TestUtils.renderIntoDocument(
+      <Catalog />
+    );
+    catalog.setState({catalog: [
+      {id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 },
+      {id: "AST101", name: "Astronomy", startTime: new Date(0,0,0, 11), professor: "Aurora Sinistra", credits: 3 },
+      {id: "DDA302-10", name: "Defence Against the Dark Arts", startTime: new Date(0,0,0,10), professor: "Severus Snape", credits: 4 },
+    ]});
+    var courseData = TestUtils.scryRenderedComponentsWithType(catalog, Course);
+    courseData[0].props.course.id.should.equal("RUN105");
+    courseData[1].props.course.id.should.equal("AST101");
+    courseData[2].props.course.id.should.equal("DDA302-10");
+  });
+
+  it('renders course with key assigned to course.id', () => {
+    var catalog = TestUtils.renderIntoDocument(
+      <Catalog />
+    );
+    catalog.setState({catalog: [
+      {id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 }
+    ]});
+    var courseData = TestUtils.scryRenderedDOMComponentsWithTag(catalog, "tbody");
+    courseData[0].props.children[0].key.should.equal("RUN105");
+  });
+
   describe('with mocked course', () => {
 
-    //var mockCourse = mockComponent(Course);
+    var mockCourse;
     before( () => {
-
+    //var mockCourse = mockComponent(Course);
     });
 
     after(() => {
       // unmock everything we mocked
     });
 
-    it('renders course', () => {
-      sinon.stub(Course, "render", () => {
-        return (
-          <td></td>
-        );
-      });
-
-      var catalog = TestUtils.renderIntoDocument(
-        <Catalog />
-      );
-      catalog.setState({catalog: [
-        {id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 }
-      ]});
-      var courseData = TestUtils.scryRenderedComponentsWithType(catalog, Course);
-      courseData[0].props.course.id.should.equal("RUN105");
-      sinon.assert.calledOnce(mockCourse.render);
-    });
-
-    it('renders all courses', () => {
-      var catalog = TestUtils.renderIntoDocument(
-        <Catalog />
-      );
-      catalog.setState({catalog: [
-        {id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 },
-        {id: "AST101", name: "Astronomy", startTime: new Date(0,0,0, 11), professor: "Aurora Sinistra", credits: 3 },
-        {id: "DDA302-10", name: "Defence Against the Dark Arts", startTime: new Date(0,0,0,10), professor: "Severus Snape", credits: 4 },
-      ]});
-      var courseData = TestUtils.scryRenderedComponentsWithType(catalog, Course);
-      courseData[0].props.course.id.should.equal("RUN105");
-      courseData[1].props.course.id.should.equal("AST101");
-      courseData[2].props.course.id.should.equal("DDA302-10");
-    });
-
-    it('renders course with key assigned to course.id', () => {
-      var catalog = TestUtils.renderIntoDocument(
-        <Catalog />
-      );
-      catalog.setState({catalog: [
-        {id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 }
-      ]});
-      var courseData = TestUtils.scryRenderedDOMComponentsWithTag(catalog, "tbody");
-      courseData[0].props.children[0].key.should.equal("RUN105");
-    });
   })
 
 });
