@@ -25,15 +25,22 @@ describe('catalog component', function() {
 
   describe('with mocked course', () => {
 
-    var mockCourse = mockComponent(Course);
+    //var mockCourse = mockComponent(Course);
     before( () => {
 
     });
 
     after(() => {
+      // unmock everything we mocked
     });
 
     it('renders course', () => {
+      sinon.stub(Course, "render", () => {
+        return (
+          <td></td>
+        );
+      });
+
       var catalog = TestUtils.renderIntoDocument(
         <Catalog />
       );
@@ -42,7 +49,7 @@ describe('catalog component', function() {
       ]});
       var courseData = TestUtils.scryRenderedComponentsWithType(catalog, Course);
       courseData[0].props.course.id.should.equal("RUN105");
-      //sinon.assert.calledOnce(mockCourse.render);
+      sinon.assert.calledOnce(mockCourse.render);
     });
 
     it('renders all courses', () => {

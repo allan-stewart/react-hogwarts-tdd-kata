@@ -39,29 +39,35 @@ Acceptance: Students will be able to see a catalog of courses.
 
 ---
 
-It is time to start coding. Where will you start? **Making changes to catalog UI inside file ``src/components/catalog.jsx``.**
+It is time to start coding. Where will you start? **Making changes to catalog UI inside file ``src/components/catalog.js``.**
 
 I seem to have forgotten how to view the catalog.
 **Oh, Professor, you just refresh ``app/index.html`` and click on the Catalog menu.**
 
-
 ### 1.0. UI For Course Catalog
 
-``src/components/catalog.js``
+How do we want the catalog to look? **We will put it into a table with headers course name, prof...**
+
+Can you show me in a test? **Oh, that would be easier.**
+
 ```js
-...
-            <tbody>
-
-                <tr ng-repeat="course in catalog">
-                    <td>{{course.name}}</td>
-                    <td>{{course.startTime | date: 'h:mm a'}}</td>
-                    <td>{{course.professor}}</td>
-                    <td>{{course.credits}}</td>
-                </tr>
-
+  it('renders html headers', () => {
+    var catalog = TestUtils.renderIntoDocument(
+      <Catalog />
+    );
+    var titles = TestUtils.scryRenderedDOMComponentsWithTag(catalog, 'th');
+    should(titles[0].getDOMNode().textContent).be.equal('Class');
+    should(titles[1].getDOMNode().textContent).be.equal('Professor');
+    should(titles[2].getDOMNode().textContent).be.equal('Credits');
+    should(titles[3].getDOMNode().textContent).be.equal('Time');
+  });
 ```
 
-I see you expect to have a ``catalog`` array on the ``CatalogController`` scope. **Yes.**
+I see you expect to have a ``Catalog`` component with headers. **Yes, I expect we want to show "Class", "Professor", "Credits" and "Time".**
+
+
+
+
 
 I reloaded ``app/index.html`` and clicked on menu item catalog and I don't see anything. **It is because we haven't hooked it up.**
 
