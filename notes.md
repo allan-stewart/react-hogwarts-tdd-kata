@@ -79,3 +79,8 @@ References
 ----------
 http://substantial.com/blog/2014/11/11/test-driven-react-how-to-manually-mock-components/
 
+
+Hack Hands request
+------------------
+
+Building a React, Alt, bootstrap application. Tested with mocha, Karma, sinon. I am having trouble with webpack pulling it all together. 
