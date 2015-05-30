@@ -6,7 +6,6 @@ import ReactRouterBootstrap from "react-router-bootstrap";
 import Catalog from "./components/catalog";
 import Schedule from "./components/schedule";
 
-
 var Nav = ReactBootstrap.Nav
   , NavItemLink = ReactRouterBootstrap.NavItemLink
 ;

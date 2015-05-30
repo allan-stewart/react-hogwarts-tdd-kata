@@ -8,13 +8,10 @@ module.exports = {
   },
   module: {
     loaders: [
-      // Extract css files
-      //{
-        //test: /\.css$/,
-        //loader: ExtractTextPlugin.extract("style-loader", "css-loader")
-      //},
+      {test: /\.css$/, loader: "style-loader!css-loader" },
       {test: /\.js$/, loader: "babel-loader?stage=0" },
       {test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/},
+      {test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff2?$|\.ttf$\.eot$|\.wav$|\.mp3$/, loader: "file-loader"}
     ],
     noParse: [
       /karma-chrome-launcher/
