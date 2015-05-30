@@ -5,6 +5,7 @@ import ReactRouterBootstrap from "react-router-bootstrap";
 
 import Catalog from "./components/catalog";
 import Schedule from "./components/schedule";
+import Sorting from "./components/sorting";
 
 var Nav = ReactBootstrap.Nav
   , NavItemLink = ReactRouterBootstrap.NavItemLink
@@ -41,7 +42,7 @@ class App extends React.Component {
 
 var routes = (
   <Route handler={App}>
-    <Route name="sorting" />
+    <Route name="sorting" handler={Sorting}/>
     <Route name="catalog" handler={Catalog}/>
     <Route name="schedule" handler={Schedule}/>
   </Route>
