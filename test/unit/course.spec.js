@@ -25,8 +25,8 @@ describe('course component', function() {
     );
     var data = TestUtils.scryRenderedDOMComponentsWithTag(catalog, "td");
     should(data[0].getDOMNode().textContent).be.equal("DADA");
-    should(data[2].getDOMNode().textContent).be.equal("Quirinus Quirrell");
-    should(data[3].getDOMNode().textContent).be.equal("3");
+    should(data[1].getDOMNode().textContent).be.equal("Quirinus Quirrell");
+    should(data[2].getDOMNode().textContent).be.equal("3");
   });
 
   it('TODO renders time correctly', () => {
