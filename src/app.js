@@ -11,7 +11,7 @@ var Nav = ReactBootstrap.Nav
   , NavItemLink = ReactRouterBootstrap.NavItemLink
 ;
 
-var { Route, RouteHandler } = Router;
+var { Route, RouteHandler, DefaultRoute } = Router;
 
 //import alt from "./alt";
 
@@ -49,6 +49,7 @@ var routes = (
     <Route name="sorting" handler={Sorting}/>
     <Route name="catalog" handler={Catalog}/>
     <Route name="schedule" handler={Schedule}/>
+    <DefaultRoute handler={Sorting}/>
   </Route>
 );
 
