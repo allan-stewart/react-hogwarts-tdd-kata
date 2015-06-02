@@ -20,9 +20,9 @@ class App extends React.Component {
 
   render () {
     return (
-      <div style={{"padding": "10px;"}}>
+      <div style={{"padding": "10px"}}>
         <div className="navbar navbar-inverse">
-          <div className="navbar-header navbar-brand">
+          <div className="navbar-header navbar-brand" style={{"color": "white"}}>
             Hogwarts
           </div>
           <Nav className="nav navbar-nav">
