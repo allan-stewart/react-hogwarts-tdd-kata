@@ -27,7 +27,10 @@ export default class Sorting extends React.Component {
   render() {
     return (
       <div>
-        <h2> Sorting </h2>
+        <div className="jumbotron">
+          <h1>Welcome to Hogwarts, wizard!</h1>
+          <p>Welcome to the wonderful world of hogwarts.  Click the sorting hat to discover which house you will be assigned to.</p>
+        </div>
         <ul>
           <li><SortingHat /></li>
           {
