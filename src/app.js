@@ -21,18 +21,22 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        Hogwarts<br />
-        <Nav>
-          <NavItemLink to="sorting" >
-            sorting
-          </NavItemLink>
-          <NavItemLink to="catalog" >
-            catalog
-          </NavItemLink>
-          <NavItemLink to="schedule" >
-            schedule
-          </NavItemLink>
-        </Nav>
+        <div className="navbar navbar-inverse">
+          <div className="navbar-header navbar-brand">
+            Hogwarts
+          </div>
+          <Nav className="nav navbar-nav">
+            <NavItemLink to="sorting" >
+              sorting
+            </NavItemLink>
+            <NavItemLink to="catalog" >
+              catalog
+            </NavItemLink>
+            <NavItemLink to="schedule" >
+              schedule
+            </NavItemLink>
+          </Nav>
+        </div>
         <RouteHandler />
       </div>
     );
