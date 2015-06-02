@@ -31,15 +31,16 @@ export default class Sorting extends React.Component {
           <h1>Welcome to Hogwarts, wizard!</h1>
           <p>Welcome to the wonderful world of hogwarts.  Click the sorting hat to discover which house you will be assigned to.</p>
         </div>
-        <ul>
-          <li><SortingHat /></li>
+        <div className="pull-left">
+          <SortingHat />
+        </div>
+        <div className="well pull-left">
           {
             _.map(this.state.houses, h =>
-              <li>
                 <SortingHouse houseName={h} selected={this.state.selectedHouse === h}/>
-              </li>)
+              )
           }
-        </ul>
+        </div>
       </div>
     );
   }
