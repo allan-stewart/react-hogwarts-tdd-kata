@@ -33,7 +33,7 @@ export default class Catalog extends React.Component {
   render() {
     return (
       <div>
-        <div className="jumbotron">
+        <div className="jumbotron" style={{"padding": "10px"}}>
           <h1>Hogwarts course catalog!</h1>
           <p>Select your wizarding classes!</p>
         </div>

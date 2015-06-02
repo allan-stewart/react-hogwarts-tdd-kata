@@ -28,7 +28,7 @@ export default class Schedule extends React.Component {
   render() {
     return (
       <div>
-        <div className="jumbotron">
+        <div className="jumbotron" style={{"padding": "10px"}}>
           <h1>Your Hogwarts schedule</h1>
         </div>
         <div>

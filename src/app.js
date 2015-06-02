@@ -20,7 +20,7 @@ class App extends React.Component {
 
   render () {
     return (
-      <div>
+      <div style={{"padding": "10px;"}}>
         <div className="navbar navbar-inverse">
           <div className="navbar-header navbar-brand">
             Hogwarts
