@@ -6,7 +6,7 @@ import Course from '../../src/components/course'
 
 var TestUtils = React.addons.TestUtils;
 
-describe('course component', function() {
+describe('course component', () => {
 
   let course = {
     name: "DADA",
@@ -16,42 +16,74 @@ describe('course component', function() {
   };
 
   it('renders', () => {
-    var catalog = TestUtils.renderIntoDocument(
+    var renderedCourse = TestUtils.renderIntoDocument(
       <table>
         <tbody>
           <Course course={course}/>
         </tbody>
       </table>
     );
-    var data = TestUtils.scryRenderedDOMComponentsWithTag(catalog, "td");
+    var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, "td");
+    should(data.length).equal(4);
     should(data[0].getDOMNode().textContent).be.equal("DADA");
     should(data[1].getDOMNode().textContent).be.equal("Quirinus Quirrell");
     should(data[2].getDOMNode().textContent).be.equal("3");
   });
 
-  it('TODO renders time correctly', () => {
-    var catalog = TestUtils.renderIntoDocument(
+  it('renders time correctly', () => {
+    var renderedCourse = TestUtils.renderIntoDocument(
       <table>
         <tbody>
           <Course course={course}/>
         </tbody>
       </table>
     );
-    var data = TestUtils.scryRenderedDOMComponentsWithTag(catalog, 'td');
+    var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, 'td');
     should(data[3].getDOMNode().textContent).be.equal('11:30 am');
   });
 
   it('renders nothing if no course is supplied', () => {
-    var catalog = TestUtils.renderIntoDocument(
+    var renderedCourse = TestUtils.renderIntoDocument(
       <table>
         <tbody>
           <Course />
         </tbody>
       </table>
     );
-    var data = TestUtils.scryRenderedDOMComponentsWithTag(catalog, 'td');
+    var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, 'td');
     should(data.length).be.equal(0);
   });
 
-});
+  it('renders the Register link when props.onRegister is supplied', () => {
+    var onRegister = function () {};
+    var renderedCourse = TestUtils.renderIntoDocument(
+      <table>
+        <tbody>
+          <Course course={course} onRegister={onRegister} />
+        </tbody>
+      </table>
+    );
+    var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, "td");
+    should(data.length).be.equal(5);
+    should(data[4].getDOMNode().textContent).be.equal("Register");
+    should(data[4].props.children.type).equal("a");
+  });
 
+  it('should call onRegister when the link is clicked', () => {
+    var clickedCourse = null;
+    var onRegister = function (registeredCourse) {
+      clickedCourse = registeredCourse;
+    };
+    var renderedCourse = TestUtils.renderIntoDocument(
+      <table>
+        <tbody>
+          <Course course={course} onRegister={onRegister} />
+        </tbody>
+      </table>
+    );
+    var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, "a");
+    TestUtils.Simulate.click(data[0]);
+    should(clickedCourse).equal(course);
+  });
+
+});
