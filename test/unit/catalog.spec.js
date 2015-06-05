@@ -2,15 +2,19 @@ import should from 'should';
 import React from 'react/addons';
 import sinon from 'sinon';
 
-import Catalog from '../../src/components/catalog'
-import Course from '../../src/components/course'
-
-import mockComponent from "../utils/mock-component";
+import Catalog from '../../src/components/catalog';
+import Course from '../../src/components/course';
+import catalogStore from '../../src/stores/catalog-store';
+import catalogActions from '../../src/actions/catalog-actions';
+import wizardActions from '../../src/actions/wizard-actions';
 
 
 var TestUtils = React.addons.TestUtils;
+var mockCatalogStore = sinon.mock(catalogStore);
+var mockCatalogActions = sinon.mock(catalogActions);
+var mockWizardActions = sinon.mock(wizardActions);
 
-describe('catalog component', function() {
+describe('catalog component', () => {
 
   it('renders html headers', () => {
     var catalog = TestUtils.renderIntoDocument(
@@ -31,7 +35,7 @@ describe('catalog component', function() {
       {id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 }
     ]});
     var courseData = TestUtils.scryRenderedComponentsWithType(catalog, Course);
-    courseData[0].props.course.id.should.equal("RUN105");
+    should(courseData[0].props.course.id).equal("RUN105");
   });
 
   it('renders all courses', () => {
@@ -44,9 +48,9 @@ describe('catalog component', function() {
       {id: "DDA302-10", name: "Defence Against the Dark Arts", startTime: new Date(0,0,0,10), professor: "Severus Snape", credits: 4 },
     ]});
     var courseData = TestUtils.scryRenderedComponentsWithType(catalog, Course);
-    courseData[0].props.course.id.should.equal("RUN105");
-    courseData[1].props.course.id.should.equal("AST101");
-    courseData[2].props.course.id.should.equal("DDA302-10");
+    should(courseData[0].props.course.id).equal("RUN105");
+    should(courseData[1].props.course.id).equal("AST101");
+    should(courseData[2].props.course.id).equal("DDA302-10");
   });
 
   it('renders course with key assigned to course.id', () => {
@@ -57,20 +61,63 @@ describe('catalog component', function() {
       {id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 }
     ]});
     var courseData = TestUtils.scryRenderedDOMComponentsWithTag(catalog, "tbody");
-    courseData[0].props.children[0].key.should.equal("RUN105");
+    should(courseData[0].props.children[0].key).equal("RUN105");
   });
 
-  describe('with mocked course', () => {
+  it('renders course with an onRegister prop', () => {
+    var catalog = TestUtils.renderIntoDocument(
+      <Catalog />
+    );
+    catalog.setState({catalog: [
+      {id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 }
+    ]});
+    var courseData = TestUtils.scryRenderedComponentsWithType(catalog, Course);
+    should(courseData[0].props.onRegister).equal(catalog.onRegister);
+  });
 
-    var mockCourse;
-    before( () => {
-    //var mockCourse = mockComponent(Course);
-    });
+  it('invokes catalogActions.getCatalog on componentDidMount', () => {
+    mockCatalogActions.expects("getCatalog").once();
+    var catalog = TestUtils.renderIntoDocument(
+      <Catalog />
+    );
+    mockCatalogActions.verify();
+  });
 
-    after(() => {
-      // unmock everything we mocked
-    });
+  it('listens to the catalogStore on componentDidMount', () => {
+    mockCatalogStore.expects("listen").once();
+    var catalog = TestUtils.renderIntoDocument(
+      <Catalog />
+    );
+    mockCatalogStore.verify();
+  });
 
-  })
+  it('unlistens to the catalogStore on componentWillUnmount', () => {
+    mockCatalogStore.expects("unlisten").once();
+    var catalog = TestUtils.renderIntoDocument(
+      <Catalog />
+    );
+    catalog.componentWillUnmount();
+    mockCatalogStore.verify();
+  });
+
+  it('changes state when the catalogStore changes', () => {
+    var catalog = TestUtils.renderIntoDocument(
+      <Catalog />
+    );
+    var courses = [{id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 }];
+    should(catalog.state.catalog).equal(undefined);
+    catalogActions.updateCatalog(courses);
+    should(catalog.state.catalog).equal(courses);
+  });
+
+  it('invokes wizardActions.registerForCourse when onRegister is called', () => {
+    var course = {id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 };
+    mockWizardActions.expects("registerForCourse").once().withExactArgs(course);
+    var catalog = TestUtils.renderIntoDocument(
+      <Catalog />
+    );
+    catalog.onRegister(course);
+    mockWizardActions.verify();
+  });
 
 });
