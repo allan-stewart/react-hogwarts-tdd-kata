@@ -64,10 +64,16 @@ describe('wizard actions', () => {
 
   describe('registerForCourse', () => {
 
+    let course = {
+      id: "DDA302-13",
+      name: "Defence Against the Dark Arts",
+      professor: "Quirinus Quirrell",
+      credits: 3,
+      startTime: new Date(0, 0, 0, 11, 30),
+    };
+
     it('invokes updateWizard on success', (done) => {
-      var course = {id: 'course-1'};
       var wizard = {house: 'Slytherin', courses: []};
-      var expectedWizard = {house: 'Slytherin', courses: [{id: 'course-1'}]};
 
       mockWizardRepository.expects('get').once()
         .returns(new Promise((resolve) => { resolve(wizard); }));
@@ -79,7 +85,7 @@ describe('wizard actions', () => {
       setTimeout(() => {
         should(dispatchedEvents.length).equal(1);
         should(dispatchedEvents[0].details.name).equal('updateWizard');
-        should(dispatchedEvents[0].data.house).equal(expectedWizard.house);
+        should(dispatchedEvents[0].data.house).equal(wizard.house);
         should(dispatchedEvents[0].data.courses.length).equal(1);
         should(dispatchedEvents[0].data.courses[0]).equal(course);
 
@@ -89,7 +95,6 @@ describe('wizard actions', () => {
     });
 
     it('invokes registerForCourseFailed if get() fails', (done) => {
-      var course = {id: 'course-1'};
       var errorMessage = 'Test error on get().';
 
       mockWizardRepository.expects('get').once()
@@ -108,7 +113,6 @@ describe('wizard actions', () => {
     });
 
     it('invokes registerForCourseFailed if save() fails', (done) => {
-      var course = {id: 'course-1'};
       var wizard = {house: 'Slytherin', courses: []};
       var errorMessage = 'Test error on save().';
 
