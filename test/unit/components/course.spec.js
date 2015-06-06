@@ -1,7 +1,7 @@
 import should from 'should';
 import React from 'react/addons';
 
-import Course from '../../src/components/course'
+import Course from '../../../src/components/course'
 
 
 var TestUtils = React.addons.TestUtils;

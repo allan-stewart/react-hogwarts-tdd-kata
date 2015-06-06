@@ -2,11 +2,11 @@ import should from 'should';
 import React from 'react/addons';
 import sinon from 'sinon';
 
-import Catalog from '../../src/components/catalog';
-import Course from '../../src/components/course';
-import catalogStore from '../../src/stores/catalog-store';
-import catalogActions from '../../src/actions/catalog-actions';
-import wizardActions from '../../src/actions/wizard-actions';
+import Catalog from '../../../src/components/catalog';
+import Course from '../../../src/components/course';
+import catalogStore from '../../../src/stores/catalog-store';
+import catalogActions from '../../../src/actions/catalog-actions';
+import wizardActions from '../../../src/actions/wizard-actions';
 
 
 var TestUtils = React.addons.TestUtils;
