@@ -3,6 +3,7 @@ import _ from "lodash";
 
 import catalogStore from "../stores/catalog-store";
 import catalogActions from "../actions/catalog-actions";
+import wizardStore from "../stores/wizard-store";
 import wizardActions from "../actions/wizard-actions";
 import Course from "./course";
 
@@ -15,6 +16,7 @@ export default class Catalog extends React.Component {
 
   componentDidMount() {
     catalogStore.listen(this.onChange.bind(this));
+    wizardStore.listen(this.onChange.bind(this));
     catalogActions.getCatalog();
   }
 
@@ -31,6 +33,12 @@ export default class Catalog extends React.Component {
   }
 
   render() {
+    var alert = null;
+    if (this.state.registrationResponse) {
+      var alertClass = this.state.registrationResponse.error ? "alert alert-danger" : "alert alert-success";
+      alert = <div className={alertClass}>{this.state.registrationResponse.message}</div>;
+    }
+
     return (
       <div>
         <div className="jumbotron" style={{"padding": "10px"}}>
@@ -39,7 +47,7 @@ export default class Catalog extends React.Component {
         </div>
         <div>
           <div className="panel panel-default" >
-
+            { alert }
             <table className="table">
               <thead>
                 <tr>

@@ -82,11 +82,13 @@ describe('wizard actions', () => {
       wizardActions.registerForCourse(course);
 
       setTimeout(() => {
-        should(dispatchedEvents.length).equal(1);
-        should(dispatchedEvents[0].details.name).equal('updateWizard');
-        should(dispatchedEvents[0].data.house).equal(wizard.house);
-        should(dispatchedEvents[0].data.courses.length).equal(1);
-        should(dispatchedEvents[0].data.courses[0]).equal(course);
+        should(dispatchedEvents.length).equal(2);
+        should(dispatchedEvents[0].details.name).equal('registerForCourseSuccess');
+        should(dispatchedEvents[0].data).equal(course);
+        should(dispatchedEvents[1].details.name).equal('updateWizard');
+        should(dispatchedEvents[1].data.house).equal(wizard.house);
+        should(dispatchedEvents[1].data.courses.length).equal(1);
+        should(dispatchedEvents[1].data.courses[0]).equal(course);
 
         mockWizardRepository.verify();
         done();

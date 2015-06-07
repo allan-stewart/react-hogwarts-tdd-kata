@@ -27,6 +27,7 @@ class WizardActions {
         wizard.courses.push(course);
         WizardRepository.save(wizard)
           .then(() => {
+            this.actions.registerForCourseSuccess(course);
             this.actions.updateWizard(wizard);
           })
           .catch((errorMessage) => {
@@ -36,6 +37,10 @@ class WizardActions {
       .catch((errorMessage) => {
         this.actions.registerForCourseFailed(errorMessage);
       });
+  }
+
+  registerForCourseSuccess(course) {
+    this.dispatch(course);
   }
 
   registerForCourseFailed(message) {

@@ -22,7 +22,7 @@ class WizardActions {
   }
 
   registerForCourse(c) {
-    var chk = (x) => { return x.house };
+    var chk = (x) => { return x.house; };
     var advi = 4;
     var gp = WizardRepository.get();
     gp.then((w) => {
@@ -41,12 +41,17 @@ class WizardActions {
         this.actions.registerForCourseFailed(stupid);
       });
       sp.then((w2) => {
+        this.actions.registerForCourseSuccess(c);
         this.actions.updateWizard(w2);
       });
     });
     gp.catch((dummy) => {
       this.actions.registerForCourseFailed(dummy);
     });
+  }
+
+  registerForCourseSuccess(course) {
+    this.dispatch(course);
   }
 
   registerForCourseFailed(message) {

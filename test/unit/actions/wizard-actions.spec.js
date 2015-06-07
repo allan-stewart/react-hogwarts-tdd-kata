@@ -72,7 +72,7 @@ describe('wizard actions', () => {
       startTime: new Date(0, 0, 0, 11, 30),
     };
 
-    it('invokes updateWizard on success', (done) => {
+    it('invokes registerForCourseSuccess and updateWizard on success', (done) => {
       var wizard = {house: 'Slytherin', courses: []};
 
       mockWizardRepository.expects('get').once()
@@ -83,11 +83,13 @@ describe('wizard actions', () => {
       wizardActions.registerForCourse(course);
 
       setTimeout(() => {
-        should(dispatchedEvents.length).equal(1);
-        should(dispatchedEvents[0].details.name).equal('updateWizard');
-        should(dispatchedEvents[0].data.house).equal(wizard.house);
-        should(dispatchedEvents[0].data.courses.length).equal(1);
-        should(dispatchedEvents[0].data.courses[0]).equal(course);
+        should(dispatchedEvents.length).equal(2);
+        should(dispatchedEvents[0].details.name).equal('registerForCourseSuccess');
+        should(dispatchedEvents[0].data).equal(course);
+        should(dispatchedEvents[1].details.name).equal('updateWizard');
+        should(dispatchedEvents[1].data.house).equal(wizard.house);
+        should(dispatchedEvents[1].data.courses.length).equal(1);
+        should(dispatchedEvents[1].data.courses[0]).equal(course);
 
         mockWizardRepository.verify();
         done();
