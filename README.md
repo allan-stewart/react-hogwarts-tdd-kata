@@ -214,3 +214,22 @@ You can see it by loading ``app/index.html`` into your browser and clicking on C
 
 Well done, young Wizard. You have finished your story. Another point for Hufflepuff. **Thank you, I like the write the test, see it fail, write code to make it pass, and then refactor rhythm. I also like seeing what the end user sees.**
 
+
+## Story 2: Register for Courses
+
+Existing code for this story:
+
+* Wizard store
+* Schedule component already listening to Wizard store
+* Wizard actions w/ Malfoy code.
+
+Expected flow for this story:
+
+* Create tests for adding a register link on the Course component which should only show when an onRegister prop is passed in.
+* Implement the register link
+* Create tests for adding the onRegister prop to the Courses on the Catalog component
+* Implement the onRegister prop
+* From the page, attempt to register for a course and discover the "pure-blood" error.
+* Investigate the registerForCourse() method of the wizard actions.
+* Add tests and refactor the messy method.
+* See the course registration working correctly.
