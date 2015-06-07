@@ -22,6 +22,7 @@ export default class Catalog extends React.Component {
 
   componentWillUnmount() {
     catalogStore.unlisten(this.onChange);
+    wizardStore.unlisten(this.onChange);
   }
 
   onChange(state) {
