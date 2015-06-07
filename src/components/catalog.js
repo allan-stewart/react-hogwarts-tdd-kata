@@ -6,6 +6,7 @@ import catalogActions from "../actions/catalog-actions";
 import wizardStore from "../stores/wizard-store";
 import wizardActions from "../actions/wizard-actions";
 import Course from "./course";
+import Alert from "./alert";
 
 export default class Catalog extends React.Component {
 
@@ -34,11 +35,7 @@ export default class Catalog extends React.Component {
   }
 
   render() {
-    var alert = null;
-    if (this.state.registrationResponse) {
-      var alertClass = this.state.registrationResponse.error ? "alert alert-danger" : "alert alert-success";
-      alert = <div className={alertClass}>{this.state.registrationResponse.message}</div>;
-    }
+    var alertData = this.state.registrationResponse || {};
 
     return (
       <div>
@@ -47,8 +44,8 @@ export default class Catalog extends React.Component {
           <p>Select your wizarding classes!</p>
         </div>
         <div>
+          <Alert error={alertData.error} message={alertData.message} />
           <div className="panel panel-default" >
-            { alert }
             <table className="table">
               <thead>
                 <tr>

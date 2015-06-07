@@ -4,6 +4,7 @@ import _ from "lodash";
 import SortingHat from "./sorting-hat";
 import SortingHouse from "./sorting-house";
 import SortingStore from "../stores/sorting-store";
+import Alert from "./alert";
 
 export default class Sorting extends React.Component {
 
@@ -25,8 +26,8 @@ export default class Sorting extends React.Component {
   }
 
   render() {
-    var alert = this.state.selectedHouse
-      ? <div className="alert alert-success">You are assigned to {this.state.selectedHouse}!</div>
+    var message = this.state.selectedHouse
+      ? "You are assigned to " + this.state.selectedHouse + "!"
       : null;
 
     return (
@@ -35,7 +36,7 @@ export default class Sorting extends React.Component {
           <h1>Welcome to Hogwarts, wizard!</h1>
           <p>Welcome to the wonderful world of hogwarts.  Click the sorting hat to discover which house you will be assigned to.</p>
         </div>
-        { alert }
+        <Alert message={message}></Alert>
         <div className="pull-left">
           <SortingHat />
         </div>
