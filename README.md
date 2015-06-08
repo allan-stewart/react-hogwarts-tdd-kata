@@ -212,5 +212,5 @@ But this is only a Kata, we will start on the real work next week when you have 
 
 You can see it by loading ``app/index.html`` into your browser and clicking on Catalog (at the top). **I am seeing the page now.**
 
-Well done, young Wizard. You have finished your story. Another point for Hufflepuff. **Thank you, I like the write the test, see it fail, write code to make it pass, and then refactor rhythm. I also like seeing what the end user sees.**
+Well done, young Wizard. You have finished your story. Another point for Hufflepuff. **Thank you, I like to write the test, see it fail, write code to make it pass, and then refactor rhythm. I also like seeing what the end user sees.**
 
