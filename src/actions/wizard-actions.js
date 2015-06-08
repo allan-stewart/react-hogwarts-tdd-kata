@@ -18,8 +18,7 @@ class WizardActions {
   }
 
   updateWizardFailed(message) {
-    console.log("Failed to update wizard: " + message);
-    throw message;
+    this.dispatch(message);
   }
 
   registerForCourse(course) {
@@ -28,6 +27,7 @@ class WizardActions {
         wizard.courses.push(course);
         WizardRepository.save(wizard)
           .then(() => {
+            this.actions.registerForCourseSuccess(course);
             this.actions.updateWizard(wizard);
           })
           .catch((errorMessage) => {
@@ -39,9 +39,12 @@ class WizardActions {
       });
   }
 
+  registerForCourseSuccess(course) {
+    this.dispatch(course);
+  }
+
   registerForCourseFailed(message) {
-    console.log("Failed to register for course: " + message);
-    throw message;
+    this.dispatch(message);
   }
 }
 

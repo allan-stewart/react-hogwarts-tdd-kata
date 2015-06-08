@@ -11,7 +11,7 @@ var Nav = ReactBootstrap.Nav
   , NavItemLink = ReactRouterBootstrap.NavItemLink
 ;
 
-var { Route, RouteHandler } = Router;
+var { Route, RouteHandler, DefaultRoute } = Router;
 
 //import alt from "./alt";
 
@@ -20,19 +20,23 @@ class App extends React.Component {
 
   render () {
     return (
-      <div>
-        Hogwarts<br />
-        <Nav>
-          <NavItemLink to="sorting" >
-            sorting
-          </NavItemLink>
-          <NavItemLink to="catalog" >
-            catalog
-          </NavItemLink>
-          <NavItemLink to="schedule" >
-            schedule
-          </NavItemLink>
-        </Nav>
+      <div style={{"padding": "10px"}}>
+        <div className="navbar navbar-inverse">
+          <div className="navbar-header navbar-brand" style={{"color": "white"}}>
+            Hogwarts
+          </div>
+          <Nav className="nav navbar-nav">
+            <NavItemLink to="sorting" >
+              sorting
+            </NavItemLink>
+            <NavItemLink to="catalog" >
+              catalog
+            </NavItemLink>
+            <NavItemLink to="schedule" >
+              schedule
+            </NavItemLink>
+          </Nav>
+        </div>
         <RouteHandler />
       </div>
     );
@@ -45,6 +49,7 @@ var routes = (
     <Route name="sorting" handler={Sorting}/>
     <Route name="catalog" handler={Catalog}/>
     <Route name="schedule" handler={Schedule}/>
+    <DefaultRoute handler={Sorting}/>
   </Route>
 );
 

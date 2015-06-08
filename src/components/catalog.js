@@ -3,8 +3,10 @@ import _ from "lodash";
 
 import catalogStore from "../stores/catalog-store";
 import catalogActions from "../actions/catalog-actions";
+import wizardStore from "../stores/wizard-store";
 import wizardActions from "../actions/wizard-actions";
 import Course from "./course";
+import Alert from "./alert";
 
 export default class Catalog extends React.Component {
 
@@ -15,11 +17,13 @@ export default class Catalog extends React.Component {
 
   componentDidMount() {
     catalogStore.listen(this.onChange.bind(this));
+    wizardStore.listen(this.onChange.bind(this));
     catalogActions.getCatalog();
   }
 
   componentWillUnmount() {
     catalogStore.unlisten(this.onChange);
+    wizardStore.unlisten(this.onChange);
   }
 
   onChange(state) {
@@ -31,15 +35,17 @@ export default class Catalog extends React.Component {
   }
 
   render() {
+    var alertData = this.state.registrationResponse || {};
+
     return (
       <div>
-        <div className="jumbotron">
+        <div className="jumbotron" style={{"padding": "10px"}}>
           <h1>Hogwarts course catalog!</h1>
           <p>Select your wizarding classes!</p>
         </div>
         <div>
+          <Alert error={alertData.error} message={alertData.message} />
           <div className="panel panel-default" >
-
             <table className="table">
               <thead>
                 <tr>

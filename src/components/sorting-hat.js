@@ -10,7 +10,7 @@ export default class SortingHat extends React.Component {
 
   render() {
     return (
-      <button type="button" onClick={this.onSortingRequested}>Hat (click me)</button>
+      <img src="/img/sorting-hat.jpg" onClick={this.onSortingRequested}></img>
     );
   }
 }

@@ -4,6 +4,7 @@ import _ from "lodash";
 import SortingHat from "./sorting-hat";
 import SortingHouse from "./sorting-house";
 import SortingStore from "../stores/sorting-store";
+import Alert from "./alert";
 
 export default class Sorting extends React.Component {
 
@@ -25,18 +26,27 @@ export default class Sorting extends React.Component {
   }
 
   render() {
+    var message = this.state.selectedHouse
+      ? "You are assigned to " + this.state.selectedHouse + "!"
+      : null;
+
     return (
       <div>
-        <h2> Sorting </h2>
-        <ul>
-          <li><SortingHat /></li>
+        <div className="jumbotron" style={{"padding": "10px"}}>
+          <h1>Welcome to Hogwarts, wizard!</h1>
+          <p>Welcome to the wonderful world of hogwarts.  Click the sorting hat to discover which house you will be assigned to.</p>
+        </div>
+        <Alert message={message}></Alert>
+        <div className="pull-left">
+          <SortingHat />
+        </div>
+        <div className="well pull-left">
           {
             _.map(this.state.houses, h =>
-              <li>
-                <SortingHouse houseName={h} selected={this.state.selectedHouse === h}/>
-              </li>)
+                <SortingHouse houseName={h} selected={this.state.selectedHouse === h} key={h}/>
+              )
           }
-        </ul>
+        </div>
       </div>
     );
   }

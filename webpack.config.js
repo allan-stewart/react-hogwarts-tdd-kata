@@ -19,8 +19,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "node_modules/html-webpack-template/index.html",
-      title: "React!",
+      template: "template.html",
+      title: "Hogwarts",
       devServer: "http://localhost:3000",
       appMountId: "app"
     }),
