@@ -6,9 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --port 3000",
     "build": "",
-    "test": "mocha \"test/unit/**/*.spec.js\"",
-    "test-karma": "karma start",
-    "test-watch": "mocha \"test/unit/**/*.spec.js\" --watch"
+    "test": "mocha \"test/unit/**/*.spec.js\""
   },
   "engines": {
     "node": ">= 0.10.0"
@@ -35,12 +33,6 @@
     "html-webpack-plugin": "^1.4.0",
     "html-webpack-template": "^2.0.0",
     "jsdom": "^3.1.2",
-    "karma-chrome-launcher": "^0.1.12",
-    "karma-cli": "0.0.4",
-    "karma-mocha": "^0.1.10",
-    "karma-should": "0.0.1",
-    "karma-sourcemap-loader": "^0.3.4",
-    "karma-webpack": "^1.5.1",
     "mocha": "^2.2.5",
     "moment": "^2.10.3",
     "should": "^6.0.3",
