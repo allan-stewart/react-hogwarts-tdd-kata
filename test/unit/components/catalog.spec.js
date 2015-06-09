@@ -1,4 +1,4 @@
-import should from 'should';
+import {expect, assert} from 'chai';
 import React from 'react/addons';
 import sinon from 'sinon';
 
@@ -21,10 +21,11 @@ describe('catalog component', () => {
       <Catalog />
     );
     var titles = TestUtils.scryRenderedDOMComponentsWithTag(catalog, 'th');
-    should(titles[0].getDOMNode().textContent).be.equal('Class');
-    should(titles[1].getDOMNode().textContent).be.equal('Professor');
-    should(titles[2].getDOMNode().textContent).be.equal('Credits');
-    should(titles[3].getDOMNode().textContent).be.equal('Time');
+    expect(titles).to.have.length.above(3);
+    expect(titles[0].getDOMNode().textContent).be.equal('Class');
+    expect(titles[1].getDOMNode().textContent).be.equal('Professor');
+    expect(titles[2].getDOMNode().textContent).be.equal('Credits');
+    expect(titles[3].getDOMNode().textContent).be.equal('Time');
   });
 
   it('renders course', () => {
@@ -35,7 +36,7 @@ describe('catalog component', () => {
       {id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 }
     ]});
     var courseData = TestUtils.scryRenderedComponentsWithType(catalog, Course);
-    should(courseData[0].props.course.id).equal("RUN105");
+    expect(courseData[0].props.course.id).equal("RUN105");
   });
 
   it('renders all courses', () => {
@@ -48,9 +49,9 @@ describe('catalog component', () => {
       {id: "DDA302-10", name: "Defence Against the Dark Arts", startTime: new Date(0,0,0,10), professor: "Severus Snape", credits: 4 },
     ]});
     var courseData = TestUtils.scryRenderedComponentsWithType(catalog, Course);
-    should(courseData[0].props.course.id).equal("RUN105");
-    should(courseData[1].props.course.id).equal("AST101");
-    should(courseData[2].props.course.id).equal("DDA302-10");
+    expect(courseData[0].props.course.id).equal("RUN105");
+    expect(courseData[1].props.course.id).equal("AST101");
+    expect(courseData[2].props.course.id).equal("DDA302-10");
   });
 
   it('renders course with key assigned to course.id', () => {
@@ -61,7 +62,7 @@ describe('catalog component', () => {
       {id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 }
     ]});
     var courseData = TestUtils.scryRenderedDOMComponentsWithTag(catalog, "tbody");
-    should(courseData[0].props.children[0].key).equal("RUN105");
+    expect(courseData[0].props.children[0].key).equal("RUN105");
   });
 
   it('renders course with an onRegister prop', () => {
@@ -72,7 +73,7 @@ describe('catalog component', () => {
       {id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 }
     ]});
     var courseData = TestUtils.scryRenderedComponentsWithType(catalog, Course);
-    should(courseData[0].props.onRegister).equal(catalog.onRegister);
+    expect(courseData[0].props.onRegister).equal(catalog.onRegister);
   });
 
   it('invokes catalogActions.getCatalog on componentDidMount', () => {
@@ -105,9 +106,9 @@ describe('catalog component', () => {
       <Catalog />
     );
     var courses = [{id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 }];
-    should(catalog.state.catalog).equal(undefined);
+    expect(catalog.state.catalog).equal(undefined);
     catalogActions.updateCatalog(courses);
-    should(catalog.state.catalog).equal(courses);
+    expect(catalog.state.catalog).equal(courses);
   });
 
   it('invokes wizardActions.registerForCourse when onRegister is called', () => {
