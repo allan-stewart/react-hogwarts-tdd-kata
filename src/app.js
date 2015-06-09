@@ -13,8 +13,6 @@ var Nav = ReactBootstrap.Nav
 
 var { Route, RouteHandler, DefaultRoute } = Router;
 
-//import alt from "./alt";
-
 
 class App extends React.Component {
 
