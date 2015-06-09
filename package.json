@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --port 3000",
     "build": "",
-    "test": "mocha \"test/unit/**/*.spec.js\""
+    "test": "mocha \"test/unit/**/*.spec.js\"",
+    "test-watch": "mocha \"test/unit/**/*.spec.js\" --watch"
   },
   "engines": {
     "node": ">= 0.10.0"
