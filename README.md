@@ -27,9 +27,13 @@ You have [git](http://git-scm.com/downloads) installed.
 ``npm install``
 ``npm start``
 
-Visit ``localhost:3000`` to see the code running.
+Visit ``localhost:3000/index.html`` to see the code running.
 
-TODO run tests?
+To run the tests:
+
+``npm run test``
+or
+`` npm run test-watch``
 
 
 
@@ -41,8 +45,7 @@ Acceptance: Students will be able to see a catalog of courses.
 
 It is time to start coding. Where will you start? **Making changes to catalog UI inside file ``src/components/catalog.js``.**
 
-I seem to have forgotten how to view the catalog.
-**Oh, Professor, you just refresh ``app/index.html`` and click on the Catalog menu.**
+I seem to have forgotten how to view the catalog. **Oh, Professor, you just run ``npm start`` and hit webpage ``localhost:3000/index.html`` and click on the Catalog menu.**
 
 ### 1.0. UI For Course Catalog
 
@@ -50,6 +53,7 @@ How do we want the catalog to look? **We will put it into a table with headers c
 
 Can you show me in a test? **Oh, that would be easier.**
 
+``test/unit/catalog.spec.js``
 ```js
   it('renders html headers', () => {
     var catalog = TestUtils.renderIntoDocument(
@@ -66,10 +70,11 @@ Can you show me in a test? **Oh, that would be easier.**
 I see you expect to have a ``Catalog`` component with headers. **Yes, I expect we want to show "Class", "Professor", "Credits" and "Time".**
 
 
+TODO
 
 
+I reloaded ``localhost:3000/index.html`` and clicked on menu item catalog and I don't see anything. **It is because we haven't hooked it up. Also, professor, webpack makes it so you don't have to refresh.**
 
-I reloaded ``app/index.html`` and clicked on menu item catalog and I don't see anything. **It is because we haven't hooked it up.**
 
 How will you hook it up? **By loading the ``scope`` with all the courses when the Controller is initialized.**
 
@@ -212,7 +217,7 @@ But this is only a Kata, we will start on the real work next week when you have 
 
 You can see it by loading ``app/index.html`` into your browser and clicking on Catalog (at the top). **I am seeing the page now.**
 
-Well done, young Wizard. You have finished your story. Another point for Hufflepuff. **Thank you, I like to write the test, see it fail, write code to make it pass, and then refactor rhythm. I also like seeing what the end user sees.**
+Well done, young Wizard. You have finished your story. Another point for Hufflepuff. **Thank you, I like to 1) write the test, 2) see it fail, 3) write code to make it pass, and then 4) refactor. I also like seeing what the end user sees.**
 
 
 ## Story 2: Register for Courses
