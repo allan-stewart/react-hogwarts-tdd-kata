@@ -47,9 +47,11 @@ It is time to start coding. Where will you start? **Making changes to catalog UI
 
 I seem to have forgotten how to view the catalog. **Oh, Professor, you just run ``npm start`` and hit webpage ``localhost:3000/index.html`` and click on the Catalog menu.**
 
-### 1.0. UI For Course Catalog
+### 1.0. Table Headers for Course Catalog
 
 How do we want the catalog to look? **We will put it into a table with headers course name, prof...**
+
+### 1.0.0. Table Headers for Course Catalog
 
 Can you show me in a test? **Oh, that would be easier.**
 
@@ -67,8 +69,32 @@ Can you show me in a test? **Oh, that would be easier.**
   });
 ```
 
+### 1.0.1. Passing
+
 I see you expect to have a ``Catalog`` component with headers. **Yes, I expect we want to show "Class", "Professor", "Credits" and "Time".**
 
+``src/components/catalog.
+```js
+  render() {
+    return (
+          <div className="panel panel-default" >
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>Professor</th>
+                  <th>Credits</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+    );
+  }
+```
 
 TODO
 
