@@ -51,7 +51,7 @@ I seem to have forgotten how to view the catalog. **Oh, Professor, you just run 
 
 How do we want the catalog to look? **We will put it into a table with headers course name, prof...**
 
-### 1.0.0. Table Headers for Course Catalog
+### 1.0.0. Failing
 
 Can you show me in a test? **Oh, that would be easier.**
 
@@ -73,7 +73,7 @@ Can you show me in a test? **Oh, that would be easier.**
 
 I see you expect to have a ``Catalog`` component with headers. **Yes, I expect we want to show "Class", "Professor", "Credits" and "Time".**
 
-``src/components/catalog.
+``src/components/catalog.js``
 ```js
   render() {
     return (
@@ -96,35 +96,103 @@ I see you expect to have a ``Catalog`` component with headers. **Yes, I expect w
   }
 ```
 
-TODO
+I reloaded ``localhost:3000/index.html`` and clicked on menu item catalog and I don't see the list of courses. **It is because we haven't hooked them up. Also, professor, webpack makes it so you don't have to refresh the web page.**
 
 
-I reloaded ``localhost:3000/index.html`` and clicked on menu item catalog and I don't see anything. **It is because we haven't hooked it up. Also, professor, webpack makes it so you don't have to refresh.**
+### 1.1 Showing a Course
 
+I see, we only have the headers. How will we add a course? **I think I will add a ``Course`` component inside the ``<tbody>`` tags and pass the the ``catalog`` as a component.**
 
-How will you hook it up? **By loading the ``scope`` with all the courses when the Controller is initialized.**
-
-### 1.1. Make Test Error
-
-Can you show me what you mean? **Sure.**
+Can you show me the test? **Sure.**
 
 **Demonstratio Facilius.**
 
-``test/catalog/catalog-controller-specs.js``
+### 1.1.0
+
+``test/unit/catalog.spec.js``
+```js
+  it('renders a course', () => {
+    var catalog = [
+      {id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 }
+
+    ];
+    var renderedCatalog = TestUtils.renderIntoDocument(
+      <Catalog catalog={catalog}/>
+    );
+    var courses = TestUtils.scryRenderedDOMComponentsWithTag(renderedCatalog, 'td');
+    expect(courses[0].getDOMNode().textContent).to.equal("Ancient Runes");
+  });
+```
+
+### 1.1.1 Erroring
+``src/components/catalog.js``
 ```js
 
-describe('CatalogController', function () {
+  render() {
+    var catalog = this.props.catalog;
+    var course = catalog && (catalog.length > 0) ? catalog[0] : null;
 
-    describe('when the controller first loads', function () {
+      .
+      .
+      .
 
-        it('the course catalog is retrieved', function () {
-            sinon.assert.calledOnce(mockCatalogRepository.getCatalog);
-        });
-
-    });
-
-});
+          <tbody>
+            <Course course={course} />
 ```
+
+### 1.1.2 Failing
+
+Woah, now everything is broken. Nothing shows in the browser and the tests are failing. **Yes, it is because the course component is not defined. I will define it in ``src/components/course.js``**
+
+``src/components/course.js``
+```js
+export default class Catalog extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    return null;
+  }
+}
+```
+
+**Notice I didn't forget to import it.**
+
+``src/components/catalog.js``
+```js
+
+import Course from "./course";
+```
+
+### 1.1.3 Passing
+
+Whew, now we have only one failing test. **Yes, professor and now I will make it pass.**
+
+``src/components/course.js``
+```js
+
+  render() {
+    var course = this.props.course;
+    if (!course) {
+      return null;
+    }
+    return (
+      <tr>
+        <td>{course.name}</td>
+        <td>{course.professor}</td>
+        <td>{course.credits}</td>
+        <td>{course.startTime}</td>
+      </tr>
+    );
+  }
+```
+
+TODO
+
+
 
 Very nice, you wrote the description and the expectation first. **Thank you. Keeping the test simple helps my thinking.**
 
