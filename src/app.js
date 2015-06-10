@@ -3,7 +3,7 @@ import Router from "react-router";
 import ReactBootstrap from "react-bootstrap";
 import ReactRouterBootstrap from "react-router-bootstrap";
 
-import Catalog from "./components/catalog";
+import CatalogPage from "./components/catalog-page";
 import Schedule from "./components/schedule";
 import Sorting from "./components/sorting";
 
@@ -45,7 +45,7 @@ class App extends React.Component {
 var routes = (
   <Route handler={App}>
     <Route name="sorting" handler={Sorting}/>
-    <Route name="catalog" handler={Catalog}/>
+    <Route name="catalog" handler={CatalogPage}/>
     <Route name="schedule" handler={Schedule}/>
     <DefaultRoute handler={Sorting}/>
   </Route>
