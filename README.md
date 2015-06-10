@@ -31,7 +31,7 @@ Visit ``localhost:3000/index.html`` to see the code running.
 
 To run the tests:
 
-``npm run test``
+``npm test``
 or
 `` npm run test-watch``
 
@@ -49,11 +49,11 @@ I seem to have forgotten how to view the catalog. **Oh, Professor, you just run 
 
 ### 1.0. Table Headers for Course Catalog
 
-How do we want the catalog to look? **We will put it into a table with headers course name, prof...**
-
-### 1.0.0. Failing
+How do we want the catalog to look? **We will put it into a table with headers, class, profesor, cred...**
 
 Can you show me in a test? **Oh, that would be easier.**
+
+### 1.0.0. Failing
 
 ``test/unit/catalog.spec.js``
 ```js
@@ -173,6 +173,8 @@ import Course from "./course";
 
 Whew, now we have only one failing test. **Yes, professor and now I will make it pass.**
 
+**Facere Transeat**
+
 ``src/components/course.js``
 ```js
 
@@ -192,8 +194,9 @@ Whew, now we have only one failing test. **Yes, professor and now I will make it
   }
 ```
 
-TODO
 
+
+STOP CODING!! (Everything below is from angular hogwarts kata)
 
 
 Very nice, you wrote the description and the expectation first. **Thank you. Keeping the test simple helps my thinking.**
