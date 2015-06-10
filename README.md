@@ -161,7 +161,7 @@ export default class Catalog extends React.Component {
 }
 ```
 
-**Notice I didn't forget to import it into ``catalog.js``.**
+**Notice I remembered to import course into ``catalog.js``.**
 
 ``src/components/catalog.js``
 ```js
@@ -194,6 +194,100 @@ Whew, now we have only one failing test. **Yes, professor and now I will make it
   }
 ```
 
+### 1.1.4 End to END for Showing the Catalog
+
+You have build a perfectly good catalog! **Thank you.**
+
+When I look at the catalog web page, why don't I see the classes? **It is because ``Catalog`` is a stateless component (it only uses ``props``). We need a place to manage ``state``.
+
+What are you going to call this state managing component? **What about ``CatalogPage``**
+
+It turns out we have a ``CatalogPage``. Now what? **I will change ``CatalogPage.render`` to pass catalog to as a property.
+
+``src/components/catalog-page.js``
+```js
+  render() {
+    return (
+      <Catalog catalog={this.state.catalog}/>
+    );
+```
+
+### 1.2 Show All Courses
+
+I am only seeing one course. **Yeah, we coded it up that way.**
+
+### 1.2.0 Failing
+
+``test/unit/catalog.spec.js``
+```js
+  it('renders all courses', () => {
+    var catalog = [ {
+        id: "RUN105",
+        name: "Ancient Runes",
+        startTime: new Date(0,0,0,13),
+        professor: "Bathsheba Babbling",
+        credits: 3
+      },{
+        id: "AST101",
+        name: "Astronomy",
+        startTime: new Date(0,0,0, 11),
+        professor: "Aurora Sinistra",
+        credits: 3
+      },{
+        id: "DDA302-10",
+        name: "Defence Against the Dark Arts",
+        startTime: new Date(0,0,0,10),
+        professor: "Severus Snape",
+        credits: 4
+      }
+    ];
+
+    var renderedCatalog = TestUtils.renderIntoDocument(
+      <Catalog catalog={catalog}/>
+    );
+
+    var courses = TestUtils.scryRenderedDOMComponentsWithTag(renderedCatalog, 'tr');
+    expect(courses).to.have.length(4); // 3 courses + 1 header
+  });
+```
+
+### 1.2.1 Passing
+
+**I added ``lodash``**
+
+``src/components/catalog-page.js``
+```
+import React from "react";
+import _ from "lodash";
+```
+
+**removed ``var course = ...``**
+
+
+``src/components/catalog-page.js``
+```js
+  render() {
+    var catalog = this.props.catalog;
+    return (
+```
+
+and added ``_.map`` to ``Course``
+
+
+``src/components/catalog-page.js``
+```js
+          <tbody>
+            {
+              _.map(catalog, item =>
+                    <Course course={item} /> )
+            }
+          </tbody>
+```
+
+Very nice work! I see courses. **Thank you!**
+
+
+### 1.3 Show Course Times
 
 
 STOP CODING!! (Everything below is from angular hogwarts kata)
@@ -203,7 +297,6 @@ Very nice, you wrote the description and the expectation first. **Thank you. Kee
 
 What happens if you run it? **It will generate errors. You can see them by reloading your tests (``test/HogwartsTests.hmtl`` in browser or looking at your CLI karma results).**
 
-What is the meaning of: "mockCatalogRepository is not defined"? **It means my mockCatalogRepository is not setup -- I'm referencing it in my test before I even declare it.**
 
 ### 1.1. Make Test Fail
 
