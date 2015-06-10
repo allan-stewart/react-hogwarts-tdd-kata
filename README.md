@@ -101,9 +101,9 @@ I reloaded ``localhost:3000/index.html`` and clicked on menu item catalog and I 
 
 ### 1.1 Showing a Course
 
-I see, we only have the headers. How will we add a course? **I think I will add a ``Course`` component inside the ``<tbody>`` tags and pass the the ``catalog`` as a component.**
+I see, we only have the headers. How will we add a course? **I think I will add a ``Course`` component inside the ``<tbody>`` tags and pass the a ``course`` as a property.**
 
-Can you show me the test? **Sure.**
+Can you show me with a test? **Sure.**
 
 **Demonstratio Facilius.**
 
@@ -117,7 +117,7 @@ Can you show me the test? **Sure.**
         name: "Ancient Runes",
         startTime: new Date(0,0,0,13),
         professor: "Bathsheba Babbling", credits: 3
-        } ];
+     } ];
     var renderedCatalog = TestUtils.renderIntoDocument(
       <Catalog catalog={catalog}/>
     );
@@ -142,9 +142,9 @@ Can you show me the test? **Sure.**
             <Course course={course} />
 ```
 
-### 1.1.2 Failing
-
 Woah, now everything is broken. Nothing shows in the browser and the tests are failing. **Yes, it is because the course component is not defined. I will define it in ``src/components/course.js``**
+
+### 1.1.2 Failing
 
 ``src/components/course.js``
 ```js
@@ -161,7 +161,7 @@ export default class Catalog extends React.Component {
 }
 ```
 
-**Notice I didn't forget to import it.**
+**Notice I didn't forget to import it into ``catalog.js``.**
 
 ``src/components/catalog.js``
 ```js
