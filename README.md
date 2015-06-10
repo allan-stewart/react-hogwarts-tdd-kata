@@ -112,10 +112,12 @@ Can you show me the test? **Sure.**
 ``test/unit/catalog.spec.js``
 ```js
   it('renders a course', () => {
-    var catalog = [
-      {id: "RUN105", name: "Ancient Runes", startTime: new Date(0,0,0,13), professor: "Bathsheba Babbling", credits: 3 }
-
-    ];
+    var catalog = [ {
+        id: "RUN105",
+        name: "Ancient Runes",
+        startTime: new Date(0,0,0,13),
+        professor: "Bathsheba Babbling", credits: 3
+        } ];
     var renderedCatalog = TestUtils.renderIntoDocument(
       <Catalog catalog={catalog}/>
     );
