@@ -289,8 +289,63 @@ Very nice work! I see courses. **Thank you!**
 
 ### 1.3 Show Course Times
 
+We seem to be missing the class start time. **I'll get right on it.**
+
+### 1.3.0 Failing
+
+``test/unit/course.spec.js``
+```js
+import React from 'react/addons';
+import {expect} from 'chai';
+
+import Course from '../../../src/components/course'
+
+
+var TestUtils = React.addons.TestUtils;
+
+describe('course component', () => {
+
+  let course = {
+    name: "DADA",
+    professor: "Quirinus Quirrell",
+    credits: "3",
+    startTime: new Date(0, 0, 0, 11, 30),
+  };
+
+  it('renders time correctly', () => {
+    var renderedCourse = TestUtils.renderIntoDocument(
+      <table>
+        <tbody>
+          <Course course={course}/>
+        </tbody>
+      </table>
+    );
+    var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, 'td');
+    expect(data[3].getDOMNode().textContent).be.equal('11:30 am');
+  });
+
+});
+```
+
+### 1.3.1 Passing
+
+**I am adding ``moment.js`` and replacing ``<td>{course.startTime}``**
+
+``src/components/catalog-page.js``
+```js
+import moment from "moment";
+.
+.
+.
+
+        <td>{course.credits}</td>
+        <td>{moment(course.startTime).format("h:mm a")}</td>
+```
+
+
 
 STOP CODING!! (Everything below is from angular hogwarts kata)
+--------------------
 
 
 Very nice, you wrote the description and the expectation first. **Thank you. Keeping the test simple helps my thinking.**
