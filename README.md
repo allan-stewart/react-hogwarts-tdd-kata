@@ -224,19 +224,54 @@ It turns out we have a ``CatalogPage``. Now what? **I will change ``CatalogPage.
 ```
 
 ### 1.1.5. Refactor
-It seems you have tests in the wrong place. **Yes, I have ``Course`` tests mixed with ``Catalog`` tests.
+It seems you have tests in the wrong place. **Yes, I have a ``Course`` tests mixed in with ``Catalog`` tests. I will move that now.**
 
 TODO move course tests to course.spec
-TODO test that course is called from catalog
+
+**I am removing**
+
+```js
+  it('renders a course', () => {
+    .
+    .
+    .
+  });
+```
+**from**
+``test/unit/components/catalog.spec.js``
+**and placing it into ``course.spec`` with a few modifications**
+
+``test/unit/components/course.spec.js``
+```js
+  it('renders a course', () => {
+    var course = {
+        id: "RUN105",
+        name: "Ancient Runes",
+        startTime: new Date(0,0,0,13),
+        professor: "Bathsheba Babbling", credits: 3
+     };
+    var renderedComponent = TestUtils.renderIntoDocument(
+      <Course course={course}/>
+    );
+    var courses = TestUtils.scryRenderedDOMComponentsWithTag(renderedComponent, 'td');
+    expect(courses[0].getDOMNode().textContent).to.equal("Ancient Runes");
+  });
+```
+
+What about the test that says Catalog contains a course? **I will add that test soon.**
 
 ### 1.2. Show All Courses
 
-I am only seeing one course. **Yeah, we coded it up that way.**
+OK, I am only seeing one course. **Yeah, we coded it up that way.**
 
 ### 1.2.0. Fail
 
 ``test/unit/components/catalog.spec.js``
 ```js
+import Course from '../../../src/components/course';
+  .
+  .
+  .
   it('renders all courses', () => {
     var catalog = [ {
         id: "RUN105",
@@ -263,8 +298,8 @@ I am only seeing one course. **Yeah, we coded it up that way.**
       <Catalog catalog={catalog}/>
     );
 
-    var courses = TestUtils.scryRenderedDOMComponentsWithTag(renderedCatalog, 'tr');
-    expect(courses).to.have.length(4); // 3 courses + 1 header
+    var courses = TestUtils.scryRenderedDOMComponentsWithTag(renderedCatalog, Course);
+    expect(courses).to.have.length(3);
   });
 ```
 
