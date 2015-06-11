@@ -55,17 +55,17 @@ Can you show me in a test? **Oh, that would be easier.**
 
 ### 1.0.0. Failing
 
-``test/unit/catalog.spec.js``
+``test/unit/components/catalog.spec.js``
 ```js
   it('renders html headers', () => {
     var catalog = TestUtils.renderIntoDocument(
       <Catalog />
     );
     var titles = TestUtils.scryRenderedDOMComponentsWithTag(catalog, 'th');
-    should(titles[0].getDOMNode().textContent).be.equal('Class');
-    should(titles[1].getDOMNode().textContent).be.equal('Professor');
-    should(titles[2].getDOMNode().textContent).be.equal('Credits');
-    should(titles[3].getDOMNode().textContent).be.equal('Time');
+    expect(titles[0].getDOMNode().textContent).be.equal('Class');
+    expect(titles[1].getDOMNode().textContent).be.equal('Professor');
+    expect(titles[2].getDOMNode().textContent).be.equal('Credits');
+    expect(titles[3].getDOMNode().textContent).be.equal('Time');
   });
 ```
 
@@ -109,7 +109,7 @@ Can you show me with a test? **Sure.**
 
 ### 1.1.0
 
-``test/unit/catalog.spec.js``
+``test/unit/components/catalog.spec.js``
 ```js
   it('renders a course', () => {
     var catalog = [ {
@@ -148,7 +148,7 @@ Woah, now everything is broken. Nothing shows in the browser and the tests are f
 
 ``src/components/course.js``
 ```js
-export default class Catalog extends React.Component {
+export default class Course extends React.Component {
 
   constructor(props) {
     super(props);
@@ -218,7 +218,7 @@ I am only seeing one course. **Yeah, we coded it up that way.**
 
 ### 1.2.0 Failing
 
-``test/unit/catalog.spec.js``
+``test/unit/components/catalog.spec.js``
 ```js
   it('renders all courses', () => {
     var catalog = [ {
@@ -255,7 +255,7 @@ I am only seeing one course. **Yeah, we coded it up that way.**
 
 **I added ``lodash``**
 
-``src/components/catalog-page.js``
+``src/components/catalog.js``
 ```
 import React from "react";
 import _ from "lodash";
@@ -264,7 +264,7 @@ import _ from "lodash";
 **removed ``var course = ...``**
 
 
-``src/components/catalog-page.js``
+``src/components/catalog.js``
 ```js
   render() {
     var catalog = this.props.catalog;
@@ -274,7 +274,7 @@ import _ from "lodash";
 and added ``_.map`` to ``Course``
 
 
-``src/components/catalog-page.js``
+``src/components/catalog.js``
 ```js
           <tbody>
             {
