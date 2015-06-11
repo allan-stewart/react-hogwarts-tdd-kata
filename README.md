@@ -48,7 +48,7 @@ How will you begin, my young wizard friend?
 
 Great, what house are you in? **I am in ___________________**
 
-## 1. Story: Show Course Catalog
+## 1. Story: Show Catalog
 
 Acceptance: Students will be able to see a catalog of courses.
 
@@ -58,7 +58,7 @@ It is time to start coding. Where will you start? **Making changes to catalog UI
 
 I seem to have forgotten how to view the catalog. **Oh, Professor, you just run ``npm start`` and hit webpage ``localhost:3000/index.html`` and click on the Catalog menu.**
 
-### 1.0. Table Headers for Course Catalog
+### 1.0. Table Headers for Catalog
 
 How do we want the catalog to look? **We will put it into a table with headers, class, profesor, cred...**
 
@@ -222,6 +222,12 @@ It turns out we have a ``CatalogPage``. Now what? **I will change ``CatalogPage.
       <Catalog catalog={this.state.catalog}/>
     );
 ```
+
+### 1.1.5. Refactor
+It seems you have tests in the wrong place. **Yes, I have ``Course`` tests mixed with ``Catalog`` tests.
+
+TODO move course tests to course.spec
+TODO test that course is called from catalog
 
 ### 1.2. Show All Courses
 
