@@ -64,7 +64,7 @@ How do we want the catalog to look? **We will put it into a table with headers, 
 
 Can you show me in a test? **Oh, that would be easier.**
 
-### 1.0.0. Fail
+### 1.0.0. Fail (Red)
 
 ``test/unit/components/catalog.spec.js``
 ```js
@@ -80,7 +80,7 @@ Can you show me in a test? **Oh, that would be easier.**
   });
 ```
 
-### 1.0.1. Pass
+### 1.0.1. Pass (Green)
 
 I see you expect to have a ``Catalog`` component with headers. **Yes, I expect we want to show "Class", "Professor", "Credits" and "Time".**
 
@@ -88,21 +88,19 @@ I see you expect to have a ``Catalog`` component with headers. **Yes, I expect w
 ```js
   render() {
     return (
-          <div className="panel panel-default" >
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Class</th>
-                  <th>Professor</th>
-                  <th>Credits</th>
-                  <th>Time</th>
-                </tr>
-              </thead>
-              <tbody>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Professor</th>
+            <th>Credits</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
 
-              </tbody>
-            </table>
-          </div>
+        </tbody>
+      </table>
     );
   }
 ```
@@ -356,7 +354,7 @@ import moment from "moment";
 
 Are we finished with the story? **No, Professor Longbottom. Before calling a story done, it must be tested and deployed.**
 
-But this is only a Kata, we will start on the real work next week when you have a pair. **Ok, I won't deploy it and I won't write automated acceptance tests. But I must inspect my beautiful work (and make sure it is working).**
+But this is only a Kata, we will start on the real work registration system week when you have a pair. **Ok, I won't deploy it and I won't write automated acceptance tests. But I must inspect my beautiful work (and make sure it is working).**
 
 ### 1.9. Finish
 
