@@ -6,6 +6,6 @@ import Catalog from '../../../src/components/catalog';
 
 var TestUtils = React.addons.TestUtils;
 
-describe('catalog component', () => {
+describe('Catalog component', () => {
 
 });

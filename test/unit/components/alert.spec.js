@@ -6,7 +6,7 @@ import Alert from '../../../src/components/alert';
 
 var TestUtils = React.addons.TestUtils;
 
-describe('alert component', () => {
+describe('Alert component', () => {
 
   it('renders text', () => {
     var catalog = TestUtils.renderIntoDocument(
