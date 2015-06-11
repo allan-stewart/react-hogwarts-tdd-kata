@@ -99,7 +99,7 @@ I see you expect to have a ``Catalog`` component with headers. **Yes, I expect w
 I reloaded ``localhost:3000/index.html`` and clicked on menu item catalog and I don't see the list of courses. **It is because we haven't hooked them up. Also, professor, webpack makes it so you don't have to refresh the web page.**
 
 
-### 1.1 Showing a Course
+### 1.1. Showing a Course
 
 I see, we only have the headers. How will we add a course? **I think I will add a ``Course`` component inside the ``<tbody>`` tags and pass the a ``course`` as a property.**
 
@@ -107,7 +107,7 @@ Can you show me with a test? **Sure.**
 
 **Demonstratio Facilius.**
 
-### 1.1.0
+### 1.1.0.
 
 ``test/unit/components/catalog.spec.js``
 ```js
@@ -126,7 +126,7 @@ Can you show me with a test? **Sure.**
   });
 ```
 
-### 1.1.1 Erroring
+### 1.1.1. Erroring
 ``src/components/catalog.js``
 ```js
 
@@ -144,7 +144,7 @@ Can you show me with a test? **Sure.**
 
 Woah, now everything is broken. Nothing shows in the browser and the tests are failing. **Yes, it is because the course component is not defined. I will define it in ``src/components/course.js``**
 
-### 1.1.2 Failing
+### 1.1.2. Failing
 
 ``src/components/course.js``
 ```js
@@ -169,7 +169,7 @@ export default class Course extends React.Component {
 import Course from "./course";
 ```
 
-### 1.1.3 Passing
+### 1.1.3. Passing
 
 Whew, now we have only one failing test. **Yes, professor and now I will make it pass.**
 
@@ -194,7 +194,7 @@ Whew, now we have only one failing test. **Yes, professor and now I will make it
   }
 ```
 
-### 1.1.4 End to END for Showing the Catalog
+### 1.1.4. End to END for Showing the Catalog
 
 You have build a perfectly good catalog! **Thank you.**
 
@@ -212,11 +212,11 @@ It turns out we have a ``CatalogPage``. Now what? **I will change ``CatalogPage.
     );
 ```
 
-### 1.2 Show All Courses
+### 1.2. Show All Courses
 
 I am only seeing one course. **Yeah, we coded it up that way.**
 
-### 1.2.0 Failing
+### 1.2.0. Failing
 
 ``test/unit/components/catalog.spec.js``
 ```js
@@ -251,7 +251,7 @@ I am only seeing one course. **Yeah, we coded it up that way.**
   });
 ```
 
-### 1.2.1 Passing
+### 1.2.1. Passing
 
 **I added ``lodash``**
 
@@ -287,11 +287,11 @@ and added ``_.map`` to ``Course``
 Very nice work! I see courses. **Thank you!**
 
 
-### 1.3 Show Course Times
+### 1.3. Show Course Times
 
 We seem to be missing the class start time. **I'll get right on it.**
 
-### 1.3.0 Failing
+### 1.3.0. Failing
 
 ``test/unit/course.spec.js``
 ```js
@@ -327,7 +327,7 @@ describe('course component', () => {
 });
 ```
 
-### 1.3.1 Passing
+### 1.3.1. Passing
 
 **I am adding ``moment.js`` and replacing ``<td>{course.startTime}</td>``**
 
@@ -341,6 +341,20 @@ import moment from "moment";
         <td>{course.credits}</td>
         <td>{moment(course.startTime).format("h:mm a")}</td>
 ```
+
+Are we finished with the story? **No, Professor Longbottom. Before calling a story done, it must be tested and deployed.**
+
+But this is only a Kata, we will start on the real work next week when you have a pair. **Ok, I won't deploy it and I won't write automated acceptance tests. But I must inspect my beautiful work (and make sure it is working).**
+
+### 1.9. End to End
+
+Young wizard, can you remind me how to see your work?
+
+**``npm start``
+``http://localhost:3000/index.html``
+click on Catalog (at the top).**
+
+Well done, young Wizard. You have finished your story. Another point for Hufflepuff. **Thank you, I like to 1) write the test, 2) see it fail, 3) write code to make it pass, and then 4) refactor. I also like seeing what the end user sees.**
 
 
 
