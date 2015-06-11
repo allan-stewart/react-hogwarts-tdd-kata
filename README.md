@@ -354,7 +354,7 @@ import Course from '../../../src/components/course'
 
 var TestUtils = React.addons.TestUtils;
 
-describe('course component', () => {
+describe('Course component', () => {
 
   let course = {
     name: "DADA",
