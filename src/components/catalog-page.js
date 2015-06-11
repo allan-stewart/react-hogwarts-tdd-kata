@@ -1,6 +1,7 @@
 import React from "react";
 
 import Catalog from "./catalog";
+import Alert from "./alert";
 import CatalogRepository from "../repositories/catalog-repository";
 
 
@@ -13,8 +14,20 @@ export default class CatalogPage extends React.Component {
   }
 
   render() {
+    var alertData = this.state.registrationResponse || {};
     return (
-      <Catalog />
+      <div>
+        <div className="jumbotron" style={{"padding": "10px"}}>
+          <h1>Hogwarts course catalog!</h1>
+          <p>Select your wizarding classes!</p>
+        </div>
+        <div>
+          <Alert error={alertData.error} message={alertData.message} />
+          <div className="panel panel-default" >
+            <Catalog />
+          </div>
+        </div>
+      </div>
     );
   }
 }
