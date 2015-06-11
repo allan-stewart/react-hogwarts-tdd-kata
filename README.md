@@ -157,6 +157,8 @@ Woah, now everything is broken. Nothing shows in the browser and the tests are f
 
 ``src/components/course.js``
 ```js
+import React from "react";
+
 export default class Course extends React.Component {
 
   constructor(props) {
