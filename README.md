@@ -23,9 +23,11 @@ You have [git](http://git-scm.com/downloads) installed.
 
 ``git clone https://github.com/zhon/react-hogwarts-tdd-kata.git``
 
-``cd react-hogwarts-tdd-kata``
-``npm install``
-``npm start``
+```
+cd react-hogwarts-tdd-kata``
+npm install
+npm start
+```
 
 Visit ``localhost:3000/index.html`` to see the code running.
 
@@ -101,13 +103,13 @@ I reloaded ``localhost:3000/index.html`` and clicked on menu item catalog and I 
 
 ### 1.1. Showing a Course
 
-I see, we only have the headers. How will we add a course? **I think I will add a ``Course`` component inside the ``<tbody>`` tags and pass the a ``course`` as a property.**
+I see, we only have the headers. How will we add a course? **I think I will add a ``Course`` component inside the ``<tbody>`` tags and pass ``course`` as a property.**
 
 Can you show me with a test? **Sure.**
 
 **Demonstratio Facilius.**
 
-### 1.1.0.
+### 1.1.0. Failing
 
 ``test/unit/components/catalog.spec.js``
 ```js
@@ -202,7 +204,7 @@ When I look at the catalog web page, why don't I see the classes? **It is becaus
 
 What are you going to call this state managing component? **What about ``CatalogPage``?**
 
-It turns out we have a ``CatalogPage``. Now what? **I will change ``CatalogPage.render`` to pass catalog to as a property.**
+It turns out we have a ``CatalogPage``. Now what? **I will change ``CatalogPage.render`` to pass catalog as a property.**
 
 ``src/components/catalog-page.js``
 ```js
@@ -252,6 +254,7 @@ I am only seeing one course. **Yeah, we coded it up that way.**
 ```
 
 ### 1.2.1. Passing
+How did you get it to pass?
 
 **I added ``lodash``**
 
@@ -261,7 +264,7 @@ import React from "react";
 import _ from "lodash";
 ```
 
-**removed ``var course = ...``**
+**removed ~``var course = ...``~**
 
 
 ``src/components/catalog.js``
@@ -271,7 +274,7 @@ import _ from "lodash";
     return (
 ```
 
-and added ``_.map`` to ``Course``
+**and added ``_.map`` to ``Course``**
 
 
 ``src/components/catalog.js``
@@ -348,7 +351,7 @@ But this is only a Kata, we will start on the real work next week when you have 
 
 ### 1.9. End to End
 
-Young wizard, can you remind me how to see your work?
+Can you remind me how to see your work?
 
 **``npm start``
 ``http://localhost:3000/index.html``
