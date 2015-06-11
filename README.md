@@ -37,7 +37,16 @@ To run the tests:
 or
 `` npm run test-watch``
 
+## 0. Coming up to Speed
 
+How will you begin, my young wizard friend?
+  2. **I will notice tests running in one ``console``.**
+  2. **I will notice the server running in another ``console``.**
+  1. **I will load http://localhost:3000/index.html.**
+  3. **I will notice the three menu items.**
+  4. **I will sort myself into a house by clicking on the sorting hat.**
+
+Great, what house are you in? **I am in ___________________**
 
 ## 1. Story: Show Course Catalog
 
