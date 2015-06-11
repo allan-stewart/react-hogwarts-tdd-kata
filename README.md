@@ -101,7 +101,7 @@ I see you expect to have a ``Catalog`` component with headers. **Yes, I expect w
 I reloaded ``localhost:3000/index.html`` and clicked on menu item catalog and I don't see the list of courses. **It is because we haven't hooked them up. Also, professor, webpack makes it so you don't have to refresh the web page.**
 
 
-### 1.1. Showing a Course
+### 1.1. Show a Course
 
 I see, we only have the headers. How will we add a course? **I think I will add a ``Course`` component inside the ``<tbody>`` tags and pass ``course`` as a property.**
 
@@ -109,7 +109,7 @@ Can you show me with a test? **Sure.**
 
 **Demonstratio Facilius.**
 
-### 1.1.0. Failing
+### 1.1.0. Fail
 
 ``test/unit/components/catalog.spec.js``
 ```js
@@ -128,7 +128,7 @@ Can you show me with a test? **Sure.**
   });
 ```
 
-### 1.1.1. Erroring
+### 1.1.1. Error
 ``src/components/catalog.js``
 ```js
 
@@ -146,7 +146,7 @@ Can you show me with a test? **Sure.**
 
 Woah, now everything is broken. Nothing shows in the browser and the tests are failing. **Yes, it is because the course component is not defined. I will define it in ``src/components/course.js``**
 
-### 1.1.2. Failing
+### 1.1.2. Fail
 
 ``src/components/course.js``
 ```js
@@ -171,7 +171,7 @@ export default class Course extends React.Component {
 import Course from "./course";
 ```
 
-### 1.1.3. Passing
+### 1.1.3. Pass
 
 Whew, now we have only one failing test. **Yes, professor and now I will make it pass.**
 
@@ -196,7 +196,7 @@ Whew, now we have only one failing test. **Yes, professor and now I will make it
   }
 ```
 
-### 1.1.4. End to END for Showing the Catalog
+### 1.1.4. Show the Catalog
 
 You have build a perfectly good catalog! **Thank you.**
 
@@ -218,7 +218,7 @@ It turns out we have a ``CatalogPage``. Now what? **I will change ``CatalogPage.
 
 I am only seeing one course. **Yeah, we coded it up that way.**
 
-### 1.2.0. Failing
+### 1.2.0. Fail
 
 ``test/unit/components/catalog.spec.js``
 ```js
@@ -253,7 +253,7 @@ I am only seeing one course. **Yeah, we coded it up that way.**
   });
 ```
 
-### 1.2.1. Passing
+### 1.2.1. Pass
 How did you get it to pass?
 
 **I added ``lodash``**
@@ -264,7 +264,7 @@ import React from "react";
 import _ from "lodash";
 ```
 
-**removed ~``var course = ...``~**
+**removed ~~``var course = ...``~~**
 
 
 ``src/components/catalog.js``
@@ -294,7 +294,7 @@ Very nice work! I see courses. **Thank you!**
 
 We seem to be missing the class start time. **I'll get right on it.**
 
-### 1.3.0. Failing
+### 1.3.0. Fail
 
 ``test/unit/course.spec.js``
 ```js
@@ -330,7 +330,7 @@ describe('course component', () => {
 });
 ```
 
-### 1.3.1. Passing
+### 1.3.1. Pass
 
 **I am adding ``moment.js`` and replacing ``<td>{course.startTime}</td>``**
 
@@ -349,7 +349,7 @@ Are we finished with the story? **No, Professor Longbottom. Before calling a sto
 
 But this is only a Kata, we will start on the real work next week when you have a pair. **Ok, I won't deploy it and I won't write automated acceptance tests. But I must inspect my beautiful work (and make sure it is working).**
 
-### 1.9. End to End
+### 1.9. Finish
 
 Can you remind me how to see your work?
 
