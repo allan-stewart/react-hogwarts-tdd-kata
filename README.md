@@ -198,11 +198,11 @@ Whew, now we have only one failing test. **Yes, professor and now I will make it
 
 You have build a perfectly good catalog! **Thank you.**
 
-When I look at the catalog web page, why don't I see the classes? **It is because ``Catalog`` is a stateless component (it only uses ``props``). We need a place to manage ``state``.
+When I look at the catalog web page, why don't I see the classes? **It is because ``Catalog`` is a stateless component (it only uses ``props``). We need a place to manage ``state``.**
 
-What are you going to call this state managing component? **What about ``CatalogPage``**
+What are you going to call this state managing component? **What about ``CatalogPage``?**
 
-It turns out we have a ``CatalogPage``. Now what? **I will change ``CatalogPage.render`` to pass catalog to as a property.
+It turns out we have a ``CatalogPage``. Now what? **I will change ``CatalogPage.render`` to pass catalog to as a property.**
 
 ``src/components/catalog-page.js``
 ```js
@@ -329,7 +329,7 @@ describe('course component', () => {
 
 ### 1.3.1 Passing
 
-**I am adding ``moment.js`` and replacing ``<td>{course.startTime}``**
+**I am adding ``moment.js`` and replacing ``<td>{course.startTime}</td>``**
 
 ``src/components/catalog-page.js``
 ```js
