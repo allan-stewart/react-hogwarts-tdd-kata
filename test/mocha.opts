@@ -1,3 +1,2 @@
 --require test/utils/babel-register.js
 --require test/utils/dom.js
---require should

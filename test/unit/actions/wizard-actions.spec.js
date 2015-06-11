@@ -1,4 +1,4 @@
-import should from 'should';
+import {expect} from 'chai';
 import sinon from 'sinon';
 
 import alt from "../../../src/alt";
@@ -34,9 +34,9 @@ describe('wizard actions', () => {
       wizardActions.getWizard();
 
       setTimeout(() => {
-        should(dispatchedEvents.length).equal(1);
-        should(dispatchedEvents[0].details.name).equal('updateWizard');
-        should(dispatchedEvents[0].data).equal(wizard);
+        expect(dispatchedEvents.length).equal(1);
+        expect(dispatchedEvents[0].details.name).equal('updateWizard');
+        expect(dispatchedEvents[0].data).equal(wizard);
 
         mockWizardRepository.verify();
         done();
@@ -51,9 +51,9 @@ describe('wizard actions', () => {
       wizardActions.getWizard();
 
       setTimeout((event) => {
-        should(dispatchedEvents.length).equal(1);
-        should(dispatchedEvents[0].details.name).equal('updateWizardFailed');
-        should(dispatchedEvents[0].data).equal(errorMessage);
+        expect(dispatchedEvents.length).equal(1);
+        expect(dispatchedEvents[0].details.name).equal('updateWizardFailed');
+        expect(dispatchedEvents[0].data).equal(errorMessage);
 
         mockWizardRepository.verify();
         done();
@@ -83,13 +83,13 @@ describe('wizard actions', () => {
       wizardActions.registerForCourse(course);
 
       setTimeout(() => {
-        should(dispatchedEvents.length).equal(2);
-        should(dispatchedEvents[0].details.name).equal('registerForCourseSuccess');
-        should(dispatchedEvents[0].data).equal(course);
-        should(dispatchedEvents[1].details.name).equal('updateWizard');
-        should(dispatchedEvents[1].data.house).equal(wizard.house);
-        should(dispatchedEvents[1].data.courses.length).equal(1);
-        should(dispatchedEvents[1].data.courses[0]).equal(course);
+        expect(dispatchedEvents.length).equal(2);
+        expect(dispatchedEvents[0].details.name).equal('registerForCourseSuccess');
+        expect(dispatchedEvents[0].data).equal(course);
+        expect(dispatchedEvents[1].details.name).equal('updateWizard');
+        expect(dispatchedEvents[1].data.house).equal(wizard.house);
+        expect(dispatchedEvents[1].data.courses.length).equal(1);
+        expect(dispatchedEvents[1].data.courses[0]).equal(course);
 
         mockWizardRepository.verify();
         done();
@@ -105,9 +105,9 @@ describe('wizard actions', () => {
       wizardActions.registerForCourse(course);
 
       setTimeout(() => {
-        should(dispatchedEvents.length).equal(1);
-        should(dispatchedEvents[0].details.name).equal('registerForCourseFailed');
-        should(dispatchedEvents[0].data).equal(errorMessage);
+        expect(dispatchedEvents.length).equal(1);
+        expect(dispatchedEvents[0].details.name).equal('registerForCourseFailed');
+        expect(dispatchedEvents[0].data).equal(errorMessage);
 
         mockWizardRepository.verify();
         done();
@@ -126,9 +126,9 @@ describe('wizard actions', () => {
       wizardActions.registerForCourse(course);
 
       setTimeout(() => {
-        should(dispatchedEvents.length).equal(1);
-        should(dispatchedEvents[0].details.name).equal('registerForCourseFailed');
-        should(dispatchedEvents[0].data).equal(errorMessage);
+        expect(dispatchedEvents.length).equal(1);
+        expect(dispatchedEvents[0].details.name).equal('registerForCourseFailed');
+        expect(dispatchedEvents[0].data).equal(errorMessage);
 
         mockWizardRepository.verify();
         done();
