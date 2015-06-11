@@ -64,7 +64,7 @@ How do we want the catalog to look? **We will put it into a table with headers, 
 
 Can you show me in a test? **Oh, that would be easier.**
 
-### 1.0.0. Failing
+### 1.0.0. Fail
 
 ``test/unit/components/catalog.spec.js``
 ```js
@@ -80,7 +80,7 @@ Can you show me in a test? **Oh, that would be easier.**
   });
 ```
 
-### 1.0.1. Passing
+### 1.0.1. Pass
 
 I see you expect to have a ``Catalog`` component with headers. **Yes, I expect we want to show "Class", "Professor", "Credits" and "Time".**
 
