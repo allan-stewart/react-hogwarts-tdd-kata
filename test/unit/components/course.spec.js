@@ -1,4 +1,4 @@
-import should from 'should';
+import {expect} from 'chai';
 import React from 'react/addons';
 
 import Course from '../../../src/components/course'
@@ -24,10 +24,10 @@ describe('course component', () => {
       </table>
     );
     var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, "td");
-    should(data.length).equal(4);
-    should(data[0].getDOMNode().textContent).be.equal("DADA");
-    should(data[1].getDOMNode().textContent).be.equal("Quirinus Quirrell");
-    should(data[2].getDOMNode().textContent).be.equal("3");
+    expect(data.length).equal(4);
+    expect(data[0].getDOMNode().textContent).be.equal("DADA");
+    expect(data[1].getDOMNode().textContent).be.equal("Quirinus Quirrell");
+    expect(data[2].getDOMNode().textContent).be.equal("3");
   });
 
   it('renders time correctly', () => {
@@ -39,7 +39,7 @@ describe('course component', () => {
       </table>
     );
     var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, 'td');
-    should(data[3].getDOMNode().textContent).be.equal('11:30 am');
+    expect(data[3].getDOMNode().textContent).be.equal('11:30 am');
   });
 
   it('renders nothing if no course is supplied', () => {
@@ -51,7 +51,7 @@ describe('course component', () => {
       </table>
     );
     var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, 'td');
-    should(data.length).be.equal(0);
+    expect(data.length).be.equal(0);
   });
 
   it('renders the Register link when props.onRegister is supplied', () => {
@@ -64,9 +64,9 @@ describe('course component', () => {
       </table>
     );
     var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, "td");
-    should(data.length).be.equal(5);
-    should(data[4].getDOMNode().textContent).be.equal("Register");
-    should(data[4].props.children.type).equal("a");
+    expect(data.length).be.equal(5);
+    expect(data[4].getDOMNode().textContent).be.equal("Register");
+    expect(data[4].props.children.type).equal("a");
   });
 
   it('should call onRegister when the link is clicked', () => {
@@ -83,7 +83,7 @@ describe('course component', () => {
     );
     var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, "a");
     TestUtils.Simulate.click(data[0]);
-    should(clickedCourse).equal(course);
+    expect(clickedCourse).equal(course);
   });
 
 });
