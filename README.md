@@ -224,9 +224,7 @@ It turns out we have a ``CatalogPage``. Now what? **I will change ``CatalogPage.
 ```
 
 ### 1.1.5. Refactor
-It seems you have tests in the wrong place. **Yes, I have a ``Course`` tests mixed in with ``Catalog`` tests. I will move that now.**
-
-TODO move course tests to course.spec
+It seems you have a test in the wrong place. **Yes, I have a ``Course`` tests mixed in with ``Catalog`` tests. I will move that now.**
 
 **I am removing**
 
@@ -258,11 +256,11 @@ TODO move course tests to course.spec
   });
 ```
 
-What about the test that says Catalog contains a course? **I will add that test soon.**
+What about ensuring ``Catalog`` contains a ``Course``? **I will add that test soon. ;-)**
 
 ### 1.2. Show All Courses
 
-OK, I am only seeing one course. **Yeah, we coded it up that way.**
+OK, now I am only seeing one course on the webpage. **Yeah, we coded it up that way. I'll fix it now.**
 
 ### 1.2.0. Fail
 
