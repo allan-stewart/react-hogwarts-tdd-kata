@@ -8,8 +8,10 @@ export default class Alert extends React.Component {
     }
 
     var alertClass = this.props.error ? "alert-danger" : "alert-success";
-    return <div className={"alert " + alertClass}>
-      {this.props.message}
-    </div>;
+    return (
+      <div className={"alert " + alertClass}>
+        {this.props.message}
+      </div>
+    );
   }
 }
