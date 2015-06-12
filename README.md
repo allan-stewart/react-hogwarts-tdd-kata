@@ -124,8 +124,9 @@ Can you show me with a test? **Sure.**
     var catalog = [ {
         id: "RUN105",
         name: "Ancient Runes",
-        startTime: new Date(0,0,0,13),
-        professor: "Bathsheba Babbling", credits: 3
+        startTime: new Date(0,0,0,11,30),
+        professor: "Bathsheba Babbling",
+        credits: 3
      } ];
     var renderedCatalog = TestUtils.renderIntoDocument(
       <Catalog catalog={catalog}/>
@@ -218,9 +219,15 @@ It turns out we have a ``CatalogPage``. Now what? **I will change ``CatalogPage.
 ``src/components/catalog-page.js``
 ```js
   render() {
+    ...
     return (
-      <Catalog catalog={this.state.catalog}/>
+      ...
+          <div className="panel panel-default" >
+            <Catalog catalog={this.state.catalog}/>
+          </div>
+      ...
     );
+  }
 ```
 
 ### 1.1.5. Refactor
@@ -241,19 +248,37 @@ It seems you have a test in the wrong place. **Yes, I have a ``Course`` tests mi
 
 ``test/unit/components/course.spec.js``
 ```js
+import React from 'react/addons';
+import {expect} from 'chai';
+
+import Course from '../../../src/components/course'
+
+
+var TestUtils = React.addons.TestUtils;
+
+describe('course component', () => {
+
+  let course = {
+    id: "RUN105",
+    name: "Ancient Runes",
+    startTime: new Date(0,0,0,11,30),
+    professor: "Bathsheba Babbling",
+    credits: 3
+  };
+
   it('renders a course', () => {
-    var course = {
-        id: "RUN105",
-        name: "Ancient Runes",
-        startTime: new Date(0,0,0,13),
-        professor: "Bathsheba Babbling", credits: 3
-     };
     var renderedComponent = TestUtils.renderIntoDocument(
-      <Course course={course}/>
+      <table>
+        <tbody>
+          <Course course={course}/>
+        </tbody>
+      </table>
     );
     var courses = TestUtils.scryRenderedDOMComponentsWithTag(renderedComponent, 'td');
     expect(courses[0].getDOMNode().textContent).to.equal("Ancient Runes");
   });
+
+});
 ```
 
 What about ensuring ``Catalog`` contains a ``Course``? **I will add that test soon. ;-)**
@@ -296,7 +321,7 @@ import Course from '../../../src/components/course';
       <Catalog catalog={catalog}/>
     );
 
-    var courses = TestUtils.scryRenderedDOMComponentsWithTag(renderedCatalog, Course);
+    var courses = TestUtils.scryRenderedComponentsWithType(renderedCatalog, Course);
     expect(courses).to.have.length(3);
   });
 ```
@@ -346,23 +371,6 @@ We seem to be missing the class start time. **I'll get right on it.**
 
 ``test/unit/course.spec.js``
 ```js
-import React from 'react/addons';
-import {expect} from 'chai';
-
-import Course from '../../../src/components/course'
-
-
-var TestUtils = React.addons.TestUtils;
-
-describe('Course component', () => {
-
-  let course = {
-    name: "DADA",
-    professor: "Quirinus Quirrell",
-    credits: "3",
-    startTime: new Date(0, 0, 0, 11, 30),
-  };
-
   it('renders time correctly', () => {
     var renderedCourse = TestUtils.renderIntoDocument(
       <table>
@@ -374,8 +382,6 @@ describe('Course component', () => {
     var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, 'td');
     expect(data[3].getDOMNode().textContent).be.equal('11:30 am');
   });
-
-});
 ```
 
 ### 1.3.1. Pass
