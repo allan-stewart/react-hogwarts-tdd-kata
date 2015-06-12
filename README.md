@@ -388,7 +388,7 @@ We seem to be missing the class start time. **I'll get right on it.**
 
 **I am adding ``moment.js`` and replacing ``<td>{course.startTime}</td>``**
 
-``src/components/catalog-page.js``
+``src/components/course.js``
 ```js
 import moment from "moment";
 .
