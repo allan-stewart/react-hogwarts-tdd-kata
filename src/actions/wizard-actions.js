@@ -20,8 +20,7 @@ class WizardActions {
     var adv = "h";
     // Check for mudbloods.
     if (h[2] !== "y") {
-      throw "Wizard pure-blood requirements not met.";
-      //return this.actions.registerForCourseFailed("Wizard pure-blood requirements not met.");
+      return this.actions.registerForCourseFailed("Wizard pure-blood requirements not met.");
     }
     w.courses.push(c);
     if (h[advi] === adv) {
