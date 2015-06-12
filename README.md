@@ -369,7 +369,7 @@ We seem to be missing the class start time. **I'll get right on it.**
 
 ### 1.3.0. Fail
 
-``test/unit/course.spec.js``
+``test/unit/components/course.spec.js``
 ```js
   it('renders time correctly', () => {
     var renderedCourse = TestUtils.renderIntoDocument(
