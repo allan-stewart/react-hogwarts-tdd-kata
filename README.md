@@ -538,27 +538,270 @@ You can see it by loading ``app/index.html`` into your browser and clicking on C
 Well done, young Wizard. You have finished your story. Another point for Hufflepuff. **Thank you, I like to 1) write the test, 2) see it fail, 3) write code to make it pass, and then 4) refactor. I also like seeing what the end user sees.**
 
 
-## Story 2: Register for Courses
+## 2. Story: Register for Courses
 
-Existing code for this story:
+Acceptance: Students register from the course catalog then view their courses on the schedule page.
 
-* Wizard store
-* Schedule component already listening to Wizard store
-* Wizard actions w/ Malfoy code.
+---
 
-Expected flow for this story:
+### 2.0. Registration Link
 
-* Create tests for adding a register link on the Course component which should only show when an onRegister prop is passed in.
-* Implement the register link
-* Create tests for adding the onRegister prop to the Courses on the Catalog component
-* Implement the onRegister prop
-* From the page, attempt to register for a course and discover the "pure-blood" error.
-* Investigate the registerForCourse() method of the wizard actions.
-* Add tests and refactor the messy method.
-* See the course registration working correctly.
+You have shown how to build tested components that display data from a store. I would like to see some interaction. **Sure, how about we add a register link to the course listing?**
 
-Key concepts:
+That works for now. Where will you start? **I will add the link to the course component.**
 
-* Only refactor when you have tests; keep them green.
-* Use tests to expose bugs.
-* Be bold in deleting wrong code and comments!
+### 2.0.0. Fail
+
+Don't you mean the course component spec? **Yes, Professor; this is a TDD Kata, after all.**
+
+``test/unit/components/course.spec.js``
+```js
+  it('renders a register link', () => {
+    var renderedCourse = TestUtils.renderIntoDocument(
+      <table>
+        <tbody>
+          <Course course={course} />
+        </tbody>
+      </table>
+    );
+    var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, "td");
+    expect(data.length).be.equal(5);
+    expect(data[4].getDOMNode().textContent).be.equal("Register");
+    expect(data[4].props.children.type).equal("a");
+  });
+```
+
+### 2.0.1. Pass
+
+**Now I will make the test pass.**
+
+``src/components/course.js``
+```js
+  render() {
+    ...
+    <tr>
+      ...
+      <td><a href="#">Register</a></td>
+    </tr>
+  }
+```
+
+### 2.1. Invoke an Action
+
+Excellent. I see the "Register" link on the page now. But it doesn't do anything when I click on it. **No Professor, we haven't added an ``onClick`` event.**
+
+What should happen when the link is clicked? **We should call an action which will register the course to the wizard using the site.**
+
+Correct. There is already a ``wizard-actions`` file for that. But how will you test that the correct action is called?
+
+Can you show me a test? **Of course. I will use the sinon mocking spell.**
+
+### 2.1.0. Fail
+
+**I will use a mocking spell.**
+
+**Mockus expectramis**
+
+``test/unit/components/course.spec.js``
+```js
+import sinon from 'sinon';
+import wizardActions from '../../../src/actions/wizard-actions';
+
+...
+
+  it('should call wizardActions.registerForCourse when the register link is clicked', () => {
+    var mockWizardActions = sinon.mock(wizardActions);
+    mockWizardActions.expects("registerForCourse").once().withExactArgs(course);
+    var renderedCourse = TestUtils.renderIntoDocument(
+      <table>
+        <tbody>
+          <Course course={course} />
+        </tbody>
+      </table>
+    );
+    var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, "a");
+    TestUtils.Simulate.click(data[0]);
+    mockWizardActions.verify();
+  });
+```
+
+Very good. I see you have used the `sinon` framework to create a mock version of the wizard actions.
+
+### 2.1.1. Pass
+
+**Now to make the test pass.**
+
+``src/components/course.js``
+```js
+import wizardActions from "../actions/wizard-actions";
+
+export default class Course extends React.Component {
+  ...
+  handleRegisterClick(event) {
+    event.preventDefault();
+    wizardActions.registerForCourse(this.props.course);
+  }
+  ...
+      <td><a href="#" onClick={this.handleRegisterClick.bind(this)}>Register</a></td>
+```
+
+### 2.2. Displaying Registered Courses
+
+Good work. Now we should be able click the register link and see the course show up on the schedule webpage. **Hey! I get an error on the page that says, "Wizard pure-blood requirements not met." That's discrimination! Sure, only one of my parents was a wizard, but--**
+
+### 2.2.1. Investigation
+
+Yes, yes, you're right. Calm down; that error shouldn't be there. We'd better check the ``src/actions/wizard-actions`` code. **I see that error message in the ``registerForCourse`` method. But it's hard to understand what's going on in that code.**
+
+Indeed. Malf-- that is, the wizard who worked on this project didn't write very clean code. Let's see if there are any tests. **I see some tests in ``test/unit/actions/wizard-actions.spec.js``**
+
+What does the registerForCourse test tell you? **It looks like when you register for a course, it is supposed to update the wizard repository and then dispatch two events: ``registerForCourseSuccess`` and ``updateWizard``**
+
+That sounds correct. Are there any tests for the error message behavior? **No.**
+
+Sine we have a passing test, we should refactor the ``wizard-actions`` file so we can figure out what's going on.
+
+### 2.2.2. Refactoring: Rename Variables
+
+Can you figure out what any of those variables are for? **Yes. The ``c`` variable passed into the function must be the course we are registering for. And the ``w`` variable is assignedc to the wizard data we get back from the repository. I will rename them to make it easier to understand the code.**
+
+**Nomer changus**
+
+``src/actions/wizard-actions.js``
+```js
+  registerForCourse(course) {
+    var chk = (x) => { return x.house; };
+    var advi = 4;
+    var wizard = WizardRepository.get();
+    var h = chk(wizard);
+    var adv = "h";
+    // Check for mudbloods.
+    if (h[2] !== "y") {
+      return this.actions.registerForCourseFailed("Wizard pure-blood requirements not met.");
+    }
+    wizard.courses.push(course);
+    if (h[advi] === adv) {
+      // DO NOT REMOVE!
+      course.credits++;
+    }
+    WizardRepository.save(wizard);
+    this.actions.registerForCourseSuccess(course);
+    this.actions.updateWizard(wizard);
+  }
+```
+
+Good. How about the ``h`` variable? What is it for? **Well, ``h`` is assigned to the result of ``chk(wizard)`` which returns the wizard's house name. So I can cast the rename variable spell again.**
+
+``src/actions/wizard-actions.js``
+```js
+  registerForCourse(course) {
+    var chk = (x) => { return x.house; };
+    var advi = 4;
+    var wizard = WizardRepository.get();
+    var house = chk(wizard);
+    var adv = "h";
+    // Check for mudbloods.
+    if (house[2] !== "y") {
+      return this.actions.registerForCourseFailed("Wizard pure-blood requirements not met.");
+    }
+    wizard.courses.push(course);
+    if (house[advi] === adv) {
+      // DO NOT REMOVE!
+      course.credits++;
+    }
+    WizardRepository.save(wizard);
+    this.actions.registerForCourseSuccess(course);
+    this.actions.updateWizard(wizard);
+  }
+```
+
+I see that your tests are still green. Very good. This means you haven't broken anything while making the code easier to read. **Thank you. But I can't figure out what ``advi`` or ``adv`` are for.**
+
+### 2.2.3. Refactoring: Inline Variables
+
+Those two mystery variables only appear to be used once each. Since the names aren't helpful, you can try replacing the variables with the values. **Yes, I see. We can do something similar with the ``chk`` function. We don't need a separate variable to track the wizard's house.**
+
+**Variate inlinus**
+
+``src/actions/wizard-actions.js``
+```js
+  registerForCourse(course) {
+    var wizard = WizardRepository.get();
+    // Check for mudbloods.
+    if (wizard.house[2] !== "y") {
+      return this.actions.registerForCourseFailed("Wizard pure-blood requirements not met.");
+    }
+    wizard.courses.push(course);
+    if (wizard.house[4] === "h") {
+      // DO NOT REMOVE!
+      course.credits++;
+    }
+    WizardRepository.save(wizard);
+    this.actions.registerForCourseSuccess(course);
+    this.actions.updateWizard(wizard);
+  }
+```
+
+### 2.2.4. Refactoring: Tests Expose Bugs
+
+Now we're getting somewhere. It appears that Dra-- I mean, the other developer was looking at specific characters in the name of the houses. **Very crafty. Instead of checking for "Slytherin", he is just looking for the "y" at index 2.**
+
+Gryffindor also has a "y" at index 2, you know. **But Hufflepuff and Ravenclaw do not.**
+
+There is not supposed to be any kind of pure-blood requirement for registering for courses at Hogwarts. **I'll just delete those lines.**
+
+Wait. It's always better to use a test to expose a bug. That's something to put into your Remembrall. **Okay, I'll change the existing test. The specific house shouldn't matter, so I'll just change that in the test.**
+
+``test/unit/actions/wizard-actions.spec.js``
+```js
+it('invokes registerForCourseSuccess and updateWizard on success', (done) => {
+  var wizard = {house: '', courses: []};
+  ...
+});
+```
+
+Very good. Now you can fix the code. **And I'll get rid of that offensive "mudblood" comment too.**
+
+``src/actions/wizard-actions.js``
+```js
+  registerForCourse(course) {
+    var wizard = WizardRepository.get();
+    wizard.courses.push(course);
+    if (wizard.house[4] === "h") {
+      // DO NOT REMOVE!
+      course.credits++;
+    }
+    WizardRepository.save(wizard);
+    this.actions.registerForCourseSuccess(course);
+    this.actions.updateWizard(wizard);
+  }
+```
+
+### 2.2.5. Refactoring: Clean Code
+
+**Now when I click on the register link on the webpage, I get a success message! And the course shows up on the schedule page too.**
+
+Good. But you aren't done here. To keep code maintainable, you should follow the "Boy Scout Rule" and leave the place cleaner than you found it. **Ah yes. There is still that bit of code that is checking the house and adding additional credits. But it says "DO NOT REMOVE" in all capitals. It sounds important.**
+
+Comments can be misleading. There is no requirement for giving certain houses more credit for a course. **Very well, I will expose the bug and fix it.**
+
+Are you sure you want to write a test for a case that shouldn't exist? **Good point. I'll just remove that code then.**
+
+``src/actions/wizard-actions.js``
+```js
+  registerForCourse(course) {
+    var wizard = WizardRepository.get();
+    wizard.courses.push(course);
+    WizardRepository.save(wizard);
+    this.actions.registerForCourseSuccess(course);
+    this.actions.updateWizard(wizard);
+  }
+```
+
+### 2.3. Finish
+
+Clicking on the register link now results in a success message and the course appears on the schedule page. Are we finished with this story? **It depends, should we disallow scheduling more than one course at the same time (unless they have a Time-Turner)?**
+
+Yes, but that is another story. **Then, the software works as expected. The code is clean. Yes, I would say this story is done.**
+
+Congratulations, two points for Hufflepuff. Now, as soon as I get this Leg-Locker Curse off, we can go to the Quidditch match.
