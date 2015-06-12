@@ -6,20 +6,12 @@ var wizard = {
 export default class WizardRepository {
 
   static get() {
-    return new Promise(function (resolve /*, reject*/) {
-      setTimeout(function () {
-        resolve(wizard);
-      }, 250);
-    });
+    return wizard;
   }
 
   static save(updatedWizard) {
-    return new Promise(function (resolve /*, reject*/) {
-      setTimeout(function () {
-        wizard = updatedWizard;
-        resolve(wizard);
-      });
-    });
+    wizard = updatedWizard;
+    return wizard;
   }
 
 }

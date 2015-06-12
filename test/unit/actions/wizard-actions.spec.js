@@ -28,8 +28,7 @@ describe('wizard actions', () => {
 
     it('invokes updateWizard on success', (done) => {
       var wizard = {house: 'Slytherin', courses: []};
-      mockWizardRepository.expects('get').once()
-        .returns(new Promise((resolve) => { resolve(wizard); }));
+      mockWizardRepository.expects('get').once().returns(wizard);
 
       wizardActions.getWizard();
 
@@ -37,23 +36,6 @@ describe('wizard actions', () => {
         expect(dispatchedEvents.length).equal(1);
         expect(dispatchedEvents[0].details.name).equal('updateWizard');
         expect(dispatchedEvents[0].data).equal(wizard);
-
-        mockWizardRepository.verify();
-        done();
-      }, 10);
-    });
-
-    it('invokes updateWizardFailed on error', (done) => {
-      var errorMessage = 'Test error message.';
-      mockWizardRepository.expects('get').once()
-        .returns(new Promise((resolve, reject) => { reject(errorMessage); }));
-
-      wizardActions.getWizard();
-
-      setTimeout((event) => {
-        expect(dispatchedEvents.length).equal(1);
-        expect(dispatchedEvents[0].details.name).equal('updateWizardFailed');
-        expect(dispatchedEvents[0].data).equal(errorMessage);
 
         mockWizardRepository.verify();
         done();
@@ -75,10 +57,8 @@ describe('wizard actions', () => {
     it('invokes registerForCourseSuccess and updateWizard on success', (done) => {
       var wizard = {house: 'Slytherin', courses: []};
 
-      mockWizardRepository.expects('get').once()
-        .returns(new Promise((resolve) => { resolve(wizard); }));
-      mockWizardRepository.expects('save').once()
-        .returns(new Promise((resolve) => { resolve(wizard); }));
+      mockWizardRepository.expects('get').once().returns(wizard);
+      mockWizardRepository.expects('save').once().withExactArgs(wizard);
 
       wizardActions.registerForCourse(course);
 
@@ -90,45 +70,6 @@ describe('wizard actions', () => {
         expect(dispatchedEvents[1].data.house).equal(wizard.house);
         expect(dispatchedEvents[1].data.courses.length).equal(1);
         expect(dispatchedEvents[1].data.courses[0]).equal(course);
-
-        mockWizardRepository.verify();
-        done();
-      }, 10);
-    });
-
-    it('invokes registerForCourseFailed if get() fails', (done) => {
-      var errorMessage = 'Test error on get().';
-
-      mockWizardRepository.expects('get').once()
-        .returns(new Promise((resolve, reject) => { reject(errorMessage); }));
-
-      wizardActions.registerForCourse(course);
-
-      setTimeout(() => {
-        expect(dispatchedEvents.length).equal(1);
-        expect(dispatchedEvents[0].details.name).equal('registerForCourseFailed');
-        expect(dispatchedEvents[0].data).equal(errorMessage);
-
-        mockWizardRepository.verify();
-        done();
-      }, 10);
-    });
-
-    it('invokes registerForCourseFailed if save() fails', (done) => {
-      var wizard = {house: 'Slytherin', courses: []};
-      var errorMessage = 'Test error on save().';
-
-      mockWizardRepository.expects('get').once()
-        .returns(new Promise((resolve) => { resolve(wizard); }));
-      mockWizardRepository.expects('save').once()
-        .returns(new Promise((resolve, reject) => { reject(errorMessage); }));
-
-      wizardActions.registerForCourse(course);
-
-      setTimeout(() => {
-        expect(dispatchedEvents.length).equal(1);
-        expect(dispatchedEvents[0].details.name).equal('registerForCourseFailed');
-        expect(dispatchedEvents[0].data).equal(errorMessage);
 
         mockWizardRepository.verify();
         done();
