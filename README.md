@@ -550,3 +550,9 @@ Expected flow for this story:
 * Investigate the registerForCourse() method of the wizard actions.
 * Add tests and refactor the messy method.
 * See the course registration working correctly.
+
+Key concepts:
+
+* Only refactor when you have tests; keep them green.
+* Use tests to expose bugs.
+* Be bold in deleting wrong code and comments!
