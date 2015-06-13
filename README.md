@@ -653,7 +653,7 @@ Very good. Now you can fix the code. **And I'll get rid of that offensive "mudbl
 
 **Now when I click on the register link on the webpage, I get a success message! And the course shows up on the schedule page too.**
 
-Good. But you aren't done here. To keep code maintainable, you should follow the "Boy Scout Rule" and leave the place cleaner than you found it. **Ah yes. There is still that bit of code that is checking the house and adding additional credits. But it says "DO NOT REMOVE" in all capitals. It sounds important.**
+Good. But you aren't done here. To keep code maintainable, you should follow the "Wizard Scout Rule" and leave the place cleaner than you found it. **Ah yes. There is still that bit of code that is checking the house and adding additional credits. But it says "DO NOT REMOVE" in all capitals. It sounds important.**
 
 Comments can be misleading. There is no requirement for giving certain houses more credit for a course. **Very well, I will expose the bug and fix it.**
 
