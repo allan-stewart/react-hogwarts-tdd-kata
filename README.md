@@ -670,10 +670,39 @@ Are you sure you want to write a test for a case that shouldn't exist? **Good po
   }
 ```
 
-### 2.3. Finish
+### 2.9. Finish
 
 Clicking on the register link now results in a success message and the course appears on the schedule page. Are we finished with this story? **It depends, should we disallow scheduling more than one course at the same time (unless they have a Time-Turner)?**
 
 Yes, but that is another story. **Then, the software works as expected. The code is clean. Yes, I would say this story is done.**
 
 Congratulations, two points for Hufflepuff. Now, as soon as I get this Leg-Locker Curse off, we can go to the Quidditch match.
+
+## 3. Story: Hat Sorts Randomly
+
+Acceptance: Clicking multiple times will result in all houses being selected.
+
+---
+
+We have a disaster! Sorting Hat is celebrating at Hogsmeade with Nymphadora Tonks' ghost and refuses to come home. The replacement, the old straw thing that sorted you, is sorting everything according to this Kata! **I am not sure I see the problem.**
+
+Everyone is being sorted into _Hufflepuff_! **Oh, no!, I could have been in Gryffindor! What can we do?**
+
+We must change the Kata immediately to sort randomly.  **I am on it.**
+
+### 3. Debugging
+
+
+How will you find the bug? **I could open the debugger and...**
+
+You have tests, why not use them to help locate the bug? **I am not sure how.**
+
+The sorting code has to be located in the ``store``, the ``action`` or the ``component``. Rarely would someone put it in the component. Most likely it is in the actions. **You're right, I see it in the ``SortingActions``, but how will writing test help avoid the debugger?**
+
+Is there a test for ``sorting``? **No**
+
+Missing tests are common bug locations. Sometime, you might have a test file but the test is missing. Code coverage tools can help you find missing tests. **Good to know. **
+
+You now have a choice, _write a test_ or open the _debugger_. **I choose test (this is a TDD Kata after all).**
+
+
