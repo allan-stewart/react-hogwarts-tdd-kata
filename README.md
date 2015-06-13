@@ -468,13 +468,9 @@ Excellent. I see the "Register" link on the page now. But it doesn't do anything
 
 What should happen when the link is clicked? **We should call an action which will register the course to the wizard using the site.**
 
-Correct. There is already a ``wizard-actions`` file for that. But how will you test that the correct action is called?
-
-Can you show me a test? **Of course. I will use the sinon mocking spell.**
+Correct. There is already a ``wizard-actions`` file for that. But how will you test that the correct action is called? **I will use a mocking spell.**
 
 ### 2.1.0. Fail
-
-**I will use a mocking spell.**
 
 **Mockus expectramis**
 
@@ -501,7 +497,7 @@ import wizardActions from '../../../src/actions/wizard-actions';
   });
 ```
 
-Very good. I see you have used the `sinon` framework to create a mock version of the wizard actions.
+Very good. I see you have used the `sinon` library to create a mock version of the wizard actions.
 
 ### 2.1.1. Pass
 
@@ -535,7 +531,7 @@ What does the registerForCourse test tell you? **It looks like when you register
 
 That sounds correct. Are there any tests for the error message behavior? **No.**
 
-Sine we have a passing test, we should refactor the ``wizard-actions`` file so we can figure out what's going on.
+Since we have a passing test, we should refactor the ``wizard-actions`` file so we can figure out what's going on.
 
 ### 2.2.2. Refactoring: Rename Variables
 
