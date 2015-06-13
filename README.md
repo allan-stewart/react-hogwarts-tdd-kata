@@ -535,7 +535,7 @@ Since we have a passing test, we should refactor the ``wizard-actions`` file so 
 
 ### 2.2.2. Refactoring: Rename Variables
 
-Can you figure out what any of those variables are for? **Yes. The ``c`` variable passed into the function must be the course we are registering for. And the ``w`` variable is assignedc to the wizard data we get back from the repository. I will rename them to make it easier to understand the code.**
+Can you figure out what any of those variables are for? **Yes. The ``c`` variable passed into the function must be the course we are registering for. And the ``w`` variable is assigned to the wizard data we get back from the repository. I will rename them to make it easier to understand the code.**
 
 **Nomer changus**
 
