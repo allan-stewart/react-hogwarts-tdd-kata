@@ -137,6 +137,9 @@ Can you show me with a test? **Sure.**
 ```
 
 ### 1.1.1. Error
+
+TODO need text here!
+
 ``src/components/catalog.js``
 ```js
 
@@ -229,6 +232,9 @@ It turns out we have a ``CatalogPage``. Now what? **I will change ``CatalogPage.
     );
   }
 ```
+
+TODO Where did this data come from? Did it come from the test?
+TODO Why is it only showing one?
 
 ### 1.1.5. Refactor
 It seems you have a test in the wrong place. **Yes, I have a ``Course`` tests mixed in with ``Catalog`` tests. I will move that now.**
@@ -327,6 +333,7 @@ import Course from '../../../src/components/course';
 ```
 
 ### 1.2.1. Pass
+TODO lots of trouble here!
 How did you get it to pass?
 
 **I added ``lodash``**
@@ -344,6 +351,7 @@ import _ from "lodash";
 ```js
   render() {
     var catalog = this.props.catalog;
+
     return (
 ```
 
