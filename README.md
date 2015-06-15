@@ -708,46 +708,48 @@ You now have a choice, _write a test_ or open the _debugger_. **I choose test (t
 ### 3.1.1. Fail
 
 
-``TODO where is the location of sorting``
+``test/unit/actions/wizard-actions.spec.js``
 ```js
-import sinon from 'sinon';
+    describe('when generating a random number', function () {
+      var stubMath;
 
-describe('Sort Wizard into House', function () {
-  var stubMath;
+      beforeEach(function () {
+        stubMath = sinon.stub(Math, 'random');
+      });
 
-  beforeEach(function () {
-    stubMath = sinon.stub(Math, 'random');
-  });
+      afterEach(function () {
+        stubMath.restore();
+      });
 
-  afterEach(function () {
-    stubMath.restore();
-  });
+      it ('saves Gryffindor for random range 0.0 - 0.249', function() {
+        stubMath.returns(0.249);
+        mockWizardRepository.expects('save').once().withArgs(sinon.match({house: "Gryffindor"}));
+        wizardActions.sortIntoHouse();
+        mockWizardRepository.verify();
+      });
 
-  describe('when generating a random number in range 0 - 3', function () {
+      it ('saves Slytherin for random range 0.25 - 0.49', function() {
+        stubMath.returns(0.49);
+        wizardActions.sortIntoHouse();
+        mockWizardRepository.expects('save').once().withArgs(sinon.match({house: "Slytherin"}));
+      });
 
-    it ('returns 0 for random range 0.0 - 0.249', function() {
-      stubMath.returns(0.249);
-      expect(service.getInRange(0, 3)).toEqual(0);
+      it ('saves Ravenclaw for random range 0.5 - 0.749', function() {
+        stubMath.returns(0.749);
+        wizardActions.sortIntoHouse();
+        mockWizardRepository.expects('save').once().withArgs(sinon.match({house: "Ravenclaw"}));
+      });
+
+      it ('saves Hufflepuff for random range 0.75 - 1', function() {
+        stubMath.returns(0.99);
+        wizardActions.sortIntoHouse();
+        mockWizardRepository.expects('save').once().withArgs(sinon.match({house: "Hufflepuff"}));
+        mockWizardRepository.verify();
+
+      });
+
     });
 
-    it ('returns 1 for random range 0.25 - 0.49', function() {
-      stubMath.returns(0.49);
-      expect(service.getInRange(0, 3)).toEqual(1);
-    });
-
-    it ('returns 2 for random range 0.5 - 0.749', function() {
-      stubMath.returns(0.749);
-      expect(service.getInRange(0, 3)).toEqual(2);
-    });
-
-    it ('returns 3 for random range 0.75 - 1', function() {
-      stubMath.returns(0.99);
-      expect(service.getInRange(0, 3)).toEqual(3);
-    });
-
-  });
-
-});
 ```
 
 ### 3.1.2. Passing
