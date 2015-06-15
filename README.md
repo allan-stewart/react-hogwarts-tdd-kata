@@ -705,7 +705,7 @@ How will you find the bug? **I could open the debugger and...**
 
 You have tests, why not use them to help locate the bug? **I am not sure how.**
 
-The sorting hat code has to be located in a ``store``, an ``action`` or a ``component``. You should never see it in the component. Most likely it is in the actions. **Yes, I found it in ``WizardActions``, but how will writing test help avoid the debugger?**
+The sorting hat code has to be located in a ``store``, an ``action`` or a ``component``. Only script kiddies would put it in a component. Most likely it is in the actions. **Yes, I found it in ``WizardActions``, but how will writing test help avoid the debugger?**
 
 Are there tests for ``WizardActions``? **Yes, but none that deals with the sorting hat.**
 
@@ -717,6 +717,10 @@ You now have a choice, _write a test_ or open the _debugger_. **I choose test (t
 
 ``test/unit/actions/wizard-actions.spec.js``
 ```js
+  describe('sortIntoHouse', () => {
+
+  ...
+
     describe('when generating a random number', function () {
       var stubMath;
 
@@ -726,34 +730,31 @@ You now have a choice, _write a test_ or open the _debugger_. **I choose test (t
 
       afterEach(function () {
         stubMath.restore();
+        mockWizardRepository.verify();
       });
 
       it ('saves Gryffindor for random range 0.0 - 0.249', function() {
         stubMath.returns(0.249);
         mockWizardRepository.expects('save').once().withArgs(sinon.match({house: "Gryffindor"}));
         WizardActions.sortIntoHouse();
-        mockWizardRepository.verify();
       });
 
       it ('saves Slytherin for random range 0.25 - 0.49', function() {
         stubMath.returns(0.49);
         mockWizardRepository.expects('save').once().withArgs(sinon.match({house: "Slytherin"}));
         WizardActions.sortIntoHouse();
-        mockWizardRepository.verify();
       });
 
       it ('saves Ravenclaw for random range 0.5 - 0.749', function() {
         stubMath.returns(0.749);
         mockWizardRepository.expects('save').once().withArgs(sinon.match({house: "Ravenclaw"}));
         WizardActions.sortIntoHouse();
-        mockWizardRepository.verify();
       });
 
       it ('saves Hufflepuff for random range 0.75 - 1', function() {
         stubMath.returns(0.99);
         mockWizardRepository.expects('save').once().withArgs(sinon.match({house: "Hufflepuff"}));
         WizardActions.sortIntoHouse();
-        mockWizardRepository.verify();
       });
 
     });
@@ -765,7 +766,7 @@ You now have a choice, _write a test_ or open the _debugger_. **I choose test (t
 To get it to pass, I replace the randomize section with the correct algorithm (straight from Arithmancy class).
 
 ```js
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+      return Math.floor(Math.random() * (max - min + 1)) + min;
 ```
 
 Nice work with the test coverage. **Thank you, Professor.**
