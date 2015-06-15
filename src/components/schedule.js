@@ -1,5 +1,4 @@
 import React from "react";
-import _ from "lodash";
 
 import wizardStore from "../stores/wizard-store";
 import wizardActions from "../actions/wizard-actions";
@@ -10,6 +9,7 @@ export default class Schedule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.state.courses = [];
   }
 
   componentDidMount() {
@@ -45,7 +45,7 @@ export default class Schedule extends React.Component {
               </thead>
 
               <tbody>
-                { _.map(this.state.courses, item => <Course key={item.id} course={item} /> ) }
+                { this.state.courses.map( item => <Course key={item.id} course={item} /> ) }
               </tbody>
 
             </table>

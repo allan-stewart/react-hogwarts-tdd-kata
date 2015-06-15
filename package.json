@@ -15,7 +15,6 @@
   "repository": "",
   "dependencies": {
     "alt": "^0.16.5",
-    "lodash": "^3.8.0",
     "react": "^0.13.3",
     "react-bootstrap": "^0.23.0",
     "react-router": "^0.13.3",

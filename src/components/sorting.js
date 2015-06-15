@@ -1,5 +1,4 @@
 import React from "react";
-import _ from "lodash";
 
 import SortingHat from "./sorting-hat";
 import SortingHouse from "./sorting-house";
@@ -12,7 +11,7 @@ export default class Sorting extends React.Component {
   constructor(props) {
     super(props);
     this.state = WizardStore.getState();
-    this.state.houses = HouseStore.getState().houses;
+    this.state.houses = HouseStore.getState().houses || [];
   }
 
   componentDidMount() {
@@ -43,8 +42,8 @@ export default class Sorting extends React.Component {
         </div>
         <div className="well pull-left">
           {
-            _.map(this.state.houses, h =>
-                <SortingHouse houseName={h} selected={house === h} key={h}/>
+            this.state.houses.map( item =>
+                <SortingHouse houseName={h} selected={house === item} key={item}/>
               )
           }
         </div>
