@@ -690,19 +690,95 @@ Everyone is being sorted into _Hufflepuff_! **Oh, no!, I could have been in Gryf
 
 We must change the Kata immediately to sort randomly.  **I am on it.**
 
-### 3. Debugging
+### 3.1.0. Debug
 
 
 How will you find the bug? **I could open the debugger and...**
 
 You have tests, why not use them to help locate the bug? **I am not sure how.**
 
-The sorting code has to be located in the ``store``, the ``action`` or the ``component``. Rarely would someone put it in the component. Most likely it is in the actions. **You're right, I see it in the ``SortingActions``, but how will writing test help avoid the debugger?**
+The sorting code has to be located in the ``store``, the ``action`` or the ``component``. Rarely would someone put it in the component. Most likely it is in the actions. **Hmm, I found it in the ``SortingStore``, but how will writing test help avoid the debugger?**
 
-Is there a test for ``sorting``? **No**
+Is there a test for ``SortingStore``? **No, I just see an empty file ``test/unit/stores/sorting-store.spec.js``.**
 
-Missing tests are common bug locations. Sometime, you might have a test file but the test is missing. Code coverage tools can help you find missing tests. **Good to know. **
+Missing tests are common bug locations. Sometime, you might have a test file but the test is missing. Code coverage tools can help you find missing tests. **Good to know.**
 
 You now have a choice, _write a test_ or open the _debugger_. **I choose test (this is a TDD Kata after all).**
 
+### 3.1.1. Fail
+
+
+``TODO where is the location of sorting``
+```js
+import sinon from 'sinon';
+
+describe('Sort Wizard into House', function () {
+  var stubMath;
+
+  beforeEach(function () {
+    stubMath = sinon.stub(Math, 'random');
+  });
+
+  afterEach(function () {
+    stubMath.restore();
+  });
+
+  describe('when generating a random number in range 0 - 3', function () {
+
+    it ('returns 0 for random range 0.0 - 0.249', function() {
+      stubMath.returns(0.249);
+      expect(service.getInRange(0, 3)).toEqual(0);
+    });
+
+    it ('returns 1 for random range 0.25 - 0.49', function() {
+      stubMath.returns(0.49);
+      expect(service.getInRange(0, 3)).toEqual(1);
+    });
+
+    it ('returns 2 for random range 0.5 - 0.749', function() {
+      stubMath.returns(0.749);
+      expect(service.getInRange(0, 3)).toEqual(2);
+    });
+
+    it ('returns 3 for random range 0.75 - 1', function() {
+      stubMath.returns(0.99);
+      expect(service.getInRange(0, 3)).toEqual(3);
+    });
+
+  });
+
+});
+```
+
+### 3.1.2. Passing
+
+To get it to pass, I replace the return section with the correct algorithm (straight from Arithmancy class).
+
+```js
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+```
+
+Nice work with the test coverage. **Thank you, Professor.**
+
+### 3.9. End to End
+
+Have you looked at the website? **Yes students are now being sorted into different houses.**
+
+Excellent! Three points for Hufflepuff.
+
+
+O.W.L.s and N.E.W.T.s
+=====================
+
+The Kata is officially over and Stinksap's not poisonous. If you are here with working code, you are awarded an _Acceptable_ OWL. If you want a NEWT or a higher grade, complete all of the following stories/tasks.
+
+### 4. Disallow Registering for Multiple Simultaneous Classes
+
+Acceptance: Students attempting to register for multiple classes at the same time will be shown a message saying this is not allowed and the second class will not be added to their schedule.
+
+### 5. Allow Multiple Simultaneous Classes with  a Time-Turner
+
+Acceptance: Students with a time-turner are allowed to register for multiple classes at the same time.
+
+### 6. Refactor out the duplicated UI in Schedule and Catalog
 
