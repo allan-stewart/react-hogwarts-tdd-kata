@@ -337,10 +337,9 @@ import Course from '../../../src/components/course';
 ```
 
 ### 1.2.1. Pass
-TODO lots of trouble here!
-How did you get it to pass?
+How do you get it to pass?
 
-**I added ``lodash``**
+**I add ``lodash``**
 
 ``src/components/catalog.js``
 ```
@@ -348,7 +347,7 @@ import React from "react";
 import _ from "lodash";
 ```
 
-**removed ~~``var course = ...``~~**
+**remove ~~``var course = ...``~~**
 
 
 ``src/components/catalog.js``
@@ -359,7 +358,7 @@ import _ from "lodash";
     return (
 ```
 
-**and added ``_.map`` to ``Course``**
+**and add ``_.map`` to ``Course``**
 
 
 ``src/components/catalog.js``
@@ -713,15 +712,13 @@ We must change the Kata immediately to sort randomly.  **I am on it.**
 
 ### 3.1.0. Debug
 
-
 How will you find the bug? **I could open the debugger and...**
 
 You have tests, why not use them to help locate the bug? **I am not sure how.**
 
-####TODO Fix this
-The sorting code has to be located in the ``store``, the ``action`` or the ``component``. Rarely would someone put it in the component. Most likely it is in the actions. **Hmm, I found it in the ``SortingStore``, but how will writing test help avoid the debugger?**
+The sorting hat code has to be located in a ``store``, an ``action`` or a ``component``. You should never see it in the component. Most likely it is in the actions. **Yes, I found it in ``WizardActions``, but how will writing test help avoid the debugger?**
 
-Is there a test for ``SortingStore``? **No, I just see an empty file ``test/unit/stores/sorting-store.spec.js``.**
+Are there tests for ``WizardActions``? **Yes, but none that deals with the sorting hat.**
 
 Missing tests are common bug locations. Sometime, you might have a test file but the test is missing. Code coverage tools can help you find missing tests. **Good to know.**
 
