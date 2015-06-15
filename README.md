@@ -147,9 +147,7 @@ TODO need text here!
     var catalog = this.props.catalog;
     var course = catalog && (catalog.length > 0) ? catalog[0] : null;
 
-      .
-      .
-      .
+      ...
 
           <tbody>
             <Course course={course} />
@@ -222,13 +220,19 @@ It turns out we have a ``CatalogPage``. Now what? **I will change ``CatalogPage.
 ``src/components/catalog-page.js``
 ```js
   render() {
+
     ...
+
     return (
+
       ...
+
           <div className="panel panel-default" >
             <Catalog catalog={this.state.catalog}/>
           </div>
+
       ...
+
     );
   }
 ```
@@ -243,9 +247,9 @@ It seems you have a test in the wrong place. **Yes, I have a ``Course`` tests mi
 
 ```js
   it('renders a course', () => {
-    .
-    .
-    .
+
+    ...
+
   });
 ```
 **from**
@@ -298,9 +302,9 @@ OK, now I am only seeing one course on the webpage. **Yeah, we coded it up that 
 ``test/unit/components/catalog.spec.js``
 ```js
 import Course from '../../../src/components/course';
-  .
-  .
-  .
+
+...
+
   it('renders all courses', () => {
     var catalog = [ {
         id: "RUN105",
@@ -399,9 +403,8 @@ We seem to be missing the class start time. **I'll get right on it.**
 ``src/components/course.js``
 ```js
 import moment from "moment";
-.
-.
-.
+
+...
 
         <td>{course.credits}</td>
         <td>{moment(course.startTime).format("h:mm a")}</td>
@@ -462,9 +465,13 @@ Don't you mean the course component spec? **Yes, Professor; this is a TDD Kata, 
 ``src/components/course.js``
 ```js
   render() {
+
     ...
+
     <tr>
+
       ...
+
       <td><a href="#">Register</a></td>
     </tr>
   }
@@ -516,12 +523,16 @@ Very good. I see you have used the `sinon` library to create a mock version of t
 import WizardActions from "../actions/wizard-actions";
 
 export default class Course extends React.Component {
+
   ...
+
   handleRegisterClick(event) {
     event.preventDefault();
     WizardActions.registerForCourse(this.props.course);
   }
+
   ...
+
       <td><a href="#" onClick={this.handleRegisterClick.bind(this)}>Register</a></td>
 ```
 
@@ -636,7 +647,9 @@ Wait. It's always better to use a test to expose a bug. That's something to put 
 ```js
 it('invokes registerForCourseSuccess and updateWizard on success', (done) => {
   var wizard = {house: '', courses: []};
+
   ...
+
 });
 ```
 
