@@ -53,7 +53,7 @@ describe('Wizard actions', () => {
       startTime: new Date(0, 0, 0, 11, 30),
     };
 
-    it('invokes registerForCourseSuccess', (done) => {
+    it('dispastaches to registerForCourseSuccess and updateWizard on success', (done) => {
       var wizard = {house: 'Slytherin', courses: []};
 
       mockWizardRepository.expects('get').once().returns(wizard);
@@ -72,7 +72,7 @@ describe('Wizard actions', () => {
       mockWizardRepository.verify();
     });
 
-    it('invokes updateWizard on success', (done) => {
+    it('invokes WizardRepository.save on success', (done) => {
       var wizard = {house: 'Slytherin', courses: []};
 
       mockWizardRepository.expects('get').once().returns(wizard);
@@ -81,6 +81,28 @@ describe('Wizard actions', () => {
       WizardActions.registerForCourse(course);
 
       done();
+      mockWizardRepository.verify();
+    });
+
+  });
+
+  describe('sortIntoHouse', () => {
+
+    it('invokes WizardRepository.save', () => {
+      mockWizardRepository.expects('get').once().returns({});
+      mockWizardRepository.expects('save').once();
+
+      WizardActions.sortIntoHouse();
+
+      mockWizardRepository.verify();
+    });
+
+    it("doesn't set house if it is already set", () => {
+      mockWizardRepository.expects('get').once().returns({ house: 'Slytherin' });
+      mockWizardRepository.expects('save').never();
+
+      WizardActions.sortIntoHouse();
+
       mockWizardRepository.verify();
     });
 
