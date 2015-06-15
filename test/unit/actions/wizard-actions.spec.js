@@ -53,7 +53,26 @@ describe('Wizard actions', () => {
       startTime: new Date(0, 0, 0, 11, 30),
     };
 
-    it('invokes registerForCourseSuccess and updateWizard on success', (done) => {
+    it('invokes registerForCourseSuccess', (done) => {
+      var wizard = {house: 'Slytherin', courses: []};
+
+      mockWizardRepository.expects('get').once().returns(wizard);
+
+      WizardActions.registerForCourse(course);
+
+      expect(dispatchedEvents.length).equal(2);
+      expect(dispatchedEvents[0].details.name).equal('registerForCourseSuccess');
+      expect(dispatchedEvents[0].data).equal(course);
+      expect(dispatchedEvents[1].details.name).equal('updateWizard');
+      expect(dispatchedEvents[1].data.house).equal(wizard.house);
+      expect(dispatchedEvents[1].data.courses.length).equal(1);
+      expect(dispatchedEvents[1].data.courses[0]).equal(course);
+
+      done();
+      mockWizardRepository.verify();
+    });
+
+    it('invokes updateWizard on success', (done) => {
       var wizard = {house: 'Slytherin', courses: []};
 
       mockWizardRepository.expects('get').once().returns(wizard);
@@ -61,18 +80,8 @@ describe('Wizard actions', () => {
 
       WizardActions.registerForCourse(course);
 
-      setTimeout(() => {
-        expect(dispatchedEvents.length).equal(2);
-        expect(dispatchedEvents[0].details.name).equal('registerForCourseSuccess');
-        expect(dispatchedEvents[0].data).equal(course);
-        expect(dispatchedEvents[1].details.name).equal('updateWizard');
-        expect(dispatchedEvents[1].data.house).equal(wizard.house);
-        expect(dispatchedEvents[1].data.courses.length).equal(1);
-        expect(dispatchedEvents[1].data.courses[0]).equal(course);
-
-        mockWizardRepository.verify();
-        done();
-      }, 10);
+      done();
+      mockWizardRepository.verify();
     });
 
   });
