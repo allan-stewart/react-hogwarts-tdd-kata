@@ -44,7 +44,7 @@ export default class Sorting extends React.Component {
         <div className="well pull-left">
           {
             _.map(this.state.houses, h =>
-                <SortingHouse houseName={h} selected={this.state.selectedHouse === h} key={h}/>
+                <SortingHouse houseName={h} selected={house === h} key={h}/>
               )
           }
         </div>
