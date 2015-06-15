@@ -705,6 +705,7 @@ How will you find the bug? **I could open the debugger and...**
 
 You have tests, why not use them to help locate the bug? **I am not sure how.**
 
+####TODO Fix this
 The sorting code has to be located in the ``store``, the ``action`` or the ``component``. Rarely would someone put it in the component. Most likely it is in the actions. **Hmm, I found it in the ``SortingStore``, but how will writing test help avoid the debugger?**
 
 Is there a test for ``SortingStore``? **No, I just see an empty file ``test/unit/stores/sorting-store.spec.js``.**
@@ -714,7 +715,6 @@ Missing tests are common bug locations. Sometime, you might have a test file but
 You now have a choice, _write a test_ or open the _debugger_. **I choose test (this is a TDD Kata after all).**
 
 ### 3.1.1. Fail
-
 
 ``test/unit/actions/wizard-actions.spec.js``
 ```js
@@ -738,22 +738,23 @@ You now have a choice, _write a test_ or open the _debugger_. **I choose test (t
 
       it ('saves Slytherin for random range 0.25 - 0.49', function() {
         stubMath.returns(0.49);
-        WizardActions.sortIntoHouse();
         mockWizardRepository.expects('save').once().withArgs(sinon.match({house: "Slytherin"}));
+        WizardActions.sortIntoHouse();
+        mockWizardRepository.verify();
       });
 
       it ('saves Ravenclaw for random range 0.5 - 0.749', function() {
         stubMath.returns(0.749);
-        WizardActions.sortIntoHouse();
         mockWizardRepository.expects('save').once().withArgs(sinon.match({house: "Ravenclaw"}));
+        WizardActions.sortIntoHouse();
+        mockWizardRepository.verify();
       });
 
       it ('saves Hufflepuff for random range 0.75 - 1', function() {
         stubMath.returns(0.99);
-        WizardActions.sortIntoHouse();
         mockWizardRepository.expects('save').once().withArgs(sinon.match({house: "Hufflepuff"}));
+        WizardActions.sortIntoHouse();
         mockWizardRepository.verify();
-
       });
 
     });
@@ -762,7 +763,7 @@ You now have a choice, _write a test_ or open the _debugger_. **I choose test (t
 
 ### 3.1.2. Passing
 
-To get it to pass, I replace the return section with the correct algorithm (straight from Arithmancy class).
+To get it to pass, I replace the randomize section with the correct algorithm (straight from Arithmancy class).
 
 ```js
     return Math.floor(Math.random() * (max - min + 1)) + min;
