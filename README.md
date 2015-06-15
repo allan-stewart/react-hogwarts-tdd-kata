@@ -68,6 +68,8 @@ Can you show me in a test? **Oh, that would be easier.**
 
 ``test/unit/components/catalog.spec.js``
 ```js
+describe('Catalog component', () => {
+
   it('renders html headers', () => {
     var catalog = TestUtils.renderIntoDocument(
       <Catalog />
@@ -105,7 +107,9 @@ I see you expect to have a ``Catalog`` component with headers. **Yes, I expect w
   }
 ```
 
-I reloaded ``localhost:3000/index.html`` and clicked on menu item catalog and I don't see the list of courses. **It is because we haven't hooked them up. Also, professor, webpack makes it so you don't have to refresh the web page.**
+I reloaded ``localhost:3000/index.html`` and clicked on menu item ``catalog`` and I don't see the list of courses. **It is because we haven't hooked them up.**
+
+**Also, professor, webpack makes it so you don't have to refresh the web page.**
 
 
 ### 1.1. Show a Course
@@ -120,6 +124,7 @@ Can you show me with a test? **Sure.**
 
 ``test/unit/components/catalog.spec.js``
 ```js
+
   it('renders a course', () => {
     var catalog = [ {
         id: "RUN105",
@@ -134,11 +139,14 @@ Can you show me with a test? **Sure.**
     var courses = TestUtils.scryRenderedDOMComponentsWithTag(renderedCatalog, 'td');
     expect(courses[0].getDOMNode().textContent).to.equal("Ancient Runes");
   });
+
 ```
 
 ### 1.1.1. Error
 
-TODO need text here!
+How will we make it pass? **We will add a single course using the (soon to be written) ``Course`` component.**
+
+Why not add all the courses now? **We are taking small steps to keep our thinking clear.**
 
 ``src/components/catalog.js``
 ```js
@@ -153,7 +161,7 @@ TODO need text here!
             <Course course={course} />
 ```
 
-Woah, now everything is broken. Nothing shows in the browser and the tests are failing. **Yes, it is because the course component is not defined. I will define it in ``src/components/course.js``**
+Everything is broken! Nothing shows in the browser and the tests are failing. **Yes, it is because ``Course`` is not defined. I will define it in ``src/components/course.js``**
 
 ### 1.1.2. Fail
 
@@ -184,7 +192,7 @@ import Course from "./course";
 
 ### 1.1.3. Pass
 
-Whew, now we have only one failing test. **Yes, professor and now I will make it pass.**
+How come you didn't add tests when you added ``Course``. **We are already working on a broken test. I will add tests but first, I will see this one pass and also see it working in the browser first.**
 
 **Facere Transeat**
 
@@ -219,29 +227,18 @@ It turns out we have a ``CatalogPage``. Now what? **I will change ``CatalogPage.
 
 ``src/components/catalog-page.js``
 ```js
-  render() {
-
-    ...
-
-    return (
-
       ...
 
           <div className="panel panel-default" >
             <Catalog catalog={this.state.catalog}/>
-          </div>
-
-      ...
-
-    );
-  }
 ```
 
-TODO Where did this data come from? Did it come from the test?
-TODO Why is it only showing one?
+How and where did ``this.state.catalog`` get the catalog data? **``this.state.catalog`` is being set in the ``constructor`` from the ``CatalogRepository``.**
+
+Why are we only seeing the first course? **Remember, we are keeping things simple. We are still working on the test "render a course".**
 
 ### 1.1.5. Refactor
-It seems you have a test in the wrong place. **Yes, I have a ``Course`` tests mixed in with ``Catalog`` tests. I will move that now.**
+It seems you have a test in the wrong place. **Yes, I have a ``Course`` test mixed in with the ``Catalog`` tests. I will move that now.**
 
 **I am removing**
 
@@ -295,7 +292,7 @@ What about ensuring ``Catalog`` contains a ``Course``? **I will add that test so
 
 ### 1.2. Show All Courses
 
-OK, now I am only seeing one course on the webpage. **Yeah, we coded it up that way. I'll fix it now.**
+Now, can we show all the courses? **Yes, now is a perfect time to add all the courses. Our code is clean our test are in the right place.**
 
 ### 1.2.0. Fail
 
@@ -339,11 +336,10 @@ import Course from '../../../src/components/course';
 ### 1.2.1. Pass
 How do you get it to pass?
 
-**I add ``lodash``**
+**I add ``lodash`` to**
 
 ``src/components/catalog.js``
 ```
-import React from "react";
 import _ from "lodash";
 ```
 
@@ -363,12 +359,11 @@ import _ from "lodash";
 
 ``src/components/catalog.js``
 ```js
-          <tbody>
-            {
-              _.map(catalog, item =>
-                    <Course course={item} /> )
-            }
-          </tbody>
+        <tbody>
+          {
+            _.map(catalog, item => <Course course={item} /> )
+          }
+        </tbody>
 ```
 
 Very nice work! I see courses. **Thank you!**
@@ -411,7 +406,7 @@ import moment from "moment";
 
 Are we finished with the story? **No, Professor Longbottom. Before calling a story done, it must be tested and deployed.**
 
-But this is only a Kata, we will start on the real work registration system week when you have a pair. **Ok, I won't deploy it and I won't write automated acceptance tests. But I must inspect my beautiful work (and make sure it is working).**
+But this is only a Kata, we will start on the real registration system week when you have a pair. **Ok, I won't deploy it and I won't write automated acceptance tests. But I must inspect my beautiful work (and make sure it is working).**
 
 ### 1.9. Finish
 
