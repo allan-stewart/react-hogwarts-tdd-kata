@@ -477,12 +477,12 @@ Correct. There is already a ``wizard-actions`` file for that. But how will you t
 ``test/unit/components/course.spec.js``
 ```js
 import sinon from 'sinon';
-import wizardActions from '../../../src/actions/wizard-actions';
+import WizardActions from '../../../src/actions/wizard-actions';
 
 ...
 
-  it('should call wizardActions.registerForCourse when the register link is clicked', () => {
-    var mockWizardActions = sinon.mock(wizardActions);
+  it('calls WizardActions.registerForCourse when the register link is clicked', () => {
+    var mockWizardActions = sinon.mock(WizardActions);
     mockWizardActions.expects("registerForCourse").once().withExactArgs(course);
     var renderedCourse = TestUtils.renderIntoDocument(
       <table>
@@ -505,13 +505,13 @@ Very good. I see you have used the `sinon` library to create a mock version of t
 
 ``src/components/course.js``
 ```js
-import wizardActions from "../actions/wizard-actions";
+import WizardActions from "../actions/wizard-actions";
 
 export default class Course extends React.Component {
   ...
   handleRegisterClick(event) {
     event.preventDefault();
-    wizardActions.registerForCourse(this.props.course);
+    WizardActions.registerForCourse(this.props.course);
   }
   ...
       <td><a href="#" onClick={this.handleRegisterClick.bind(this)}>Register</a></td>
@@ -724,25 +724,25 @@ You now have a choice, _write a test_ or open the _debugger_. **I choose test (t
       it ('saves Gryffindor for random range 0.0 - 0.249', function() {
         stubMath.returns(0.249);
         mockWizardRepository.expects('save').once().withArgs(sinon.match({house: "Gryffindor"}));
-        wizardActions.sortIntoHouse();
+        WizardActions.sortIntoHouse();
         mockWizardRepository.verify();
       });
 
       it ('saves Slytherin for random range 0.25 - 0.49', function() {
         stubMath.returns(0.49);
-        wizardActions.sortIntoHouse();
+        WizardActions.sortIntoHouse();
         mockWizardRepository.expects('save').once().withArgs(sinon.match({house: "Slytherin"}));
       });
 
       it ('saves Ravenclaw for random range 0.5 - 0.749', function() {
         stubMath.returns(0.749);
-        wizardActions.sortIntoHouse();
+        WizardActions.sortIntoHouse();
         mockWizardRepository.expects('save').once().withArgs(sinon.match({house: "Ravenclaw"}));
       });
 
       it ('saves Hufflepuff for random range 0.75 - 1', function() {
         stubMath.returns(0.99);
-        wizardActions.sortIntoHouse();
+        WizardActions.sortIntoHouse();
         mockWizardRepository.expects('save').once().withArgs(sinon.match({house: "Hufflepuff"}));
         mockWizardRepository.verify();
 
