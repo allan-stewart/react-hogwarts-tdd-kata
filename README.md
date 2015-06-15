@@ -429,11 +429,11 @@ Acceptance: Students register from the course catalog then view their courses on
 
 You have shown how to build tested components that display data from a store. I would like to see some interaction. **Sure, how about we add a register link to the course listing?**
 
-That works for now. Where will you start? **I will add the link to the course component.**
+That works. Where will you start? **I will add a ``register`` link to ``Course``.**
 
 ### 2.0.0. Fail
 
-Don't you mean the course component spec? **Yes, Professor; this is a TDD Kata, after all.**
+Don't you mean add a test? **Yes, Professor; this is a TDD Kata, after all.**
 
 ``test/unit/components/course.spec.js``
 ```js
@@ -456,19 +456,14 @@ Don't you mean the course component spec? **Yes, Professor; this is a TDD Kata, 
 
 **Now I will make the test pass.**
 
+**Addo Tabula Registeriom**
+
 ``src/components/course.js``
 ```js
-  render() {
 
-    ...
+        <td>{moment(course.startTime).format("h:mm a")}</td>
+        <td><a href="#">Register</a></td>
 
-    <tr>
-
-      ...
-
-      <td><a href="#">Register</a></td>
-    </tr>
-  }
 ```
 
 ### 2.1. Invoke an Action
@@ -485,7 +480,11 @@ Correct. There is already a ``wizard-actions`` file for that. But how will you t
 
 ``test/unit/components/course.spec.js``
 ```js
+
 import sinon from 'sinon';
+
+...
+
 import WizardActions from '../../../src/actions/wizard-actions';
 
 ...
@@ -516,8 +515,6 @@ Very good. I see you have used the `sinon` library to create a mock version of t
 ```js
 import WizardActions from "../actions/wizard-actions";
 
-export default class Course extends React.Component {
-
   ...
 
   handleRegisterClick(event) {
@@ -526,8 +523,7 @@ export default class Course extends React.Component {
   }
 
   ...
-
-      <td><a href="#" onClick={this.handleRegisterClick.bind(this)}>Register</a></td>
+        <td><a href="#" onClick={this.handleRegisterClick.bind(this)}>Register</a></td>
 ```
 
 ### 2.2. Displaying Registered Courses
@@ -639,12 +635,10 @@ Wait. It's always better to use a test to expose a bug. That's something to put 
 
 ``test/unit/actions/wizard-actions.spec.js``
 ```js
-it('invokes registerForCourseSuccess and updateWizard on success', (done) => {
-  var wizard = {house: '', courses: []};
 
-  ...
+    it('invokes registerForCourseSuccess and updateWizard on success', () => {
+      var wizard = {house: 'Slytherin', courses: []};
 
-});
 ```
 
 Very good. Now you can fix the code. **And I'll get rid of that offensive "mudblood" comment too.**
