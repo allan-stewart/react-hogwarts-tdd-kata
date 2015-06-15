@@ -784,6 +784,7 @@ You now have a choice, _write a test_ or open the _debugger_. **I choose test (t
 
 **To get it to pass, I replace the randomize section with the correct algorithm (straight from Arithmancy class).**
 
+``src/actions/wizard-actions.js``
 ```js
       return Math.floor(Math.random() * (max - min + 1)) + min;
 ```
