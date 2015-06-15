@@ -2,13 +2,12 @@ import {expect} from 'chai';
 import sinon from 'sinon';
 
 import alt from "../../../src/alt";
-import wizardActions from '../../../src/actions/wizard-actions';
+import WizardActions from '../../../src/actions/wizard-actions';
 import WizardRepository from '../../../src/repositories/wizard-repository';
 
-var mockWizardRepository;
 
-describe('wizard actions', () => {
-
+describe('Wizard actions', () => {
+  var mockWizardRepository;
   var dispatchedEvents;
 
   before(() => {
@@ -30,7 +29,7 @@ describe('wizard actions', () => {
       var wizard = {house: 'Slytherin', courses: []};
       mockWizardRepository.expects('get').once().returns(wizard);
 
-      wizardActions.getWizard();
+      WizardActions.getWizard();
 
       setTimeout(() => {
         expect(dispatchedEvents.length).equal(1);
@@ -60,7 +59,7 @@ describe('wizard actions', () => {
       mockWizardRepository.expects('get').once().returns(wizard);
       mockWizardRepository.expects('save').once().withExactArgs(wizard);
 
-      wizardActions.registerForCourse(course);
+      WizardActions.registerForCourse(course);
 
       setTimeout(() => {
         expect(dispatchedEvents.length).equal(2);
