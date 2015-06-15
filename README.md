@@ -75,10 +75,10 @@ describe('Catalog component', () => {
       <Catalog />
     );
     var titles = TestUtils.scryRenderedDOMComponentsWithTag(catalog, 'th');
-    expect(titles[0].getDOMNode().textContent).be.equal('Class');
-    expect(titles[1].getDOMNode().textContent).be.equal('Professor');
-    expect(titles[2].getDOMNode().textContent).be.equal('Credits');
-    expect(titles[3].getDOMNode().textContent).be.equal('Time');
+    expect(titles[0].getDOMNode().textContent).to.equal('Class');
+    expect(titles[1].getDOMNode().textContent).to.equal('Professor');
+    expect(titles[2].getDOMNode().textContent).to.equal('Credits');
+    expect(titles[3].getDOMNode().textContent).to.equal('Time');
   });
 ```
 
@@ -336,34 +336,21 @@ import Course from '../../../src/components/course';
 ### 1.2.1. Pass
 How do you get it to pass?
 
-**I add ``lodash`` to**
 
+**remove**
 ``src/components/catalog.js``
 ```
-import _ from "lodash";
+```js
+    var course = catalog && (catalog.length > 0) ? catalog[0] : null;
 ```
 
-**remove ~~``var course = ...``~~**
-
+**and add**
 
 ``src/components/catalog.js``
 ```js
-  render() {
-    var catalog = this.props.catalog;
 
-    return (
-```
-
-**and add ``_.map`` to ``Course``**
-
-
-``src/components/catalog.js``
-```js
         <tbody>
-          {
-            _.map(catalog, item => <Course course={item} /> )
-          }
-        </tbody>
+          { catalog.map( item => <Course course={item} /> ) }
 ```
 
 Very nice work! I see courses. **Thank you!**
@@ -371,7 +358,7 @@ Very nice work! I see courses. **Thank you!**
 
 ### 1.3. Show Course Times
 
-We seem to be missing the class start time. **I'll get right on it.**
+The course start time is not showing; I hope that doesn't mean you will be tardy to my class. **No Professor Longbottom, I am waiting for the right time to put it in.**
 
 ### 1.3.0. Fail
 
@@ -386,7 +373,7 @@ We seem to be missing the class start time. **I'll get right on it.**
       </table>
     );
     var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, 'td');
-    expect(data[3].getDOMNode().textContent).be.equal('11:30 am');
+    expect(data[3].getDOMNode().textContent).to.equal('11:30 am');
   });
 ```
 
@@ -446,8 +433,8 @@ Don't you mean add a test? **Yes, Professor; this is a TDD Kata, after all.**
       </table>
     );
     var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, "td");
-    expect(data.length).be.equal(5);
-    expect(data[4].getDOMNode().textContent).be.equal("Register");
+    expect(data.length).to.equal(5);
+    expect(data[4].getDOMNode().textContent).to.equal("Register");
     expect(data[4].props.children.type).equal("a");
   });
 ```

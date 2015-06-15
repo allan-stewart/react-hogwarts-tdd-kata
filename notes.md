@@ -36,7 +36,6 @@ Client
 alt
 react
 webpack
-lodash
 
 Testing
 -------
@@ -85,3 +84,28 @@ Hack Hands request
 ------------------
 
 Building a React, Alt, bootstrap application. Tested with mocha, Karma, sinon. I am having trouble with webpack pulling it all together.
+
+
+Notes from presentation
+-----------------------
+
+Windows 
+
+NPM
+
+wrap 
+
+{ _.map  }
+
+.to.equal vs .be.equal
+
+airbnb -> .eslint
+
+
+Start over with brew
+
+Context vs code that has to be copied
+
+Node 0.12.4 doesn't work
+
+
