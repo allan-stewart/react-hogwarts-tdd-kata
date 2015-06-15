@@ -13,7 +13,7 @@ describe('Alert component', () => {
       <Alert message="salve mundi"/>
     );
     var data = TestUtils.findRenderedDOMComponentWithTag(catalog, 'div');
-    expect(data.getDOMNode().textContent).be.equal("salve mundi");
+    expect(data.getDOMNode().textContent).to.equal("salve mundi");
   });
 
   it('renders nothing when no message', () => {
