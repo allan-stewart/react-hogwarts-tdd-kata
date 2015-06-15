@@ -631,14 +631,13 @@ Gryffindor also has a "y" at index 2, you know. **But Hufflepuff and Ravenclaw d
 
 There is not supposed to be any kind of pure-blood requirement for registering for courses at Hogwarts. **I'll just delete those lines.**
 
-Wait. It's always better to use a test to expose a bug. That's something to put into your Remembrall. **Okay, I'll change the existing test. The specific house shouldn't matter, so I'll just change that in the test.**
+Wait. It's always better to use a test to expose a bug. That's something to put into your Remembrall. **Okay, I'll change the existing test. The specific house shouldn't matter, so I'll just remove Slytherin.**
 
 ``test/unit/actions/wizard-actions.spec.js``
 ```js
 
     it('invokes registerForCourseSuccess and updateWizard on success', () => {
-      var wizard = {house: 'Slytherin', courses: []};
-
+      var wizard = {house: '', courses: []};
 ```
 
 Very good. Now you can fix the code. **And I'll get rid of that offensive "mudblood" comment too.**
@@ -783,7 +782,7 @@ You now have a choice, _write a test_ or open the _debugger_. **I choose test (t
 
 ### 3.1.2. Passing
 
-To get it to pass, I replace the randomize section with the correct algorithm (straight from Arithmancy class).
+**To get it to pass, I replace the randomize section with the correct algorithm (straight from Arithmancy class).**
 
 ```js
       return Math.floor(Math.random() * (max - min + 1)) + min;
