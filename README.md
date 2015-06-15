@@ -679,6 +679,26 @@ Are you sure you want to write a test for a case that shouldn't exist? **Good po
   }
 ```
 
+### 2.2.6. Refactoring: Immutability
+
+Mutating data is a common source of bugs. ``React`` is so powerful because it encourages/requires immutability. **Oh, and we are mutating ``wizard``. I will fix that.**
+
+**Expeto Immutate**
+
+``src/actions/wizard-actions.js``
+```js
+
+  registerForCourse(course) {
+    var wizard = WizardRepository.get();
+    var newWizard = React.addons.update(
+      wizard, { courses: {$push: [ course ] } }
+    );
+    WizardRepository.save(newWizard);
+    this.actions.registerForCourseSuccess(course);
+    this.actions.updateWizard(newWizard);
+   }
+```
+
 ### 2.9. Finish
 
 Clicking on the register link now results in a success message and the course appears on the schedule page. Are we finished with this story? **It depends, should we disallow scheduling more than one course at the same time (unless they have a Time-Turner)?**
