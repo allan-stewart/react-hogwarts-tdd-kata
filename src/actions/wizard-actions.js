@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react/addons";
 import alt from "../alt";
 
 import WizardRepository from "../repositories/wizard-repository";
