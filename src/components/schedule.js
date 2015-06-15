@@ -1,7 +1,7 @@
 import React from "react";
 
-import wizardStore from "../stores/wizard-store";
-import wizardActions from "../actions/wizard-actions";
+import WizardStore from "../stores/wizard-store";
+import WizardActions from "../actions/wizard-actions";
 import Course from "./course";
 
 export default class Schedule extends React.Component {
@@ -13,12 +13,12 @@ export default class Schedule extends React.Component {
   }
 
   componentDidMount() {
-    wizardStore.listen(this.onWizardChange.bind(this));
-    wizardActions.getWizard();
+    WizardStore.listen(this.onWizardChange.bind(this));
+    WizardActions.getWizard();
   }
 
   componentWillUnmount() {
-    wizardStore.unlisten(this.onWizardChange);
+    WizardStore.unlisten(this.onWizardChange);
   }
 
   onWizardChange(store) {
