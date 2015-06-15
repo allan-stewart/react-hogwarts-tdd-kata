@@ -53,7 +53,7 @@ describe('Wizard actions', () => {
       startTime: new Date(0, 0, 0, 11, 30),
     };
 
-    it('dispastaches to registerForCourseSuccess and updateWizard on success', (done) => {
+    it('invokes registerForCourseSuccess and updateWizard on success', (done) => {
       var wizard = {house: 'Slytherin', courses: []};
 
       mockWizardRepository.expects('get').once().returns(wizard);
