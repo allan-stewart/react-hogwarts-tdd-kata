@@ -13,12 +13,13 @@ export default class Schedule extends React.Component {
   }
 
   componentDidMount() {
-    wizardStore.listen(this.onWizardChange.bind(this));
+    this.changeFn = this.onWizardChange.bind(this);
+    wizardStore.listen(this.changeFn);
     wizardActions.getWizard();
   }
 
   componentWillUnmount() {
-    wizardStore.unlisten(this.onWizardChange);
+    wizardStore.unlisten(this.changeFn);
   }
 
   onWizardChange(store) {
