@@ -53,9 +53,8 @@ describe('Wizard actions', () => {
       startTime: new Date(0, 0, 0, 11, 30),
     };
 
-    it('invokes registerForCourseSuccess and updateWizard on success', (done) => {
+    it('invokes registerForCourseSuccess and updateWizard on success', () => {
       var wizard = {house: 'Slytherin', courses: []};
-
       mockWizardRepository.expects('get').once().returns(wizard);
 
       WizardActions.registerForCourse(course);
@@ -68,19 +67,16 @@ describe('Wizard actions', () => {
       expect(dispatchedEvents[1].data.courses.length).equal(1);
       expect(dispatchedEvents[1].data.courses[0]).equal(course);
 
-      done();
       mockWizardRepository.verify();
     });
 
-    it('invokes WizardRepository.save on success', (done) => {
+    it('invokes WizardRepository.save on success', () => {
       var wizard = {house: 'Slytherin', courses: []};
-
       mockWizardRepository.expects('get').once().returns(wizard);
-      mockWizardRepository.expects('save').once().withExactArgs(wizard);
+      mockWizardRepository.expects('save').once();
 
       WizardActions.registerForCourse(course);
 
-      done();
       mockWizardRepository.verify();
     });
 
