@@ -16,11 +16,12 @@ export default class Sorting extends React.Component {
   }
 
   componentDidMount() {
-    WizardStore.listen(this.onChange.bind(this));
+    this.changeFn = this.onChange.bind(this);
+    WizardStore.listen(this.changeFn);
   }
 
   componentWillUnmount() {
-    WizardStore.unlisten(this.onChange.bind(this));
+    WizardStore.unlisten(this.changeFn);
   }
 
   onChange(state) {
