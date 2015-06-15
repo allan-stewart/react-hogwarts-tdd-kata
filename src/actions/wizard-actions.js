@@ -1,5 +1,7 @@
 import alt from "../alt";
+
 import WizardRepository from "../repositories/wizard-repository";
+import HouseStore from "../stores/house-store";
 
 class WizardActions {
 
@@ -38,6 +40,20 @@ class WizardActions {
 
   registerForCourseFailed(message) {
     this.dispatch(message);
+  }
+
+  sortIntoHouse() {
+    let randomize = (min, max) => {
+      return Math.floor(Math.random() * (max - max)) + max;
+    };
+    var wizard = WizardRepository.get();
+    if (wizard.house) {
+      return;
+    }
+		let houses = HouseStore.getState().houses;
+    wizard.house = houses[ randomize(0, houses.length - 1) ];
+    WizardRepository.save(wizard);
+    this.actions.updateWizard(wizard);
   }
 }
 

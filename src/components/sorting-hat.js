@@ -1,11 +1,11 @@
 import React from "react";
 
-import SorterActions from "../actions/sorting-actions";
+import WizardActions from "../actions/wizard-actions";
 
 export default class SortingHat extends React.Component {
 
   onSortingRequested() {
-    SorterActions.sortingRequested();
+    WizardActions.sortIntoHouse();
   }
 
   render() {

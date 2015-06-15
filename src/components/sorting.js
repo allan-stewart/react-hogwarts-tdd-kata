@@ -3,22 +3,24 @@ import _ from "lodash";
 
 import SortingHat from "./sorting-hat";
 import SortingHouse from "./sorting-house";
-import SortingStore from "../stores/sorting-store";
+import WizardStore from "../stores/wizard-store";
+import HouseStore from "../stores/house-store";
 import Alert from "./alert";
 
 export default class Sorting extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = SortingStore.getState();
+    this.state = WizardStore.getState();
+    this.state.houses = HouseStore.getState().houses;
   }
 
   componentDidMount() {
-    SortingStore.listen(this.onChange.bind(this));
+    WizardStore.listen(this.onChange.bind(this));
   }
 
   componentWillUnmount() {
-    SortingStore.unlisten(this.onChange.bind(this));
+    WizardStore.unlisten(this.onChange.bind(this));
   }
 
   onChange(state) {
@@ -26,9 +28,8 @@ export default class Sorting extends React.Component {
   }
 
   render() {
-    var message = this.state.selectedHouse
-      ? "You are assigned to " + this.state.selectedHouse + "!"
-      : null;
+    var house = this.state.wizard.house;
+    var message = house ? "You are assigned to " + house + "!" : null;
 
     return (
       <div>
