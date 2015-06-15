@@ -1,3 +1,4 @@
+import React from "react";
 import alt from "../alt";
 
 import WizardRepository from "../repositories/wizard-repository";
@@ -51,9 +52,12 @@ class WizardActions {
       return;
     }
 		let houses = HouseStore.getState().houses;
-    wizard.house = houses[ randomize(0, houses.length - 1) ];
-    WizardRepository.save(wizard);
-    this.actions.updateWizard(wizard);
+    let house = houses[ randomize(0, houses.length - 1) ];
+    var newWizard = React.addons.update(
+      wizard, { house: {$set: house } }
+    );
+    WizardRepository.save(newWizard);
+    this.actions.updateWizard(newWizard);
   }
 }
 
