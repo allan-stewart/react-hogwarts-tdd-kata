@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import WizardStore from "../stores/wizard-store";
-import WizardActions from "../actions/wizard-actions";
-import Course from "./course";
+import WizardStore from '../stores/wizard-store';
+import WizardActions from '../actions/wizard-actions';
+import Course from './course';
 
 export default class Schedule extends React.Component {
 
@@ -14,12 +14,12 @@ export default class Schedule extends React.Component {
 
   componentDidMount() {
     this.changeFn = this.onWizardChange.bind(this);
-    wizardStore.listen(this.changeFn);
-    wizardActions.getWizard();
+    WizardStore.listen(this.changeFn);
+    WizardActions.getWizard();
   }
 
   componentWillUnmount() {
-    wizardStore.unlisten(this.changeFn);
+    WizardStore.unlisten(this.changeFn);
   }
 
   onWizardChange(store) {
@@ -29,7 +29,7 @@ export default class Schedule extends React.Component {
   render() {
     return (
       <div>
-        <div className="jumbotron" style={{"padding": "10px"}}>
+        <div className="jumbotron" style={{'padding': '10px'}}>
           <h1>Your Hogwarts schedule</h1>
         </div>
         <div>

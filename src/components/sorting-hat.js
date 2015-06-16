@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import WizardActions from "../actions/wizard-actions";
+import WizardActions from '../actions/wizard-actions';
 
 export default class SortingHat extends React.Component {
 

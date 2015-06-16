@@ -1,11 +1,11 @@
 
-import alt from "../alt";
+import alt from '../alt';
 
 
 class HouseStore {
 
   constructor() {
-    this.houses = ["Gryffindor", "Slytherin", "Ravenclaw", "Hufflepuff"];
+    this.houses = ['Gryffindor', 'Slytherin', 'Ravenclaw', 'Hufflepuff'];
   }
 }
 

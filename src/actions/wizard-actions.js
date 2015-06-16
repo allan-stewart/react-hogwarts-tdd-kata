@@ -1,13 +1,13 @@
-import React from "react/addons";
-import alt from "../alt";
+import React from 'react/addons';
+import alt from '../alt';
 
-import WizardRepository from "../repositories/wizard-repository";
-import HouseStore from "../stores/house-store";
+import WizardRepository from '../repositories/wizard-repository';
+import HouseStore from '../stores/house-store';
 
 class WizardActions {
 
   getWizard() {
-    var wizard = WizardRepository.get();
+    const wizard = WizardRepository.get();
     this.actions.updateWizard(wizard);
   }
 
@@ -16,14 +16,14 @@ class WizardActions {
   }
 
   registerForCourse(c) {
-    var chk = (x) => { return x.house; };
-    var advi = 4;
-    var w = WizardRepository.get();
-    var h = chk(w);
-    var adv = "h";
+    const chk = (x) => { return x.house; };
+    const advi = 4;
+    const w = WizardRepository.get();
+    const h = chk(w);
+    const adv = 'h';
     // Check for mudbloods.
-    if (h[2] !== "y") {
-      return this.actions.registerForCourseFailed("Wizard pure-blood requirements not met.");
+    if (h[2] !== 'y') {
+      return this.actions.registerForCourseFailed('Wizard pure-blood requirements not met.');
     }
     w.courses.push(c);
     if (h[advi] === adv) {
@@ -47,13 +47,13 @@ class WizardActions {
     let randomize = (min, max) => {
       return Math.floor(Math.random() * (max - max)) + max;
     };
-    var wizard = WizardRepository.get();
+    const wizard = WizardRepository.get();
     if (wizard.house) {
       return;
     }
-		let houses = HouseStore.getState().houses;
-    let house = houses[ randomize(0, houses.length - 1) ];
-    var newWizard = React.addons.update(
+    const houses = HouseStore.getState().houses;
+    const house = houses[ randomize(0, houses.length - 1) ];
+    const newWizard = React.addons.update(
       wizard, { house: {$set: house } }
     );
     WizardRepository.save(newWizard);

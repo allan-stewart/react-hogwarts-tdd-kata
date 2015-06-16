@@ -1,5 +1,5 @@
-var wizard = {
-  house: "",
+let wizard = {
+  house: '',
   courses: []
 };
 

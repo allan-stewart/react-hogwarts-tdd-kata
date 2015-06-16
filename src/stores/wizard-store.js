@@ -1,7 +1,7 @@
-import alt from "../alt";
+import alt from '../alt';
 
-import wizardActions from "../actions/wizard-actions";
-import WizardRepository from "../repositories/wizard-repository";
+import wizardActions from '../actions/wizard-actions';
+import WizardRepository from '../repositories/wizard-repository';
 
 class WizardStore {
 
@@ -21,7 +21,7 @@ class WizardStore {
   onRegisterForCourseSuccess(course) {
     this.registrationResponse = {
       error: false,
-      message: "Successfully registered for course: " + course.name
+      message: 'Successfully registered for course: ' + course.name
     };
   }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default class Alert extends React.Component {
 
@@ -7,9 +7,9 @@ export default class Alert extends React.Component {
       return null;
     }
 
-    var alertClass = this.props.error ? "alert-danger" : "alert-success";
+    const alertClass = this.props.error ? 'alert-danger' : 'alert-success';
     return (
-      <div className={"alert " + alertClass}>
+      <div className={'alert ' + alertClass}>
         {this.props.message}
       </div>
     );

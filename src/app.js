@@ -1,26 +1,25 @@
-import React from "react";
-import Router from "react-router";
-import ReactBootstrap from "react-bootstrap";
-import ReactRouterBootstrap from "react-router-bootstrap";
+import React from 'react';
+import Router from 'react-router';
+import ReactBootstrap from 'react-bootstrap';
+import ReactRouterBootstrap from 'react-router-bootstrap';
 
-import CatalogPage from "./components/catalog-page";
-import Schedule from "./components/schedule";
-import Sorting from "./components/sorting";
+import CatalogPage from './components/catalog-page';
+import Schedule from './components/schedule';
+import Sorting from './components/sorting';
 
-var Nav = ReactBootstrap.Nav
-  , NavItemLink = ReactRouterBootstrap.NavItemLink
-;
+const Nav = ReactBootstrap.Nav;
+const NavItemLink = ReactRouterBootstrap.NavItemLink;
 
-var { Route, RouteHandler, DefaultRoute } = Router;
+const { Route, RouteHandler, DefaultRoute } = Router;
 
 
 class App extends React.Component {
 
-  render () {
+  render() {
     return (
-      <div style={{"padding": "10px"}}>
+      <div style={{'padding': '10px'}}>
         <div className="navbar navbar-inverse">
-          <div className="navbar-header navbar-brand" style={{"color": "white"}}>
+          <div className="navbar-header navbar-brand" style={{'color': 'white'}}>
             Hogwarts
           </div>
           <Nav className="nav navbar-nav">
@@ -42,7 +41,7 @@ class App extends React.Component {
 
 }
 
-var routes = (
+const routes = (
   <Route handler={App}>
     <Route name="sorting" handler={Sorting}/>
     <Route name="catalog" handler={CatalogPage}/>
@@ -51,6 +50,6 @@ var routes = (
   </Route>
 );
 
-Router.run(routes, function (Handler) {
-  React.render(<Handler/>, document.getElementById("app"));
+Router.run(routes, (Handler) => {
+  React.render(<Handler/>, document.getElementById('app'));
 });

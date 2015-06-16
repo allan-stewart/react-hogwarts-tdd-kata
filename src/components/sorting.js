@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import SortingHat from "./sorting-hat";
-import SortingHouse from "./sorting-house";
-import WizardStore from "../stores/wizard-store";
-import HouseStore from "../stores/house-store";
-import Alert from "./alert";
+import SortingHat from './sorting-hat';
+import SortingHouse from './sorting-house';
+import WizardStore from '../stores/wizard-store';
+import HouseStore from '../stores/house-store';
+import Alert from './alert';
 
 export default class Sorting extends React.Component {
 
@@ -28,23 +28,23 @@ export default class Sorting extends React.Component {
   }
 
   render() {
-    var house = this.state.wizard.house;
-    var message = house ? "You are assigned to " + house + "!" : null;
+    const house = this.state.wizard.house;
+    const message = house ? 'You are assigned to ' + house + '!' : null;
 
     return (
       <div>
-        <div className="jumbotron" style={{"padding": "10px"}}>
+        <div className="jumbotron" style={{'padding': '10px'}}>
           <h1>Welcome to Hogwarts, wizard!</h1>
           <p>Welcome to the wonderful world of hogwarts.  Click the sorting hat to discover which house you will be assigned to.</p>
         </div>
-        <Alert message={message}></Alert>
+        <Alert message={message} />
         <div className="pull-left">
           <SortingHat />
         </div>
         <div className="well pull-left">
           {
             this.state.houses.map( item =>
-                <SortingHouse houseName={h} selected={house === item} key={item}/>
+                <SortingHouse houseName={item} selected={house === item} key={item}/>
               )
           }
         </div>
