@@ -92,7 +92,7 @@ I see you expect a ``Catalog`` component with headers. **Yes, we show "Class", "
 ```js
   render() {
     return (
-      <table className="table">
+      <table className='table'>
         <thead>
           <tr>
             <th>Class</th>
@@ -129,17 +129,17 @@ Can you show me your test? **Sure.**
 
   it('renders a course', () => {
     var catalog = [ {
-        id: "RUN105",
-        name: "Ancient Runes",
+        id: 'RUN105',
+        name: 'Ancient Runes',
         startTime: new Date(0,0,0,11,30),
-        professor: "Bathsheba Babbling",
+        professor: 'Bathsheba Babbling',
         credits: 3
      } ];
     var renderedCatalog = TestUtils.renderIntoDocument(
       <Catalog catalog={catalog}/>
     );
     var courses = TestUtils.scryRenderedDOMComponentsWithTag(renderedCatalog, 'td');
-    expect(courses[0].getDOMNode().textContent).to.equal("Ancient Runes");
+    expect(courses[0].getDOMNode().textContent).to.equal('Ancient Runes');
   });
 
 ```
@@ -169,7 +169,7 @@ Everything is broken! Nothing shows in the browser and the tests are failing. **
 
 ``src/components/course.js``
 ```js
-import React from "react";
+import React from 'react';
 
 export default class Course extends React.Component {
 
@@ -189,7 +189,7 @@ export default class Course extends React.Component {
 ``src/components/catalog.js``
 ```js
 
-import Course from "./course";
+import Course from './course';
 ```
 
 ### 1.1.3. Pass
@@ -231,13 +231,13 @@ It turns out we have a ``CatalogPage``. Now what? **I am changing ``CatalogPage.
 ```js
       ...
 
-          <div className="panel panel-default" >
+          <div className='panel panel-default' >
             <Catalog catalog={this.state.catalog}/>
 ```
 
 How and where did ``this.state.catalog`` get the catalog data? **``this.state.catalog`` is being set in the ``constructor`` from the ``CatalogRepository``.**
 
-Why are we only seeing the first course? **Remember, we are keeping things simple. I am still working on the test "render a course".**
+Why are we only seeing the first course? **Remember, we are keeping things simple. I am still working on the test 'render a course'.**
 
 ### 1.1.5. Refactor
 You have a test in the wrong place? **Yes, I have a ``Course`` test mixed in with the ``Catalog`` tests. I am moving that now.**
@@ -267,10 +267,10 @@ var TestUtils = React.addons.TestUtils;
 describe('course component', () => {
 
   let course = {
-    id: "RUN105",
-    name: "Ancient Runes",
+    id: 'RUN105',
+    name: 'Ancient Runes',
     startTime: new Date(0,0,0,11,30),
-    professor: "Bathsheba Babbling",
+    professor: 'Bathsheba Babbling',
     credits: 3
   };
 
@@ -283,7 +283,7 @@ describe('course component', () => {
       </table>
     );
     var courses = TestUtils.scryRenderedDOMComponentsWithTag(renderedComponent, 'td');
-    expect(courses[0].getDOMNode().textContent).to.equal("Ancient Runes");
+    expect(courses[0].getDOMNode().textContent).to.equal('Ancient Runes');
   });
 
 });
@@ -305,22 +305,22 @@ import Course from '../../../src/components/course';
 
   it('renders all courses', () => {
     var catalog = [ {
-        id: "RUN105",
-        name: "Ancient Runes",
+        id: 'RUN105',
+        name: 'Ancient Runes',
         startTime: new Date(0,0,0,13),
-        professor: "Bathsheba Babbling",
+        professor: 'Bathsheba Babbling',
         credits: 3
       },{
-        id: "AST101",
-        name: "Astronomy",
+        id: 'AST101',
+        name: 'Astronomy',
         startTime: new Date(0,0,0, 11),
-        professor: "Aurora Sinistra",
+        professor: 'Aurora Sinistra',
         credits: 3
       },{
-        id: "DDA302-10",
-        name: "Defence Against the Dark Arts",
+        id: 'DDA302-10',
+        name: 'Defence Against the Dark Arts',
         startTime: new Date(0,0,0,10),
-        professor: "Severus Snape",
+        professor: 'Severus Snape',
         credits: 4
       }
     ];
@@ -384,12 +384,12 @@ The course start time is not showing; I hope that doesn't mean you will be tardy
 
 ``src/components/course.js``
 ```js
-import moment from "moment";
+import moment from 'moment';
 
 ...
 
         <td>{course.credits}</td>
-        <td>{moment(course.startTime).format("h:mm a")}</td>
+        <td>{moment(course.startTime).format('h:mm a')}</td>
 ```
 
 Are we finished with the story? **No, Professor Longbottom. Before calling a story done, it must be tested and deployed.**
@@ -433,10 +433,10 @@ Don't you mean add a test? **Yes, Professor; this is a TDD Kata, after all.**
         </tbody>
       </table>
     );
-    var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, "td");
+    var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, 'td');
     expect(data.length).to.equal(5);
-    expect(data[4].getDOMNode().textContent).to.equal("Register");
-    expect(data[4].props.children.type).equal("a");
+    expect(data[4].getDOMNode().textContent).to.equal('Register');
+    expect(data[4].props.children.type).equal('a');
   });
 ```
 
@@ -449,8 +449,8 @@ Don't you mean add a test? **Yes, Professor; this is a TDD Kata, after all.**
 ``src/components/course.js``
 ```js
 
-        <td>{moment(course.startTime).format("h:mm a")}</td>
-        <td><a href="#">Register</a></td>
+        <td>{moment(course.startTime).format('h:mm a')}</td>
+        <td><a href='#'>Register</a></td>
 
 ```
 
@@ -479,7 +479,7 @@ import WizardActions from '../../../src/actions/wizard-actions';
 
   it('calls WizardActions.registerForCourse when the register link is clicked', () => {
     var mockWizardActions = sinon.mock(WizardActions);
-    mockWizardActions.expects("registerForCourse").once().withExactArgs(course);
+    mockWizardActions.expects('registerForCourse').once().withExactArgs(course);
     var renderedCourse = TestUtils.renderIntoDocument(
       <table>
         <tbody>
@@ -487,7 +487,7 @@ import WizardActions from '../../../src/actions/wizard-actions';
         </tbody>
       </table>
     );
-    var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, "a");
+    var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, 'a');
     TestUtils.Simulate.click(data[0]);
     mockWizardActions.verify();
   });
@@ -499,7 +499,7 @@ Very good. I see you are using the ``sinon`` library to create a mock version of
 
 ``src/components/course.js``
 ```js
-import WizardActions from "../actions/wizard-actions";
+import WizardActions from '../actions/wizard-actions';
 
   ...
 
@@ -509,7 +509,7 @@ import WizardActions from "../actions/wizard-actions";
   }
 
   ...
-        <td><a href="#" onClick={this.handleRegisterClick.bind(this)}>Register</a></td>
+        <td><a href='#' onClick={this.handleRegisterClick.bind(this)}>Register</a></td>
 ```
 
 ### 2.2. Displaying Registered Courses
@@ -541,10 +541,10 @@ Can you figure out what any of those variables are for? **Yes. The ``c`` variabl
     var advi = 4;
     var wizard = WizardRepository.get();
     var h = chk(wizard);
-    var adv = "h";
+    var adv = 'h';
     // Check for mudbloods.
-    if (h[2] !== "y") {
-      return this.actions.registerForCourseFailed("Wizard pure-blood requirements not met.");
+    if (h[2] !== 'y') {
+      return this.actions.registerForCourseFailed('Wizard pure-blood requirements not met.');
     }
     wizard.courses.push(course);
     if (h[advi] === adv) {
@@ -566,10 +566,10 @@ Good. How about the ``h`` variable? What is it for? **Well, ``h`` is assigned to
     var advi = 4;
     var wizard = WizardRepository.get();
     var house = chk(wizard);
-    var adv = "h";
+    var adv = 'h';
     // Check for mudbloods.
-    if (house[2] !== "y") {
-      return this.actions.registerForCourseFailed("Wizard pure-blood requirements not met.");
+    if (house[2] !== 'y') {
+      return this.actions.registerForCourseFailed('Wizard pure-blood requirements not met.');
     }
     wizard.courses.push(course);
     if (house[advi] === adv) {
@@ -595,11 +595,11 @@ Those two mystery variables only appear to be used once each. Since the names ar
   registerForCourse(course) {
     var wizard = WizardRepository.get();
     // Check for mudbloods.
-    if (wizard.house[2] !== "y") {
-      return this.actions.registerForCourseFailed("Wizard pure-blood requirements not met.");
+    if (wizard.house[2] !== 'y') {
+      return this.actions.registerForCourseFailed('Wizard pure-blood requirements not met.');
     }
     wizard.courses.push(course);
-    if (wizard.house[4] === "h") {
+    if (wizard.house[4] === 'h') {
       // DO NOT REMOVE!
       course.credits++;
     }
@@ -633,7 +633,7 @@ Very good. Now you can fix the code. **And I'll get rid of that offensive "mudbl
   registerForCourse(course) {
     var wizard = WizardRepository.get();
     wizard.courses.push(course);
-    if (wizard.house[4] === "h") {
+    if (wizard.house[4] === 'h') {
       // DO NOT REMOVE!
       course.credits++;
     }
@@ -740,25 +740,25 @@ You now have a choice, _write a test_ or open the _debugger_. **I choose test (t
 
       it ('saves Gryffindor for random range 0.0 - 0.249', function() {
         stubMath.returns(0.249);
-        mockWizardRepository.expects('save').once().withArgs(sinon.match({house: "Gryffindor"}));
+        mockWizardRepository.expects('save').once().withArgs(sinon.match({house: 'Gryffindor'}));
         WizardActions.sortIntoHouse();
       });
 
       it ('saves Slytherin for random range 0.25 - 0.49', function() {
         stubMath.returns(0.49);
-        mockWizardRepository.expects('save').once().withArgs(sinon.match({house: "Slytherin"}));
+        mockWizardRepository.expects('save').once().withArgs(sinon.match({house: 'Slytherin'}));
         WizardActions.sortIntoHouse();
       });
 
       it ('saves Ravenclaw for random range 0.5 - 0.749', function() {
         stubMath.returns(0.749);
-        mockWizardRepository.expects('save').once().withArgs(sinon.match({house: "Ravenclaw"}));
+        mockWizardRepository.expects('save').once().withArgs(sinon.match({house: 'Ravenclaw'}));
         WizardActions.sortIntoHouse();
       });
 
       it ('saves Hufflepuff for random range 0.75 - 1', function() {
         stubMath.returns(0.99);
-        mockWizardRepository.expects('save').once().withArgs(sinon.match({house: "Hufflepuff"}));
+        mockWizardRepository.expects('save').once().withArgs(sinon.match({house: 'Hufflepuff'}));
         WizardActions.sortIntoHouse();
       });
 
