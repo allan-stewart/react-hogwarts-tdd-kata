@@ -798,12 +798,16 @@ O.W.L.s and N.E.W.T.s
 
 The Kata is officially over and Stinksap's not poisonous. If you are here with working code, you are awarded an _Acceptable_ OWL. If you want a NEWT or a higher grade, complete all of the following stories/tasks.
 
-### 4. Disallow Registering for Multiple Simultaneous Classes
+### 4. Remove Register link from the Schedule Page
+
+Acceptance: Students will see ``register`` on the catalog page but not on the schedule page.
+---
+As you can guess, the Schedule page is using the ``Catalog`` component.
+
+### 5. Disallow Registering for Multiple Simultaneous Classes
 
 Acceptance: Students attempting to register for multiple classes at the same time will be shown a message saying this is not allowed and the second class will not be added to their schedule.
 
-### 5. Allow Multiple Simultaneous Classes with  a Time-Turner
+### 6. Allow Multiple Simultaneous Classes with a Time-Turner
 
 Acceptance: Students with a time-turner are allowed to register for multiple classes at the same time.
-
-### 6. Refactor out the duplicated UI in Schedule and Catalog
