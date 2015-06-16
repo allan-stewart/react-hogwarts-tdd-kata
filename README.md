@@ -774,7 +774,10 @@ Nice work with the test coverage. **Thank you, Professor.**
 
 ``src/actions/wizard-actions.js``
 ```js
+...
+    let randomize = (min, max) => {
       return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 ```
 
 ### 3.9. End to End
