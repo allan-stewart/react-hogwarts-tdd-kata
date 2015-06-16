@@ -131,9 +131,9 @@ Can you show me your test? **Sure.**
     const catalog = [ {
         id: 'RUN105',
         name: 'Ancient Runes',
-        startTime: new Date(0,0,0,11,30),
+        startTime: new Date(0, 0, 0, 11, 30),
         professor: 'Bathsheba Babbling',
-        credits: 3
+        credits: 3,
      } ];
     const renderedCatalog = TestUtils.renderIntoDocument(
       <Catalog catalog={catalog}/>
@@ -141,7 +141,6 @@ Can you show me your test? **Sure.**
     const courses = TestUtils.scryRenderedDOMComponentsWithTag(renderedCatalog, 'td');
     expect(courses[0].getDOMNode().textContent).to.equal('Ancient Runes');
   });
-
 ```
 
 ### 1.1.1. Error
@@ -159,8 +158,8 @@ Why not add all the courses now? **I am taking small steps to keep my thinking c
 
       ...
 
-          <tbody>
-            <Course course={course} />
+        <tbody>
+          <Course course={course} />
 ```
 
 Everything is broken! Nothing shows in the browser and the tests are failing. **Yes, it is because ``Course`` is not defined. I am defining it in ``src/components/course.js``**
@@ -256,10 +255,11 @@ You have a test in the wrong place? **Yes, I have a ``Course`` test mixed in wit
 
 ``test/unit/components/course.spec.js``
 ```js
+
 import React from 'react/addons';
 import {expect} from 'chai';
 
-import Course from '../../../src/components/course'
+import Course from '../../../src/components/course';
 
 
 const TestUtils = React.addons.TestUtils;
@@ -269,9 +269,9 @@ describe('course component', () => {
   let course = {
     id: 'RUN105',
     name: 'Ancient Runes',
-    startTime: new Date(0,0,0,11,30),
+    startTime: new Date(0, 0, 0, 11, 30),
     professor: 'Bathsheba Babbling',
-    credits: 3
+    credits: 3,
   };
 
   it('renders a course', () => {
@@ -307,22 +307,22 @@ import Course from '../../../src/components/course';
     const catalog = [ {
         id: 'RUN105',
         name: 'Ancient Runes',
-        startTime: new Date(0,0,0,13),
+        startTime: new Date(0, 0, 0, 13),
         professor: 'Bathsheba Babbling',
-        credits: 3
-      },{
+        credits: 3,
+      }, {
         id: 'AST101',
         name: 'Astronomy',
-        startTime: new Date(0,0,0, 11),
+        startTime: new Date(0, 0, 0, 11),
         professor: 'Aurora Sinistra',
-        credits: 3
-      },{
+        credits: 3,
+      }, {
         id: 'DDA302-10',
         name: 'Defence Against the Dark Arts',
-        startTime: new Date(0,0,0,10),
+        startTime: new Date(0, 0, 0, 10),
         professor: 'Severus Snape',
-        credits: 4
-      }
+        credits: 4,
+      },
     ];
 
     const renderedCatalog = TestUtils.renderIntoDocument(
@@ -499,6 +499,7 @@ Very good. I see you are using the ``sinon`` library to create a mock version of
 
 ``src/components/course.js``
 ```js
+
 import WizardActions from '../actions/wizard-actions';
 
   ...
@@ -537,6 +538,7 @@ Can you figure out what any of those variables are for? **Yes. The ``c`` variabl
 
 ``src/actions/wizard-actions.js``
 ```js
+
   registerForCourse(course) {
     const chk = (x) => { return x.house; };
     const advi = 4;
@@ -562,6 +564,7 @@ Good. How about the ``h`` variable? What is it for? **Well, ``h`` is assigned to
 
 ``src/actions/wizard-actions.js``
 ```js
+
   registerForCourse(course) {
     const chk = (x) => { return x.house; };
     const advi = 4;
@@ -593,6 +596,7 @@ Those two mystery variables only appear to be used once each. Since the names ar
 
 ``src/actions/wizard-actions.js``
 ```js
+
   registerForCourse(course) {
     const wizard = WizardRepository.get();
     // Check for mudbloods.
@@ -631,6 +635,7 @@ Very good. Now you can fix the code. **And I'll get rid of that offensive "mudbl
 
 ``src/actions/wizard-actions.js``
 ```js
+
   registerForCourse(course) {
     const wizard = WizardRepository.get();
     wizard.courses.push(course);
@@ -656,6 +661,7 @@ Are you sure you want to write a test for a case that shouldn't exist? **Good po
 
 ``src/actions/wizard-actions.js``
 ```js
+
   registerForCourse(course) {
     const wizard = WizardRepository.get();
     wizard.courses.push(course);
@@ -673,6 +679,7 @@ Mutating data is a common source of bugs. ``React`` is so powerful because it en
 
 ``src/actions/wizard-actions.js``
 ```js
+
   registerForCourse(course) {
     const wizard = WizardRepository.get();
     const newWizard = React.addons.update(
@@ -726,44 +733,43 @@ You now have a choice, _write a test_ or open the _debugger_. **I choose test (t
 
   ...
 
-    describe('when generating a random number', function () {
+    describe('when generating a random number', () => {
       let stubMath;
 
-      beforeEach(function () {
+      beforeEach( () => {
         stubMath = sinon.stub(Math, 'random');
       });
 
-      afterEach(function () {
+      afterEach( () => {
         stubMath.restore();
         mockWizardRepository.verify();
       });
 
-      it ('saves Gryffindor for random range 0.0 - 0.249', function() {
+      it('saves Gryffindor for random range 0.0 - 0.249', () => {
         stubMath.returns(0.249);
         mockWizardRepository.expects('save').once().withArgs(sinon.match({house: 'Gryffindor'}));
         WizardActions.sortIntoHouse();
       });
 
-      it ('saves Slytherin for random range 0.25 - 0.49', function() {
+      it('saves Slytherin for random range 0.25 - 0.49', () => {
         stubMath.returns(0.49);
         mockWizardRepository.expects('save').once().withArgs(sinon.match({house: 'Slytherin'}));
         WizardActions.sortIntoHouse();
       });
 
-      it ('saves Ravenclaw for random range 0.5 - 0.749', function() {
+      it('saves Ravenclaw for random range 0.5 - 0.749', () => {
         stubMath.returns(0.749);
         mockWizardRepository.expects('save').once().withArgs(sinon.match({house: 'Ravenclaw'}));
         WizardActions.sortIntoHouse();
       });
 
-      it ('saves Hufflepuff for random range 0.75 - 1', function() {
+      it('saves Hufflepuff for random range 0.75 - 1', () => {
         stubMath.returns(0.99);
         mockWizardRepository.expects('save').once().withArgs(sinon.match({house: 'Hufflepuff'}));
         WizardActions.sortIntoHouse();
       });
 
     });
-
 ```
 
 Nice work with the test coverage. **Thank you, Professor.**
