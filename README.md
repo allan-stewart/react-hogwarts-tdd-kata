@@ -712,7 +712,7 @@ You have tests, why not use them to help locate the bug? **I am not sure how.**
 
 The sorting hat code has to be located in a ``store``, an ``action`` or a ``component``. Only script kiddies would put it in a component. Most likely it is in the actions. **Yes, I found it in ``WizardActions``, but how will writing test help avoid the debugger?**
 
-Are there tests for ``WizardActions``? **Yes, but none that deals with the sorting hat.**
+Are there tests for ``WizardActions``? **Yes, but none of them check which house the wizard was sorted into.**
 
 Missing tests are common bug locations. Sometime, you might have a test file but the test is missing. Code coverage tools can help you find missing tests. **Good to know.**
 
