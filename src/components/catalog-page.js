@@ -15,11 +15,12 @@ export default class CatalogPage extends React.Component {
   }
 
   componentDidMount() {
-    wizardStore.listen(this.onChange.bind(this));
+    this.changeFn = this.onChange.bind(this);
+    wizardStore.listen(this.changeFn);
   }
 
   componentWillUnmount() {
-    wizardStore.unlisten(this.onChange);
+    wizardStore.unlisten(this.changeFn);
   }
 
   onChange(state) {
