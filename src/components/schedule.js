@@ -2,7 +2,7 @@ import React from 'react';
 
 import WizardStore from '../stores/wizard-store';
 import WizardActions from '../actions/wizard-actions';
-import Course from './course';
+import Catalog from './catalog';
 
 export default class Schedule extends React.Component {
 
@@ -34,22 +34,7 @@ export default class Schedule extends React.Component {
         </div>
         <div>
           <div className="panel panel-default" >
-
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Class</th>
-                  <th>Professor</th>
-                  <th>Credits</th>
-                  <th>Time</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                { this.state.courses.map( item => <Course key={item.id} course={item} /> ) }
-              </tbody>
-
-            </table>
+            <Catalog catalog={this.state.courses}/>
           </div>
         </div>
       </div>
