@@ -92,7 +92,7 @@ I see you expect a ``Catalog`` component with headers. **Yes, we show "Class", "
 ```js
   render() {
     return (
-      <table className='table'>
+      <table className="table">
         <thead>
           <tr>
             <th>Class</th>
@@ -154,8 +154,8 @@ Why not add all the courses now? **I am taking small steps to keep my thinking c
 ```js
 
   render() {
-    var catalog = this.props.catalog;
-    var course = catalog && (catalog.length > 0) ? catalog[0] : null;
+    let catalog = this.props.catalog || [];
+    let course = catalog && (catalog.length > 0) ? catalog[0] : null;
 
       ...
 
@@ -202,7 +202,7 @@ How come you didn't add tests when you added ``Course``. **We are working on a b
 ```js
 
   render() {
-    var course = this.props.course;
+    let course = this.props.course;
     if (!course) {
       return null;
     }
@@ -340,7 +340,7 @@ How did you get it to pass?
 
 **I removed this code**
 ``src/components/catalog.js``
-```
+
 ```js
     var course = catalog && (catalog.length > 0) ? catalog[0] : null;
 ```
@@ -351,7 +351,7 @@ How did you get it to pass?
 ```js
 
         <tbody>
-          { catalog.map( item => <Course course={item} /> ) }
+          { catalog.map( item => <Course course={item} key={item.id} /> ) }
 ```
 
 Very nice work! I see courses. **Thank you!**
@@ -798,4 +798,3 @@ Acceptance: Students attempting to register for multiple classes at the same tim
 Acceptance: Students with a time-turner are allowed to register for multiple classes at the same time.
 
 ### 6. Refactor out the duplicated UI in Schedule and Catalog
-
