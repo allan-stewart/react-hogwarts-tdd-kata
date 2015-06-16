@@ -12,9 +12,9 @@ Professor Arthur Weasley has just discovered the magic-powered computer, Hex, an
 
 ---
 
-Young Wizard, you will be creating Hogwart's online student registration. Professor Neville Longbottom will guide you.
+Young Wizard, you are creating Hogwart's online student registration. Professor Neville Longbottom will guide you.
 
-Because you are a highly disciplined Wizard, you will be writing your code test first.
+Because you are a highly disciplined Wizard, you will write your code test first.
 
 Setup
 -----
@@ -40,31 +40,33 @@ or
 ## 0. Coming up to Speed
 
 How will you begin, my young wizard friend?
-  2. **I will notice tests running in one ``console``.**
-  2. **I will notice the server running in another ``console``.**
-  1. **I will load http://localhost:3000/index.html.**
-  3. **I will notice the three menu items.**
-  4. **I will sort myself into a house by clicking on the sorting hat.**
+  2. **I notice tests running in one ``console``.**
+  2. **I notice the server running in another ``console``.**
+  1. **I load http://localhost:3000/index.html.**
+  3. **I notice the three menu items.**
+  4. **I've sorted myself into a house by clicking on the sorting hat.**
 
 Great, what house are you in? **I am in ___________________**
 
 ## 1. Story: Show Catalog
 
-Acceptance: Students will be able to see a catalog of courses.
+Acceptance: Students are able to see a catalog of courses.
 
 ---
 
 It is time to start coding. Where will you start? **Making changes to catalog UI inside file ``src/components/catalog.js``.**
 
-I seem to have forgotten how to view the catalog. **Oh, Professor, you just run ``npm start`` and hit webpage ``localhost:3000/index.html`` and click on the Catalog menu.**
+Can you remind me how view to view the catalog? **Oh, Professor, just run ``npm start`` and hit webpage ``localhost:3000/index.html`` and click on the Catalog menu.**
 
 ### 1.0. Table Headers for Catalog
 
-How do we want the catalog to look? **We will put it into a table with headers, class, profesor, cred...**
+What should the catalog look like? **It has a table with headers, class, profesor, cred...**
 
-Can you show me in a test? **Oh, that would be easier.**
+Can you show me in a test? **Oh, that is easier.**
 
 ### 1.0.0. Fail (Red)
+
+If you copy paste the code remember, there is context and content; copy only the content. **Yes, Professor and the next time through, I will type all the code.**
 
 ``test/unit/components/catalog.spec.js``
 ```js
@@ -84,7 +86,7 @@ describe('Catalog component', () => {
 
 ### 1.0.1. Pass (Green)
 
-I see you expect to have a ``Catalog`` component with headers. **Yes, I expect we want to show "Class", "Professor", "Credits" and "Time".**
+I see you expect a ``Catalog`` component with headers. **Yes, we show "Class", "Professor", "Credits" and "Time".**
 
 ``src/components/catalog.js``
 ```js
@@ -114,9 +116,9 @@ I reloaded ``localhost:3000/index.html`` and clicked on menu item ``catalog`` an
 
 ### 1.1. Show a Course
 
-I see, we only have the headers. How will we add a course? **I think I will add a ``Course`` component inside the ``<tbody>`` tags and pass ``course`` as a property.**
+I see only headers. How will we add a course? **By adding a ``Course`` component inside the ``<tbody>`` tags and passing ``course`` as a property.**
 
-Can you show me with a test? **Sure.**
+Can you show me your test? **Sure.**
 
 **Demonstratio Facilius.**
 
@@ -144,9 +146,9 @@ Can you show me with a test? **Sure.**
 
 ### 1.1.1. Error
 
-How will we make it pass? **We will add a single course using the (soon to be written) ``Course`` component.**
+How are you making it pass? **I added a single course using the (soon to be written) ``Course`` component.**
 
-Why not add all the courses now? **We are taking small steps to keep our thinking clear.**
+Why not add all the courses now? **I am taking small steps to keep my thinking clear.**
 
 ``src/components/catalog.js``
 ```js
@@ -161,7 +163,7 @@ Why not add all the courses now? **We are taking small steps to keep our thinkin
             <Course course={course} />
 ```
 
-Everything is broken! Nothing shows in the browser and the tests are failing. **Yes, it is because ``Course`` is not defined. I will define it in ``src/components/course.js``**
+Everything is broken! Nothing shows in the browser and the tests are failing. **Yes, it is because ``Course`` is not defined. I am defining it in ``src/components/course.js``**
 
 ### 1.1.2. Fail
 
@@ -192,7 +194,7 @@ import Course from "./course";
 
 ### 1.1.3. Pass
 
-How come you didn't add tests when you added ``Course``. **We are already working on a broken test. I will add tests but first, I will see this one pass and also see it working in the browser first.**
+How come you didn't add tests when you added ``Course``. **We are working on a broken test. I will add tests later; but first, I will see this one pass.**
 
 **Facere Transeat**
 
@@ -217,13 +219,13 @@ How come you didn't add tests when you added ``Course``. **We are already workin
 
 ### 1.1.4. Show the Catalog
 
-You have build a perfectly good catalog! **Thank you.**
+You have a perfectly good catalog! **Thank you.**
 
-When I look at the catalog web page, why don't I see the classes? **It is because ``Catalog`` is a stateless component (it only uses ``props``). We need a place to manage ``state``.**
+I looked at the catalog web page and I didn't see any classes? **It is because ``Catalog`` is a stateless component (it only uses ``props``). We need a place to manage ``state``.**
 
-What are you going to call this state managing component? **What about ``CatalogPage``?**
+What is the name of the state managing component? **I like ``CatalogPage``?**
 
-It turns out we have a ``CatalogPage``. Now what? **I will change ``CatalogPage.render`` to pass catalog as a property.**
+It turns out we have a ``CatalogPage``. Now what? **I am changing ``CatalogPage.render`` to pass catalog as a property.**
 
 ``src/components/catalog-page.js``
 ```js
@@ -235,13 +237,14 @@ It turns out we have a ``CatalogPage``. Now what? **I will change ``CatalogPage.
 
 How and where did ``this.state.catalog`` get the catalog data? **``this.state.catalog`` is being set in the ``constructor`` from the ``CatalogRepository``.**
 
-Why are we only seeing the first course? **Remember, we are keeping things simple. We are still working on the test "render a course".**
+Why are we only seeing the first course? **Remember, we are keeping things simple. I am still working on the test "render a course".**
 
 ### 1.1.5. Refactor
-It seems you have a test in the wrong place. **Yes, I have a ``Course`` test mixed in with the ``Catalog`` tests. I will move that now.**
+You have a test in the wrong place? **Yes, I have a ``Course`` test mixed in with the ``Catalog`` tests. I am moving that now.**
 
 **I am removing**
 
+``test/unit/components/catalog.spec.js``
 ```js
   it('renders a course', () => {
 
@@ -249,8 +252,6 @@ It seems you have a test in the wrong place. **Yes, I have a ``Course`` test mix
 
   });
 ```
-**from**
-``test/unit/components/catalog.spec.js``
 **and placing it into ``course.spec`` with a few modifications**
 
 ``test/unit/components/course.spec.js``
@@ -292,7 +293,7 @@ What about ensuring ``Catalog`` contains a ``Course``? **I will add that test so
 
 ### 1.2. Show All Courses
 
-Now, can we show all the courses? **Yes, now is a perfect time to add all the courses. Our code is clean our test are in the right place.**
+Now, can I see all the courses? **Yes, I am adding them now; because, my code is clean and my test pass and are in the right place.**
 
 ### 1.2.0. Fail
 
@@ -334,17 +335,17 @@ import Course from '../../../src/components/course';
 ```
 
 ### 1.2.1. Pass
-How do you get it to pass?
+How did you get it to pass?
 
 
-**remove**
+**I removed this code**
 ``src/components/catalog.js``
 ```
 ```js
     var course = catalog && (catalog.length > 0) ? catalog[0] : null;
 ```
 
-**and add**
+**and add this code**
 
 ``src/components/catalog.js``
 ```js
@@ -358,7 +359,7 @@ Very nice work! I see courses. **Thank you!**
 
 ### 1.3. Show Course Times
 
-The course start time is not showing; I hope that doesn't mean you will be tardy to my class. **No Professor Longbottom, I am waiting for the right time to put it in.**
+The course start time is not showing; I hope that doesn't mean you will be tardy to my class. **No Professor Longbottom, now is the the right time to fix it.**
 
 ### 1.3.0. Fail
 
@@ -441,7 +442,7 @@ Don't you mean add a test? **Yes, Professor; this is a TDD Kata, after all.**
 
 ### 2.0.1. Pass
 
-**Now I will make the test pass.**
+**Now I make the test pass.**
 
 **Addo Tabula Registeriom**
 
@@ -455,11 +456,11 @@ Don't you mean add a test? **Yes, Professor; this is a TDD Kata, after all.**
 
 ### 2.1. Invoke an Action
 
-Excellent. I see the "Register" link on the page now. But it doesn't do anything when I click on it. **No Professor, we haven't added an ``onClick`` event.**
+Excellent. I see the "Register" link on the page now. But it doesn't do anything when I click on it. **No Professor, we are about to add an ``onClick`` event.**
 
-What should happen when the link is clicked? **We should call an action which will register the course to the wizard using the site.**
+What should happen when the link is clicked? **It calls an action which registers the course to the wizard using the site.**
 
-Correct. There is already a ``wizard-actions`` file for that. But how will you test that the correct action is called? **I will use a mocking spell.**
+Correct. There is already a ``wizard-actions`` file for that. But how will you test that the correct action is called? **I use a mocking spell.**
 
 ### 2.1.0. Fail
 
@@ -492,11 +493,9 @@ import WizardActions from '../../../src/actions/wizard-actions';
   });
 ```
 
-Very good. I see you have used the `sinon` library to create a mock version of the wizard actions.
+Very good. I see you are using the ``sinon`` library to create a mock version of the wizard actions.
 
 ### 2.1.1. Pass
-
-**Now to make the test pass.**
 
 ``src/components/course.js``
 ```js
@@ -515,7 +514,7 @@ import WizardActions from "../actions/wizard-actions";
 
 ### 2.2. Displaying Registered Courses
 
-Good work. Now we should be able click the register link and see the course show up on the schedule webpage. **Hey! I get an error on the page that says, "Wizard pure-blood requirements not met." That's discrimination! Sure, only one of my parents was a wizard, but--**
+Good work. Now we click the register link and see the course in the schedule webpage. **Hey! I get an error on the page that says, "Wizard pure-blood requirements not met." That's discrimination! Sure, only one of my parents was a wizard, but--**
 
 ### 2.2.1. Investigation
 
@@ -523,7 +522,7 @@ Yes, yes, you're right. Calm down; that error shouldn't be there. We'd better ch
 
 Indeed. Malf-- that is, the wizard who worked on this project didn't write very clean code. Let's see if there are any tests. **I see some tests in ``test/unit/actions/wizard-actions.spec.js``**
 
-What does the registerForCourse test tell you? **It looks like when you register for a course, it is supposed to update the wizard repository and then dispatch two events: ``registerForCourseSuccess`` and ``updateWizard``**
+What does the registerForCourse test tell you? **It looks like when you register for a course, it updated the wizard repository and then dispatch two events: ``registerForCourseSuccess`` and ``updateWizard``**
 
 That sounds correct. Are there any tests for the error message behavior? **No.**
 
@@ -583,7 +582,7 @@ Good. How about the ``h`` variable? What is it for? **Well, ``h`` is assigned to
   }
 ```
 
-I see that your tests are still green. Very good. This means you haven't broken anything while making the code easier to read. **Thank you. But I can't figure out what ``advi`` or ``adv`` are for.**
+I see your tests are still green. Very good. This means you haven't broken anything while making the code easier to read. **Thank you. But I can't figure out what ``advi`` or ``adv`` are for.**
 
 ### 2.2.3. Refactoring: Inline Variables
 
@@ -618,7 +617,7 @@ Gryffindor also has a "y" at index 2, you know. **But Hufflepuff and Ravenclaw d
 
 There is not supposed to be any kind of pure-blood requirement for registering for courses at Hogwarts. **I'll just delete those lines.**
 
-Wait. It's always better to use a test to expose a bug. That's something to put into your Remembrall. **Okay, I'll change the existing test. The specific house shouldn't matter, so I'll just remove Slytherin.**
+Wait. It's always better to use a test to expose a bug. That's something to put into your Remembrall. **Okay, I'm changing the existing test. The specific house shouldn't matter, so I am removing `Slytherin`.**
 
 ``test/unit/actions/wizard-actions.spec.js``
 ```js
@@ -652,7 +651,7 @@ Good. But you aren't done here. To keep code maintainable, you should follow the
 
 Comments can be misleading. There is no requirement for giving certain houses more credit for a course. **Very well, I will expose the bug and fix it.**
 
-Are you sure you want to write a test for a case that shouldn't exist? **Good point. I'll just remove that code then.**
+Are you sure you want to write a test for a case that shouldn't exist? **Good point. I am removing that code then.**
 
 ``src/actions/wizard-actions.js``
 ```js
@@ -667,7 +666,7 @@ Are you sure you want to write a test for a case that shouldn't exist? **Good po
 
 ### 2.2.6. Refactoring: Immutability
 
-Mutating data is a common source of bugs. ``React`` is so powerful because it encourages/requires immutability. **Oh, and we are mutating ``wizard``. I will fix that.**
+Mutating data is a common source of bugs. ``React`` is so powerful because it encourages/requires immutability. **Oh, and the code is mutating ``wizard``. I have just the spell:**
 
 **Expeto Immutate**
 

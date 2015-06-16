@@ -93,11 +93,7 @@ Windows
 
 NPM
 
-wrap 
 
-{ _.map  }
-
-.to.equal vs .be.equal
 
 airbnb -> .eslint
 
@@ -107,5 +103,9 @@ Start over with brew
 Context vs code that has to be copied
 
 Node 0.12.4 doesn't work
+
+consisent quotes " vs ' ' "
+
+
 
 
