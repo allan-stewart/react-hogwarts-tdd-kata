@@ -1,5 +1,7 @@
-node_modules
-src/repositories
+node_modules/
+src/repositories/
 webpack.config.js
 test/utils/dom.js
+tools/
+tests.webpack.js
 

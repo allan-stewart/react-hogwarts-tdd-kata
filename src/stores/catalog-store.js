@@ -1,6 +1,6 @@
-import alt from "../alt";
+import alt from '../alt';
 
-import catalogActions from "../actions/catalog-actions";
+import catalogActions from '../actions/catalog-actions';
 
 class CatalogStore {
 

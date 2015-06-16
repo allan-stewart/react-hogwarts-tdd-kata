@@ -1,5 +1,5 @@
-import alt from "../alt";
-import CatalogRepository from "../repositories/catalog-repository";
+import alt from '../alt';
+import CatalogRepository from '../repositories/catalog-repository';
 
 class CatalogActions {
 
@@ -21,7 +21,6 @@ class CatalogActions {
   }
 
   updateCatalogFailed(message) {
-    console.log("Failed to update catalog " + message);
     throw message;
   }
 
