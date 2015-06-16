@@ -21,14 +21,14 @@ class WizardStore {
   onRegisterForCourseSuccess(course) {
     this.registrationResponse = {
       error: false,
-      message: 'Successfully registered for course: ' + course.name
+      message: 'Successfully registered for course: ' + course.name,
     };
   }
 
   onRegisterForCourseFailed(message) {
     this.registrationResponse = {
       error: true,
-      message: message
+      message: message,
     };
   }
 }

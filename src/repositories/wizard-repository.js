@@ -1,6 +1,6 @@
 let wizard = {
   house: '',
-  courses: []
+  courses: [],
 };
 
 export default class WizardRepository {
