@@ -155,7 +155,7 @@ Why not add all the courses now? **I am taking small steps to keep my thinking c
 
   render() {
     let catalog = this.props.catalog || [];
-    let course = catalog && (catalog.length > 0) ? catalog[0] : null;
+    let course = (catalog.length > 0) ? catalog[0] : null;
 
       ...
 
@@ -339,10 +339,10 @@ How did you get it to pass?
 
 
 **I removed this code**
-``src/components/catalog.js``
 
+``src/components/catalog.js``
 ```js
-    var course = catalog && (catalog.length > 0) ? catalog[0] : null;
+    let course = (catalog.length > 0) ? catalog[0] : null;
 ```
 
 **and added this code**
