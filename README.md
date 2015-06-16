@@ -345,7 +345,7 @@ How did you get it to pass?
     var course = catalog && (catalog.length > 0) ? catalog[0] : null;
 ```
 
-**and add this code**
+**and added this code**
 
 ``src/components/catalog.js``
 ```js
@@ -450,17 +450,17 @@ Don't you mean add a test? **Yes, Professor; this is a TDD Kata, after all.**
 ```js
 
         <td>{moment(course.startTime).format('h:mm a')}</td>
-        <td><a href='#'>Register</a></td>
+        <td><a href="#">Register</a></td>
 
 ```
 
 ### 2.1. Invoke an Action
 
-Excellent. I see the "Register" link on the page now. But it doesn't do anything when I click on it. **No Professor, we are about to add an ``onClick`` event.**
+Excellent. I see the "Register" link on the page now. But it doesn't do the right thing when I click on it. **No Professor, we are about to add an ``onClick`` event.**
 
 What should happen when the link is clicked? **It calls an action which registers the course to the wizard using the site.**
 
-Correct. There is already a ``wizard-actions`` file for that. But how will you test that the correct action is called? **I use a mocking spell.**
+Correct. There is already a ``wizard-actions`` file for that. But how will you test that the correct action is called? **I will use a mocking spell.**
 
 ### 2.1.0. Fail
 
@@ -503,18 +503,19 @@ import WizardActions from '../actions/wizard-actions';
 
   ...
 
+        <td><a href="#" onClick={this.handleRegisterClick.bind(this)}>Register</a></td>
+
+  ...
+
   handleRegisterClick(event) {
     event.preventDefault();
     WizardActions.registerForCourse(this.props.course);
   }
-
-  ...
-        <td><a href='#' onClick={this.handleRegisterClick.bind(this)}>Register</a></td>
 ```
 
 ### 2.2. Displaying Registered Courses
 
-Good work. Now we click the register link and see the course in the schedule webpage. **Hey! I get an error on the page that says, "Wizard pure-blood requirements not met." That's discrimination! Sure, only one of my parents was a wizard, but--**
+Good work. Now when we click the register link we should see the course in the schedule webpage. **Hey! I get an error on the page that says, "Wizard pure-blood requirements not met." That's discrimination! Sure, only one of my parents was a wizard, but--**
 
 ### 2.2.1. Investigation
 
@@ -537,11 +538,11 @@ Can you figure out what any of those variables are for? **Yes. The ``c`` variabl
 ``src/actions/wizard-actions.js``
 ```js
   registerForCourse(course) {
-    var chk = (x) => { return x.house; };
-    var advi = 4;
-    var wizard = WizardRepository.get();
-    var h = chk(wizard);
-    var adv = 'h';
+    const chk = (x) => { return x.house; };
+    const advi = 4;
+    const wizard = WizardRepository.get();
+    const h = chk(wizard);
+    const adv = 'h';
     // Check for mudbloods.
     if (h[2] !== 'y') {
       return this.actions.registerForCourseFailed('Wizard pure-blood requirements not met.');
@@ -562,11 +563,11 @@ Good. How about the ``h`` variable? What is it for? **Well, ``h`` is assigned to
 ``src/actions/wizard-actions.js``
 ```js
   registerForCourse(course) {
-    var chk = (x) => { return x.house; };
-    var advi = 4;
-    var wizard = WizardRepository.get();
-    var house = chk(wizard);
-    var adv = 'h';
+    const chk = (x) => { return x.house; };
+    const advi = 4;
+    const wizard = WizardRepository.get();
+    const house = chk(wizard);
+    const adv = 'h';
     // Check for mudbloods.
     if (house[2] !== 'y') {
       return this.actions.registerForCourseFailed('Wizard pure-blood requirements not met.');
@@ -593,7 +594,7 @@ Those two mystery variables only appear to be used once each. Since the names ar
 ``src/actions/wizard-actions.js``
 ```js
   registerForCourse(course) {
-    var wizard = WizardRepository.get();
+    const wizard = WizardRepository.get();
     // Check for mudbloods.
     if (wizard.house[2] !== 'y') {
       return this.actions.registerForCourseFailed('Wizard pure-blood requirements not met.');
@@ -631,7 +632,7 @@ Very good. Now you can fix the code. **And I'll get rid of that offensive "mudbl
 ``src/actions/wizard-actions.js``
 ```js
   registerForCourse(course) {
-    var wizard = WizardRepository.get();
+    const wizard = WizardRepository.get();
     wizard.courses.push(course);
     if (wizard.house[4] === 'h') {
       // DO NOT REMOVE!
@@ -656,7 +657,7 @@ Are you sure you want to write a test for a case that shouldn't exist? **Good po
 ``src/actions/wizard-actions.js``
 ```js
   registerForCourse(course) {
-    var wizard = WizardRepository.get();
+    const wizard = WizardRepository.get();
     wizard.courses.push(course);
     WizardRepository.save(wizard);
     this.actions.registerForCourseSuccess(course);
@@ -672,23 +673,22 @@ Mutating data is a common source of bugs. ``React`` is so powerful because it en
 
 ``src/actions/wizard-actions.js``
 ```js
-
   registerForCourse(course) {
-    var wizard = WizardRepository.get();
-    var newWizard = React.addons.update(
-      wizard, { courses: {$push: [ course ] } }
+    const wizard = WizardRepository.get();
+    const newWizard = React.addons.update(
+      wizard, { courses: { $push: [ course ] } }
     );
     WizardRepository.save(newWizard);
     this.actions.registerForCourseSuccess(course);
     this.actions.updateWizard(newWizard);
-   }
+  }
 ```
 
 ### 2.9. Finish
 
 Clicking on the register link now results in a success message and the course appears on the schedule page. Are we finished with this story? **It depends, should we disallow scheduling more than one course at the same time (unless they have a Time-Turner)?**
 
-Yes, but that is another story. **Then, the software works as expected. The code is clean. Yes, I would say this story is done.**
+Yes, but that is another story. **Then the software works as expected. The code is clean. Yes, I would say this story is done.**
 
 Congratulations, two points for Hufflepuff. Now, as soon as I get this Leg-Locker Curse off, we can go to the Quidditch match.
 
