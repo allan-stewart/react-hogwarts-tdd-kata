@@ -25,9 +25,9 @@ module.exports = {
       appMountId: "app"
     }),
   ],
-  //eslint: {
-    //configFile: '.eslintrc'
-  //},
+  eslint: {
+    configFile: '.eslintrc'
+  },
   node: {
     fs: "empty"
   }

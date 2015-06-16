@@ -1,18 +1,18 @@
 import {expect} from 'chai';
 import sinon from 'sinon';
 
-import alt from "../../../src/alt";
+import alt from '../../../src/alt';
 import WizardActions from '../../../src/actions/wizard-actions';
 import WizardRepository from '../../../src/repositories/wizard-repository';
 
 
 describe('Wizard actions', () => {
-  var mockWizardRepository;
-  var dispatchedEvents;
+  let mockWizardRepository;
+  let dispatchedEvents;
 
   before(() => {
     alt.dispatcher.register((event) => {
-      if (event.details.namespace == 'WizardActions') {
+      if (event.details.namespace === 'WizardActions') {
         dispatchedEvents.push(event);
       }
     });
@@ -26,7 +26,7 @@ describe('Wizard actions', () => {
   describe('getWizard', () => {
 
     it('invokes updateWizard on success', (done) => {
-      var wizard = {house: 'Slytherin', courses: []};
+      const wizard = {house: 'Slytherin', courses: []};
       mockWizardRepository.expects('get').once().returns(wizard);
 
       WizardActions.getWizard();
@@ -46,15 +46,15 @@ describe('Wizard actions', () => {
   describe('registerForCourse', () => {
 
     let course = {
-      id: "DDA302-13",
-      name: "Defence Against the Dark Arts",
-      professor: "Quirinus Quirrell",
+      id: 'DDA302-13',
+      name: 'Defence Against the Dark Arts',
+      professor: 'Quirinus Quirrell',
       credits: 3,
       startTime: new Date(0, 0, 0, 11, 30),
     };
 
     it('invokes registerForCourseSuccess and updateWizard on success', () => {
-      var wizard = {house: 'Slytherin', courses: []};
+      const wizard = {house: 'Slytherin', courses: []};
       mockWizardRepository.expects('get').once().returns(wizard);
 
       WizardActions.registerForCourse(course);
@@ -71,7 +71,7 @@ describe('Wizard actions', () => {
     });
 
     it('invokes WizardRepository.save on success', () => {
-      var wizard = {house: 'Slytherin', courses: []};
+      const wizard = {house: 'Slytherin', courses: []};
       mockWizardRepository.expects('get').once().returns(wizard);
       mockWizardRepository.expects('save').once();
 
@@ -93,7 +93,7 @@ describe('Wizard actions', () => {
       mockWizardRepository.verify();
     });
 
-    it("doesn't set house if it is already set", () => {
+    it('doesn\'t set house if it is already set', () => {
       mockWizardRepository.expects('get').once().returns({ house: 'Slytherin' });
       mockWizardRepository.expects('save').never();
 

@@ -1,4 +1,4 @@
-import {expect, assert} from 'chai';
+import {expect} from 'chai';
 import React from 'react/addons';
 
 import CatalogPage from '../../../src/components/catalog-page';
@@ -6,19 +6,19 @@ import Catalog from '../../../src/components/catalog';
 import Alert from '../../../src/components/alert';
 
 
-var TestUtils = React.addons.TestUtils;
+const TestUtils = React.addons.TestUtils;
 
 describe('CatalogPage component', () => {
 
-  it ('has child Catalog', () => {
-    var component = TestUtils.renderIntoDocument(
+  it('has child Catalog', () => {
+    const component = TestUtils.renderIntoDocument(
       <CatalogPage />
     );
     expect(TestUtils.scryRenderedComponentsWithType(component, Catalog)).to.have.length(1);
   });
 
-  it ('has child Alert', () => {
-    var component = TestUtils.renderIntoDocument(
+  it('has child Alert', () => {
+    const component = TestUtils.renderIntoDocument(
       <CatalogPage />
     );
     expect(TestUtils.scryRenderedComponentsWithType(component, Alert)).to.have.length(1);

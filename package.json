@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --port 3000",
     "build": "",
+    "lint": "eslint . --ext .js --ext",
     "test": "mocha \"test/unit/**/*.spec.js\"",
     "test-watch": "mocha \"test/unit/**/*.spec.js\" --watch"
   },
