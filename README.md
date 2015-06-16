@@ -73,10 +73,10 @@ If you copy paste the code remember, there is context and content; copy only the
 describe('Catalog component', () => {
 
   it('renders html headers', () => {
-    var catalog = TestUtils.renderIntoDocument(
+    const catalog = TestUtils.renderIntoDocument(
       <Catalog />
     );
-    var titles = TestUtils.scryRenderedDOMComponentsWithTag(catalog, 'th');
+    const titles = TestUtils.scryRenderedDOMComponentsWithTag(catalog, 'th');
     expect(titles[0].getDOMNode().textContent).to.equal('Class');
     expect(titles[1].getDOMNode().textContent).to.equal('Professor');
     expect(titles[2].getDOMNode().textContent).to.equal('Credits');
@@ -128,17 +128,17 @@ Can you show me your test? **Sure.**
 ```js
 
   it('renders a course', () => {
-    var catalog = [ {
+    const catalog = [ {
         id: 'RUN105',
         name: 'Ancient Runes',
         startTime: new Date(0,0,0,11,30),
         professor: 'Bathsheba Babbling',
         credits: 3
      } ];
-    var renderedCatalog = TestUtils.renderIntoDocument(
+    const renderedCatalog = TestUtils.renderIntoDocument(
       <Catalog catalog={catalog}/>
     );
-    var courses = TestUtils.scryRenderedDOMComponentsWithTag(renderedCatalog, 'td');
+    const courses = TestUtils.scryRenderedDOMComponentsWithTag(renderedCatalog, 'td');
     expect(courses[0].getDOMNode().textContent).to.equal('Ancient Runes');
   });
 
@@ -262,7 +262,7 @@ import {expect} from 'chai';
 import Course from '../../../src/components/course'
 
 
-var TestUtils = React.addons.TestUtils;
+const TestUtils = React.addons.TestUtils;
 
 describe('course component', () => {
 
@@ -275,14 +275,14 @@ describe('course component', () => {
   };
 
   it('renders a course', () => {
-    var renderedComponent = TestUtils.renderIntoDocument(
+    const renderedComponent = TestUtils.renderIntoDocument(
       <table>
         <tbody>
           <Course course={course}/>
         </tbody>
       </table>
     );
-    var courses = TestUtils.scryRenderedDOMComponentsWithTag(renderedComponent, 'td');
+    const courses = TestUtils.scryRenderedDOMComponentsWithTag(renderedComponent, 'td');
     expect(courses[0].getDOMNode().textContent).to.equal('Ancient Runes');
   });
 
@@ -304,7 +304,7 @@ import Course from '../../../src/components/course';
 ...
 
   it('renders all courses', () => {
-    var catalog = [ {
+    const catalog = [ {
         id: 'RUN105',
         name: 'Ancient Runes',
         startTime: new Date(0,0,0,13),
@@ -325,11 +325,11 @@ import Course from '../../../src/components/course';
       }
     ];
 
-    var renderedCatalog = TestUtils.renderIntoDocument(
+    const renderedCatalog = TestUtils.renderIntoDocument(
       <Catalog catalog={catalog}/>
     );
 
-    var courses = TestUtils.scryRenderedComponentsWithType(renderedCatalog, Course);
+    const courses = TestUtils.scryRenderedComponentsWithType(renderedCatalog, Course);
     expect(courses).to.have.length(3);
   });
 ```
@@ -366,14 +366,14 @@ The course start time is not showing; I hope that doesn't mean you will be tardy
 ``test/unit/components/course.spec.js``
 ```js
   it('renders time correctly', () => {
-    var renderedCourse = TestUtils.renderIntoDocument(
+    const renderedCourse = TestUtils.renderIntoDocument(
       <table>
         <tbody>
           <Course course={course}/>
         </tbody>
       </table>
     );
-    var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, 'td');
+    const data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, 'td');
     expect(data[3].getDOMNode().textContent).to.equal('11:30 am');
   });
 ```
@@ -426,14 +426,14 @@ Don't you mean add a test? **Yes, Professor; this is a TDD Kata, after all.**
 ``test/unit/components/course.spec.js``
 ```js
   it('renders a register link', () => {
-    var renderedCourse = TestUtils.renderIntoDocument(
+    const renderedCourse = TestUtils.renderIntoDocument(
       <table>
         <tbody>
           <Course course={course} />
         </tbody>
       </table>
     );
-    var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, 'td');
+    const data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, 'td');
     expect(data.length).to.equal(5);
     expect(data[4].getDOMNode().textContent).to.equal('Register');
     expect(data[4].props.children.type).equal('a');
@@ -478,16 +478,16 @@ import WizardActions from '../../../src/actions/wizard-actions';
 ...
 
   it('calls WizardActions.registerForCourse when the register link is clicked', () => {
-    var mockWizardActions = sinon.mock(WizardActions);
+    const mockWizardActions = sinon.mock(WizardActions);
     mockWizardActions.expects('registerForCourse').once().withExactArgs(course);
-    var renderedCourse = TestUtils.renderIntoDocument(
+    const renderedCourse = TestUtils.renderIntoDocument(
       <table>
         <tbody>
           <Course course={course} />
         </tbody>
       </table>
     );
-    var data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, 'a');
+    const data = TestUtils.scryRenderedDOMComponentsWithTag(renderedCourse, 'a');
     TestUtils.Simulate.click(data[0]);
     mockWizardActions.verify();
   });
@@ -624,7 +624,7 @@ Wait. It's always better to use a test to expose a bug. That's something to put 
 ```js
 
     it('invokes registerForCourseSuccess and updateWizard on success', () => {
-      var wizard = {house: '', courses: []};
+      const wizard = {house: '', courses: []};
 ```
 
 Very good. Now you can fix the code. **And I'll get rid of that offensive "mudblood" comment too.**
@@ -727,7 +727,7 @@ You now have a choice, _write a test_ or open the _debugger_. **I choose test (t
   ...
 
     describe('when generating a random number', function () {
-      var stubMath;
+      let stubMath;
 
       beforeEach(function () {
         stubMath = sinon.stub(Math, 'random');
